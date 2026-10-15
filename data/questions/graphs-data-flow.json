@@ -1,0 +1,332 @@
+{
+  "topicId": "graphs-data-flow",
+  "topicName": "Graph Coverage - Data Flow",
+  "sourcePdf": "graphs-data-flow.pdf",
+  "questions": [
+    {
+      "id": "gdf-001",
+      "question": "In data flow testing, what is a 'def' (definition) of a variable v?",
+      "options": {
+        "A": "A location where variable v is read or printed.",
+        "B": "A location where a value is stored into memory or bound to variable v.",
+        "C": "A comment defining the variable purpose.",
+        "D": "The scope where variable v ceases to exist."
+      },
+      "correctAnswer": "B",
+      "explanation": "A definition (def) is a statement or node where a value is stored in memory, assigned to a variable, or passed as an input/output parameter.",
+      "difficulty": "easy",
+      "sourcePages": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "gdf-002",
+      "question": "What is a 'use' of a variable v in data flow testing?",
+      "options": {
+        "A": "A location where variable v is assigned a new value.",
+        "B": "A location where variable v's value is accessed, read, or referenced.",
+        "C": "The declaration line of variable v.",
+        "D": "The memory deallocation statement for v."
+      },
+      "correctAnswer": "B",
+      "explanation": "A use is a location (node or edge) where the value of variable v is read, fetched, or used in a computation or conditional test.",
+      "difficulty": "easy",
+      "sourcePages": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "gdf-003",
+      "question": "What is a 'def-clear path' with respect to variable v?",
+      "options": {
+        "A": "A path where variable v is cleared to null.",
+        "B": "A path from node ni to node nj where no node on the path (excluding ni and nj) defines variable v.",
+        "C": "A path containing no definitions of any variable.",
+        "D": "A path where variable v is defined at every node."
+      },
+      "correctAnswer": "B",
+      "explanation": "A path is def-clear with respect to v if v is not assigned/re-defined at any intermediate node between the start node and the destination node.",
+      "difficulty": "medium",
+      "sourcePages": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": "gdf-004",
+      "question": "What is a 'du-path' (definition-use path)?",
+      "options": {
+        "A": "A simple path from a definition of v to a use of v that is def-clear with respect to v.",
+        "B": "Any path that contains both a def and a use, regardless of cycles.",
+        "C": "A path that defines two variables simultaneously.",
+        "D": "A path where variable v is used before it is defined."
+      },
+      "correctAnswer": "A",
+      "explanation": "A du-path with respect to variable v is a simple path from a node where v is defined to a node (or edge) where v is used, such that the path is def-clear for v.",
+      "difficulty": "medium",
+      "sourcePages": [
+        6
+      ]
+    },
+    {
+      "id": "gdf-005",
+      "question": "What does a 'du-pair' represent?",
+      "options": {
+        "A": "A pair of variables that always appear together.",
+        "B": "A pair (d, u) of a definition d of v and a use u of v such that there is at least one def-clear path from d to u.",
+        "C": "A pair of adjacent edges in the graph.",
+        "D": "A test case with two inputs."
+      },
+      "correctAnswer": "B",
+      "explanation": "A du-pair (d, u) consists of a def d and use u of the same variable v where at least one def-clear path exists connecting d to u.",
+      "difficulty": "medium",
+      "sourcePages": [
+        5
+      ]
+    },
+    {
+      "id": "gdf-006",
+      "question": "What is the requirement for All-Defs Coverage (ADC)?",
+      "options": {
+        "A": "For each definition of each variable, at least one def-clear path to at least one reachable use must be toured.",
+        "B": "Every variable must be defined in every test case.",
+        "C": "All definitions must be reached and re-assigned.",
+        "D": "All definitions must be tested against all uses simultaneously."
+      },
+      "correctAnswer": "A",
+      "explanation": "All-Defs Coverage requires that for every definition of every variable, at least one def-clear path from that definition to some reachable use is executed.",
+      "difficulty": "medium",
+      "sourcePages": [
+        8
+      ]
+    },
+    {
+      "id": "gdf-007",
+      "question": "What is the requirement for All-Uses Coverage (AUC)?",
+      "options": {
+        "A": "For each definition of each variable, at least one def-clear path to EACH reachable use of that definition must be toured.",
+        "B": "All variables must be used in a single expression.",
+        "C": "Every use must be tested with negative values.",
+        "D": "All uses must occur before any def."
+      },
+      "correctAnswer": "A",
+      "explanation": "All-Uses Coverage requires that for every definition of a variable and every reachable use of that definition, at least one def-clear path connecting them is toured.",
+      "difficulty": "medium",
+      "sourcePages": [
+        9
+      ]
+    },
+    {
+      "id": "gdf-008",
+      "question": "What does All-du-Paths Coverage (ADUPC) require?",
+      "options": {
+        "A": "For every def-use pair, EVERY du-path between them must be toured.",
+        "B": "Only the shortest du-path must be toured.",
+        "C": "Only du-paths of length 1 must be toured.",
+        "D": "At least two du-paths per program."
+      },
+      "correctAnswer": "A",
+      "explanation": "All-du-Paths Coverage requires that every du-path from each definition to each corresponding use must be covered by test paths.",
+      "difficulty": "medium",
+      "sourcePages": [
+        10
+      ]
+    },
+    {
+      "id": "gdf-009",
+      "question": "Which of the following correctly describes the subsumption relationship among data flow criteria?",
+      "options": {
+        "A": "All-Defs Coverage subsumes All-Uses Coverage.",
+        "B": "All-du-Paths Coverage subsumes All-Uses Coverage, and All-Uses Coverage subsumes All-Defs Coverage.",
+        "C": "All-Uses Coverage subsumes All-du-Paths Coverage.",
+        "D": "All-Defs Coverage subsumes Prime Path Coverage."
+      },
+      "correctAnswer": "B",
+      "explanation": "Covering all du-paths (ADUPC) ensures every reachable def-use pair has at least one path covered (AUC), which ensures every def has at least one use covered (ADC).",
+      "difficulty": "easy",
+      "sourcePages": [
+        12
+      ]
+    },
+    {
+      "id": "gdf-010",
+      "question": "Does Prime Path Coverage (PPC) subsume All-du-Paths Coverage (ADUPC)?",
+      "options": {
+        "A": "Yes, always.",
+        "B": "No. Although du-paths are simple paths, touring prime paths with sidetrips does NOT guarantee def-clear touring.",
+        "C": "Yes, because PPC is the strongest possible coverage.",
+        "D": "Only when the graph has no loops."
+      },
+      "correctAnswer": "B",
+      "explanation": "PPC does not subsume ADUPC (and ADUPC does not subsume PPC). If PPC tours a prime path with a sidetrip, that sidetrip might re-define the variable, violating the def-clear requirement of the du-path.",
+      "difficulty": "hard",
+      "sourcePages": [
+        13,
+        14
+      ]
+    },
+    {
+      "id": "gdf-011",
+      "question": "What is the distinction between a Computation Use (c-use) and a Predicate Use (p-use)?",
+      "options": {
+        "A": "c-use occurs in an assignment or output; p-use occurs in a conditional predicate deciding control flow.",
+        "B": "c-use is used in C programs; p-use is used in Python programs.",
+        "C": "p-use assigns a value; c-use frees memory.",
+        "D": "There is no difference in formal data flow theory."
+      },
+      "correctAnswer": "A",
+      "explanation": "A computation use (c-use) directly affects a computation (e.g. RHS of assignment: y = x + 1), while a predicate use (p-use) governs control flow branching (e.g. if (x > 0)).",
+      "difficulty": "medium",
+      "sourcePages": [
+        15
+      ]
+    },
+    {
+      "id": "gdf-012",
+      "question": "Suppose variable x is defined at node 1. Node 2 uses x. Node 3 re-defines x. Node 4 uses x. Is path [1, 2, 3, 4] a def-clear path with respect to the def of x at node 1?",
+      "options": {
+        "A": "Yes, because x is used at node 4.",
+        "B": "No, because node 3 re-defines x, killing the definition from node 1.",
+        "C": "Yes, because node 2 is def-clear.",
+        "D": "Only if node 3 is a loop."
+      },
+      "correctAnswer": "B",
+      "explanation": "At node 3, variable x is redefined. Therefore, the path [1, 2, 3, 4] is NOT def-clear with respect to the definition of x at node 1.",
+      "difficulty": "easy",
+      "sourcePages": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": "gdf-013",
+      "question": "What happens if a variable is used without a prior definition on some path?",
+      "options": {
+        "A": "It indicates a potential data flow anomaly (uninitialized variable use / read before write).",
+        "B": "The compiler automatically fixes the logic.",
+        "C": "It is an example of All-Defs Coverage.",
+        "D": "It proves the program has no bugs."
+      },
+      "correctAnswer": "A",
+      "explanation": "Referencing a variable without prior definition is a serious data flow anomaly (ur-anomaly: use before definition), usually resulting in undefined behavior or crashes.",
+      "difficulty": "easy",
+      "sourcePages": [
+        16
+      ]
+    },
+    {
+      "id": "gdf-014",
+      "question": "What is a 'dd-anomaly' in data flow analysis?",
+      "options": {
+        "A": "Double definition: a variable is defined twice without any intervening use.",
+        "B": "Data destruction error.",
+        "C": "Dynamic dispatch failure.",
+        "D": "Def-clear path violation."
+      },
+      "correctAnswer": "A",
+      "explanation": "A dd-anomaly occurs when a variable is defined and then redefined without being read in between, indicating redundant computations or missing logic.",
+      "difficulty": "medium",
+      "sourcePages": [
+        16
+      ]
+    },
+    {
+      "id": "gdf-015",
+      "question": "Can a du-path contain a cycle?",
+      "options": {
+        "A": "Yes, du-paths can contain any number of cycles.",
+        "B": "A du-path is a simple path; thus it can only contain a cycle if the first and last nodes are the same node (which must be def and use).",
+        "C": "No, du-paths cannot have any repeated nodes whatsoever.",
+        "D": "Only in recursive functions."
+      },
+      "correctAnswer": "B",
+      "explanation": "By definition, a du-path is a simple path. Hence it cannot repeat any internal nodes. If the def and use are at the same node, it can be a simple cycle.",
+      "difficulty": "hard",
+      "sourcePages": [
+        6
+      ]
+    },
+    {
+      "id": "gdf-016",
+      "question": "Why is data flow testing considered more effective at catching certain logic faults than pure control-flow testing (NC/EC)?",
+      "options": {
+        "A": "Because it forces tests to verify the propagation and lifetime of data values between distant statements.",
+        "B": "Because it does not require running the code.",
+        "C": "Because it always requires fewer test cases.",
+        "D": "Because it replaces unit testing."
+      },
+      "correctAnswer": "A",
+      "explanation": "Control flow testing merely touches edges, but data flow testing checks that values computed at one location are correctly received and used at other locations, detecting lifecycle and propagation bugs.",
+      "difficulty": "medium",
+      "sourcePages": [
+        7
+      ]
+    },
+    {
+      "id": "gdf-017",
+      "question": "If a method defines variable 'count' at node 1, and 'count' is used at node 3 and node 5, how many du-pairs exist for 'count' (assuming def-clear paths exist)?",
+      "options": {
+        "A": "1",
+        "B": "2: (node 1, node 3) and (node 1, node 5)",
+        "C": "4",
+        "D": "0"
+      },
+      "correctAnswer": "B",
+      "explanation": "There are 2 distinct use locations for the single def at node 1, yielding two du-pairs: (1, 3) and (1, 5).",
+      "difficulty": "easy",
+      "sourcePages": [
+        5
+      ]
+    },
+    {
+      "id": "gdf-018",
+      "question": "In data flow testing, how are variables passed as reference parameters to a function treated?",
+      "options": {
+        "A": "Only as uses.",
+        "B": "Potentially as both uses and defs, since the called function can read and modify their values.",
+        "C": "They are completely ignored.",
+        "D": "Only as defs."
+      },
+      "correctAnswer": "B",
+      "explanation": "Reference parameters allow the callee to read the incoming value (use) and write a modified value back into caller's storage (def).",
+      "difficulty": "medium",
+      "sourcePages": [
+        17
+      ]
+    },
+    {
+      "id": "gdf-019",
+      "question": "If a du-path is infeasible, what is the impact on test coverage measurement?",
+      "options": {
+        "A": "100% coverage cannot be achieved unless infeasible du-paths are recognized and eliminated from TR.",
+        "B": "The program must be rewritten immediately.",
+        "C": "Coverage is automatically set to 0%.",
+        "D": "All other du-paths become infeasible."
+      },
+      "correctAnswer": "A",
+      "explanation": "Just like structural coverage, infeasible du-paths cannot be executed by any input and must be recognized and excluded when calculating true coverage percentage.",
+      "difficulty": "easy",
+      "sourcePages": [
+        18
+      ]
+    },
+    {
+      "id": "gdf-020",
+      "question": "Which data flow coverage criterion is the weakest among ADC, AUC, and ADUPC?",
+      "options": {
+        "A": "All-du-Paths Coverage",
+        "B": "All-Uses Coverage",
+        "C": "All-Defs Coverage",
+        "D": "They are all of identical strength."
+      },
+      "correctAnswer": "C",
+      "explanation": "All-Defs Coverage (ADC) is the weakest because it only requires covering one use for each def, whereas AUC requires covering all reachable uses, and ADUPC requires all paths to all uses.",
+      "difficulty": "easy",
+      "sourcePages": [
+        12
+      ]
+    }
+  ]
+}

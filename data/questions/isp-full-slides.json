@@ -1,0 +1,340 @@
+{
+  "topicId": "isp-full-slides",
+  "topicName": "Input Space Partitioning (ISP)",
+  "sourcePdf": "ISP-full-slides.pdf",
+  "questions": [
+    {
+      "id": "isp-001",
+      "question": "In Input Space Partitioning (ISP), which two fundamental properties must every valid partition of an input domain satisfy?",
+      "options": {
+        "A": "Minimality and Determinism",
+        "B": "Pairwise disjointness and Completeness",
+        "C": "Subsumption and Linear independence",
+        "D": "Commutativity and Associativity"
+      },
+      "correctAnswer": "B",
+      "explanation": "A partition of set S is defined as a set of subsets {S1, S2, ..., Sn} such that the subsets are mutually pairwise disjoint (Si ∩ Sj = ∅ for i ≠ j) and together cover the entire domain completely (∪ Si = S).",
+      "difficulty": "easy",
+      "sourcePages": [
+        2,
+        5
+      ]
+    },
+    {
+      "id": "isp-002",
+      "question": "What is the primary difference between the Interface-based approach and the Functionality-based approach to Input Domain Modeling (IDM)?",
+      "options": {
+        "A": "Interface-based models semantic relationships, while Functionality-based models syntax only.",
+        "B": "Interface-based considers each parameter in isolation based on types, while Functionality-based considers behavioral requirements and interactions.",
+        "C": "Interface-based produces fewer test cases than Functionality-based under all criteria.",
+        "D": "Interface-based requires access to the source code, whereas Functionality-based is strictly black-box."
+      },
+      "correctAnswer": "B",
+      "explanation": "The interface-based approach analyzes parameters in isolation directly from the interface syntax/types (simple and mechanical). The functionality-based approach incorporates domain knowledge, functional relationships between parameters, and requirements.",
+      "difficulty": "medium",
+      "sourcePages": [
+        8,
+        9
+      ]
+    },
+    {
+      "id": "isp-003",
+      "question": "Given 3 input characteristics with 3, 4, and 2 partition blocks respectively, how many test requirements are generated under All Combinations Coverage (ACoC)?",
+      "options": {
+        "A": "9",
+        "B": "24",
+        "C": "7",
+        "D": "12"
+      },
+      "correctAnswer": "B",
+      "explanation": "All Combinations Coverage (ACoC) requires testing the Cartesian product of all partition blocks across all characteristics: 3 × 4 × 2 = 24 test combinations.",
+      "difficulty": "easy",
+      "sourcePages": [
+        18
+      ]
+    },
+    {
+      "id": "isp-004",
+      "question": "For input characteristics with block sizes |B1| = 3, |B2| = 4, and |B3| = 2, what is the minimum number of tests needed to satisfy Each Choice Coverage (ECC)?",
+      "options": {
+        "A": "4",
+        "B": "9",
+        "C": "24",
+        "D": "1"
+      },
+      "correctAnswer": "A",
+      "explanation": "Each Choice Coverage (ECC) requires that every block from each characteristic is used at least once in some test case. The minimum number of tests required is max(|Bi|) = max(3, 4, 2) = 4.",
+      "difficulty": "medium",
+      "sourcePages": [
+        19
+      ]
+    },
+    {
+      "id": "isp-005",
+      "question": "Under Base Choice Coverage (BCC), how many test cases are generated for characteristics with block sizes 4, 3, and 5?",
+      "options": {
+        "A": "60",
+        "B": "10",
+        "C": "9",
+        "D": "12"
+      },
+      "correctAnswer": "B",
+      "explanation": "The formula for Base Choice Coverage is: 1 + ∑ (|Bi| - 1). Here, 1 + (4 - 1) + (3 - 1) + (5 - 1) = 1 + 3 + 2 + 4 = 10 test cases.",
+      "difficulty": "medium",
+      "sourcePages": [
+        24,
+        25
+      ]
+    },
+    {
+      "id": "isp-006",
+      "question": "Why is Base Choice Coverage (BCC) generally preferred over All Combinations Coverage (ACoC) in practical industrial testing?",
+      "options": {
+        "A": "BCC subsumes All Combinations Coverage.",
+        "B": "BCC provides a linear growth in test cases while testing each non-base choice in isolation against nominal base values.",
+        "C": "BCC guarantees 100% path coverage of the source code.",
+        "D": "BCC eliminates the need to identify partition blocks."
+      },
+      "correctAnswer": "B",
+      "explanation": "BCC scales linearly (1 + ∑(|Bi|-1)) instead of exponentially (∏|Bi|), and isolates the effect of each non-base (often exceptional or boundary) choice against a stable baseline of base choices.",
+      "difficulty": "medium",
+      "sourcePages": [
+        23,
+        24
+      ]
+    },
+    {
+      "id": "isp-007",
+      "question": "What is the defining requirement of Pairwise Coverage (PWC)?",
+      "options": {
+        "A": "A value from each block for each characteristic must be combined with a value from every other block for each other characteristic.",
+        "B": "Every input variable must be tested with exactly two values.",
+        "C": "Only pairs of variables that have direct data dependencies are tested.",
+        "D": "Every test case must execute at least two branches."
+      },
+      "correctAnswer": "A",
+      "explanation": "Pairwise Coverage (also known as 2-wise coverage) mandates that for every pair of distinct characteristics, all possible combinations of blocks from those two characteristics must be covered by at least one test case.",
+      "difficulty": "easy",
+      "sourcePages": [
+        20,
+        21
+      ]
+    },
+    {
+      "id": "isp-008",
+      "question": "What is the key difference between Base Choice Coverage (BCC) and Multiple Base Choice Coverage (MBCC)?",
+      "options": {
+        "A": "MBCC chooses multiple base choices per characteristic, creating tests by varying each base choice individually.",
+        "B": "MBCC allows empty blocks in partitions.",
+        "C": "MBCC is identical to Pairwise Coverage.",
+        "D": "MBCC only applies to continuous floating-point variables."
+      },
+      "correctAnswer": "A",
+      "explanation": "In MBCC, more than one base choice is designated for one or more characteristics. For each base choice, tests are constructed by varying non-base choices while holding remaining characteristics at their base values.",
+      "difficulty": "medium",
+      "sourcePages": [
+        26,
+        27
+      ]
+    },
+    {
+      "id": "isp-009",
+      "question": "Which of the following is an example of an interface-based partition for an integer argument 'length' of an array?",
+      "options": {
+        "A": "Array is sorted vs Array is unsorted",
+        "B": "length < 0, length = 0, length > 0",
+        "C": "Array contains duplicate elements vs Array contains unique elements",
+        "D": "Operation succeeds vs Operation throws TimeoutException"
+      },
+      "correctAnswer": "B",
+      "explanation": "Checking 'length < 0', 'length = 0', 'length > 0' relies only on the type and value of the parameter 'length' in isolation (interface-based). The other options require knowing semantic relationships and functionality.",
+      "difficulty": "easy",
+      "sourcePages": [
+        8,
+        12
+      ]
+    },
+    {
+      "id": "isp-010",
+      "question": "In Input Domain Modeling, what problem occurs if partition blocks are NOT disjoint?",
+      "options": {
+        "A": "Some valid input values will have no test case assigned to them.",
+        "B": "An input value belongs to multiple blocks, leading to ambiguity and overlapping test goals.",
+        "C": "The input domain becomes infinite.",
+        "D": "All Combinations Coverage cannot be computed mathematically."
+      },
+      "correctAnswer": "B",
+      "explanation": "If blocks overlap (not disjoint), a single test value belongs to multiple blocks, which causes ambiguity in test requirements and undermines systematic boundary analysis.",
+      "difficulty": "medium",
+      "sourcePages": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": "isp-011",
+      "question": "Which of the following represents the correct subsumption relationship between ISP criteria?",
+      "options": {
+        "A": "Each Choice Coverage subsumes All Combinations Coverage.",
+        "B": "All Combinations Coverage subsumes Pairwise Coverage, and Pairwise Coverage subsumes Each Choice Coverage.",
+        "C": "Base Choice Coverage subsumes All Combinations Coverage.",
+        "D": "Each Choice Coverage subsumes Base Choice Coverage."
+      },
+      "correctAnswer": "B",
+      "explanation": "ACoC covers all combinations of all characteristics; hence it subsumes TWC and PWC. PWC covers all pairs, which guarantees that every individual block is used, subsuming ECC.",
+      "difficulty": "medium",
+      "sourcePages": [
+        28
+      ]
+    },
+    {
+      "id": "isp-012",
+      "question": "Suppose characteristic C1 has blocks {A, B}, C2 has {1, 2}, and C3 has {X, Y}. If Base Choice is selected as (A, 1, X), which of the following is NOT a valid BCC test case?",
+      "options": {
+        "A": "(B, 1, X)",
+        "B": "(A, 2, X)",
+        "C": "(A, 1, Y)",
+        "D": "(B, 2, Y)"
+      },
+      "correctAnswer": "D",
+      "explanation": "In BCC, tests are generated by varying one characteristic at a time from the base choice (A, 1, X). (B, 2, Y) varies all three characteristics simultaneously, which is not a single-variation BCC test.",
+      "difficulty": "hard",
+      "sourcePages": [
+        24,
+        25
+      ]
+    },
+    {
+      "id": "isp-013",
+      "question": "What is the recommended approach in ISP when certain combinations of blocks are infeasible due to domain constraints?",
+      "options": {
+        "A": "Redefine the entire software architecture.",
+        "B": "Drop the infeasible combinations from test requirements and document them.",
+        "C": "Force the program to crash using an illegal memory hook.",
+        "D": "Replace all characteristics with random noise."
+      },
+      "correctAnswer": "B",
+      "explanation": "When domain semantics make certain block combinations impossible (e.g. Month = February and Day = 31), those combinations are marked as infeasible and excluded from test requirements.",
+      "difficulty": "easy",
+      "sourcePages": [
+        29
+      ]
+    },
+    {
+      "id": "isp-014",
+      "question": "What are the four sequential steps in Input Domain Modeling (IDM)?",
+      "options": {
+        "A": "Code compilation, Static analysis, Symbolic execution, Dynamic testing",
+        "B": "Identify testable functions, Find all parameters, Model the input domain, Apply a test criterion",
+        "C": "Write test cases, Run test cases, Measure coverage, Report bugs",
+        "D": "Build control flow graph, Identify def-use pairs, Compute prime paths, Select tests"
+      },
+      "correctAnswer": "B",
+      "explanation": "The 4 steps in IDM defined by Ammann & Offutt are: (1) Identify testable functions, (2) Find all parameters, (3) Model the input domain (partitions/blocks), and (4) Apply a test criterion to choose combinations.",
+      "difficulty": "easy",
+      "sourcePages": [
+        6
+      ]
+    },
+    {
+      "id": "isp-015",
+      "question": "If a characteristic is partitioned into: b1: x < 0, b2: x = 0, b3: x > 0. This partition is:",
+      "options": {
+        "A": "Disjoint but not complete over the integers.",
+        "B": "Complete but not disjoint over the integers.",
+        "C": "Both pairwise disjoint and complete over the integers.",
+        "D": "Neither disjoint nor complete over the integers."
+      },
+      "correctAnswer": "C",
+      "explanation": "Every integer is either strictly negative, zero, or strictly positive (complete), and no integer can belong to more than one of these categories (pairwise disjoint).",
+      "difficulty": "easy",
+      "sourcePages": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": "isp-016",
+      "question": "In T-Wise Coverage (TWC), what does the parameter 't' represent?",
+      "options": {
+        "A": "The number of test execution threads.",
+        "B": "The degree of interaction: all combinations of blocks from any t characteristics must be covered.",
+        "C": "The timeout limit in seconds.",
+        "D": "The number of base choice test cases."
+      },
+      "correctAnswer": "B",
+      "explanation": "T-Wise Coverage generalizes pairwise coverage: for any subset of t characteristics, all combinations of blocks must be tested together.",
+      "difficulty": "medium",
+      "sourcePages": [
+        21
+      ]
+    },
+    {
+      "id": "isp-017",
+      "question": "Why should special/boundary values (e.g., null, empty string, 0, max_int) be placed in separate partition blocks in ISP?",
+      "options": {
+        "A": "To ensure they are explicitly tested rather than obscured by nominal values in the same block.",
+        "B": "Because compilers refuse to compile code without boundary partitions.",
+        "C": "To decrease the number of generated test cases.",
+        "D": "Because boundary values are always infeasible."
+      },
+      "correctAnswer": "A",
+      "explanation": "If boundary or special values are lumped together with normal values in one large block, testing an arbitrary representative from that block might completely miss the edge-case behavior where faults frequently reside.",
+      "difficulty": "medium",
+      "sourcePages": [
+        13,
+        14
+      ]
+    },
+    {
+      "id": "isp-018",
+      "question": "For 4 characteristics with 2 blocks each, what is the number of test cases required for All Combinations Coverage vs Each Choice Coverage?",
+      "options": {
+        "A": "ACoC: 16, ECC: 2",
+        "B": "ACoC: 8, ECC: 4",
+        "C": "ACoC: 16, ECC: 8",
+        "D": "ACoC: 8, ECC: 2"
+      },
+      "correctAnswer": "A",
+      "explanation": "ACoC = 2 × 2 × 2 × 2 = 16. ECC = max(|Bi|) = 2. With 2 tests, e.g., (b11, b21, b31, b41) and (b12, b22, b32, b42), all blocks are covered.",
+      "difficulty": "medium",
+      "sourcePages": [
+        18,
+        19
+      ]
+    },
+    {
+      "id": "isp-019",
+      "question": "Which of the following is a disadvantage of the interface-based IDM approach compared to the functionality-based approach?",
+      "options": {
+        "A": "It is difficult to automate.",
+        "B": "It may generate many redundant or infeasible tests because it ignores semantic inter-relationships between parameters.",
+        "C": "It cannot be applied when parameter types are known.",
+        "D": "It requires detailed knowledge of the implementation algorithms."
+      },
+      "correctAnswer": "B",
+      "explanation": "Because interface-based IDM looks only at parameters individually, it often produces combinations that make no functional sense or miss critical multi-parameter constraints.",
+      "difficulty": "medium",
+      "sourcePages": [
+        9,
+        10
+      ]
+    },
+    {
+      "id": "isp-020",
+      "question": "Suppose a function has 2 base choices identified for characteristic 1, and 1 base choice for characteristic 2. This strategy is an example of:",
+      "options": {
+        "A": "Each Choice Coverage",
+        "B": "Multiple Base Choice Coverage (MBCC)",
+        "C": "Combinatorial Coverage",
+        "D": "Mutation Testing"
+      },
+      "correctAnswer": "B",
+      "explanation": "When one or more characteristics have more than one base choice specified, the criterion applied is Multiple Base Choice Coverage (MBCC).",
+      "difficulty": "easy",
+      "sourcePages": [
+        26
+      ]
+    }
+  ]
+}

@@ -1,0 +1,336 @@
+{
+  "topicId": "graphs-source-code",
+  "topicName": "Graph Coverage from Source Code",
+  "sourcePdf": "graphs-source-code.pdf",
+  "questions": [
+    {
+      "id": "gsc-src-001",
+      "question": "What is a 'basic block' in Control Flow Graph (CFG) construction from source code?",
+      "options": {
+        "A": "A sequence of statements that can only be entered at the beginning and exited at the end without internal branches.",
+        "B": "A block of memory allocated by malloc.",
+        "C": "A method containing fewer than 5 lines of code.",
+        "D": "A try-catch block."
+      },
+      "correctAnswer": "A",
+      "explanation": "A basic block is a maximal sequence of consecutive program statements in which flow of control enters at the first statement and leaves at the last statement without halt or possibility of branching in the middle.",
+      "difficulty": "easy",
+      "sourcePages": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "gsc-src-002",
+      "question": "What is McCabe's Cyclomatic Complexity formula for a single connected component graph (P = 1)?",
+      "options": {
+        "A": "V(G) = E - N + 2",
+        "B": "V(G) = N - E + 2",
+        "C": "V(G) = E + N - 2",
+        "D": "V(G) = E × N"
+      },
+      "correctAnswer": "A",
+      "explanation": "For a single connected component (P = 1), Cyclomatic Complexity is given by V(G) = E - N + 2, where E is the number of edges and N is the number of nodes.",
+      "difficulty": "easy",
+      "sourcePages": [
+        14,
+        15
+      ]
+    },
+    {
+      "id": "gsc-src-003",
+      "question": "How does an 'if-then-else' construct translate into nodes and edges in a standard CFG?",
+      "options": {
+        "A": "A single predicate node with two outgoing edges (True and False branches) leading to respective then/else blocks, which join at a merge node.",
+        "B": "A single node with no edges.",
+        "C": "Three disconnected nodes.",
+        "D": "A cycle of length 3."
+      },
+      "correctAnswer": "A",
+      "explanation": "The condition forms a decision node with two outgoing edges: one to the 'then' block and one to the 'else' block, both of which subsequently connect to the join node following the conditional.",
+      "difficulty": "easy",
+      "sourcePages": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": "gsc-src-004",
+      "question": "In languages like Java or C, how does short-circuit evaluation of 'if (A && B)' affect the CFG?",
+      "options": {
+        "A": "It expands the condition into two decision nodes: evaluating A first; if A is false, B is skipped and control jumps directly to false branch.",
+        "B": "It turns the condition into a single node with no branches.",
+        "C": "It eliminates the if statement completely.",
+        "D": "It forces both A and B to always execute."
+      },
+      "correctAnswer": "A",
+      "explanation": "Because && short-circuits, B is evaluated only when A is true. In a detailed CFG, this results in two sequential decision nodes rather than a single compound node.",
+      "difficulty": "medium",
+      "sourcePages": [
+        6,
+        7
+      ]
+    },
+    {
+      "id": "gsc-src-005",
+      "question": "What graph feature distinguishes a 'while' loop from a 'do-while' loop in a CFG?",
+      "options": {
+        "A": "In a 'while' loop the condition node is evaluated before the body; in 'do-while' the body is executed before the condition node.",
+        "B": "A 'while' loop has no edges.",
+        "C": "'do-while' loops have no condition node.",
+        "D": "'while' loops cannot have cycles."
+      },
+      "correctAnswer": "A",
+      "explanation": "A while loop tests the loop condition at the entry (can execute 0 times), whereas a do-while loop executes the body first before branching on the condition at the bottom.",
+      "difficulty": "easy",
+      "sourcePages": [
+        8,
+        9
+      ]
+    },
+    {
+      "id": "gsc-src-006",
+      "question": "If a method's CFG has 10 edges and 8 nodes (single component), what is its Cyclomatic Complexity?",
+      "options": {
+        "A": "4",
+        "B": "2",
+        "C": "18",
+        "D": "10"
+      },
+      "correctAnswer": "A",
+      "explanation": "V(G) = E - N + 2 = 10 - 8 + 2 = 4.",
+      "difficulty": "easy",
+      "sourcePages": [
+        15
+      ]
+    },
+    {
+      "id": "gsc-src-007",
+      "question": "What does Cyclomatic Complexity represent in terms of testing?",
+      "options": {
+        "A": "The upper bound on the number of linearly independent paths needed to achieve branch/edge coverage.",
+        "B": "The total execution time of the method.",
+        "C": "The number of lines of assembly code.",
+        "D": "The number of variables in the class."
+      },
+      "correctAnswer": "A",
+      "explanation": "V(G) defines the dimension of the cycle space and represents the maximum number of linearly independent basis paths through the program.",
+      "difficulty": "medium",
+      "sourcePages": [
+        16
+      ]
+    },
+    {
+      "id": "gsc-src-008",
+      "question": "How do 'switch' or 'case' statements with N branches affect a CFG?",
+      "options": {
+        "A": "They create a single decision node with N outgoing edges to each case block (and default).",
+        "B": "They create N parallel independent graphs.",
+        "C": "They are modeled as infinite loops.",
+        "D": "They reduce complexity to 1."
+      },
+      "correctAnswer": "A",
+      "explanation": "A switch construct evaluates the switch expression at a central node and branches out to the distinct case targets, joining after break statements.",
+      "difficulty": "easy",
+      "sourcePages": [
+        10
+      ]
+    },
+    {
+      "id": "gsc-src-009",
+      "question": "How are exceptions (e.g. throw / catch) represented in an inter-block CFG?",
+      "options": {
+        "A": "As exceptional control flow edges departing from the throwing statement directly to the catch block or method exit.",
+        "B": "Exceptions cannot be represented in CFGs.",
+        "C": "They are represented as normal return statements.",
+        "D": "As isolated nodes with no incoming edges."
+      },
+      "correctAnswer": "A",
+      "explanation": "Exceptional control flow introduces edges from potentially exception-throwing statements to corresponding catch handlers (or out of the method to callers).",
+      "difficulty": "medium",
+      "sourcePages": [
+        11,
+        12
+      ]
+    },
+    {
+      "id": "gsc-src-010",
+      "question": "In basis path testing, what is a 'basis set' of paths?",
+      "options": {
+        "A": "A set of linearly independent paths from which any path through the graph can be expressed as a linear combination.",
+        "B": "The set of all paths of length 1.",
+        "C": "All paths that contain return statements.",
+        "D": "Paths that only visit initial nodes."
+      },
+      "correctAnswer": "A",
+      "explanation": "A basis set consists of linearly independent paths forming a basis for the graph's path space, guaranteeing that every edge is covered at least once.",
+      "difficulty": "medium",
+      "sourcePages": [
+        16,
+        17
+      ]
+    },
+    {
+      "id": "gsc-src-011",
+      "question": "What is the relationship between Cyclomatic Complexity and the number of predicate (decision) nodes P in a binary decision graph?",
+      "options": {
+        "A": "V(G) = P + 1",
+        "B": "V(G) = P - 1",
+        "C": "V(G) = 2P",
+        "D": "V(G) = P / 2"
+      },
+      "correctAnswer": "A",
+      "explanation": "For a CFG where every decision node has out-degree 2 (binary decision nodes), McCabe proved that V(G) = P + 1.",
+      "difficulty": "easy",
+      "sourcePages": [
+        15
+      ]
+    },
+    {
+      "id": "gsc-src-012",
+      "question": "If a program has V(G) = 1, what does this indicate about the program's control flow?",
+      "options": {
+        "A": "The program is a purely sequential straight-line program with no branches or loops.",
+        "B": "The program is an infinite loop.",
+        "C": "The program has 100 branches.",
+        "D": "The program cannot compile."
+      },
+      "correctAnswer": "A",
+      "explanation": "V(G) = 1 implies 0 predicate nodes (P = 0): the code executes sequentially from start to finish without any conditional branching or loops.",
+      "difficulty": "easy",
+      "sourcePages": [
+        14
+      ]
+    },
+    {
+      "id": "gsc-src-013",
+      "question": "Why is branch coverage on source code equivalent to Edge Coverage on its CFG?",
+      "options": {
+        "A": "Because every conditional decision outcome (True/False branch) corresponds to an outgoing edge from the decision node in the CFG.",
+        "B": "Because both require testing loops 10 times.",
+        "C": "Because branches and edges are identical keywords in Java.",
+        "D": "They are not equivalent."
+      },
+      "correctAnswer": "A",
+      "explanation": "Branch coverage requires executing both True and False outcomes of every branch. In the CFG, these outcomes correspond directly to the outgoing edges of decision nodes.",
+      "difficulty": "easy",
+      "sourcePages": [
+        5,
+        6
+      ]
+    },
+    {
+      "id": "gsc-src-014",
+      "question": "What is statement coverage on source code equivalent to in the corresponding CFG?",
+      "options": {
+        "A": "Node Coverage",
+        "B": "Prime Path Coverage",
+        "C": "Complete Path Coverage",
+        "D": "Data Flow Coverage"
+      },
+      "correctAnswer": "A",
+      "explanation": "Each statement belongs to a basic block, which is represented by a node in the CFG. Executing every statement corresponds directly to visiting every node (Node Coverage).",
+      "difficulty": "easy",
+      "sourcePages": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": "gsc-src-015",
+      "question": "Consider code with a 'break' statement inside a loop. How does the 'break' appear in the CFG?",
+      "options": {
+        "A": "An edge jumping directly from the break statement node to the loop exit node.",
+        "B": "A self-loop on the break statement.",
+        "C": "An edge back to the loop header.",
+        "D": "It deletes the loop from the graph."
+      },
+      "correctAnswer": "A",
+      "explanation": "A 'break' statement terminates loop execution prematurely, creating an unconditional edge jumping out of the loop body to the statement immediately following the loop.",
+      "difficulty": "easy",
+      "sourcePages": [
+        9
+      ]
+    },
+    {
+      "id": "gsc-src-016",
+      "question": "Consider code with a 'continue' statement inside a loop. How does the 'continue' appear in the CFG?",
+      "options": {
+        "A": "An edge jumping from the continue statement to the loop update/condition node, skipping the rest of the loop body.",
+        "B": "An edge to the exit of the program.",
+        "C": "A cycle of length 0.",
+        "D": "An edge to the main() method."
+      },
+      "correctAnswer": "A",
+      "explanation": "A 'continue' statement bypasses remaining statements in the current iteration and branches directly to the loop condition or iteration step.",
+      "difficulty": "easy",
+      "sourcePages": [
+        9
+      ]
+    },
+    {
+      "id": "gsc-src-017",
+      "question": "Can high statement coverage (e.g., 100%) guarantee that all faults in conditional logic are detected?",
+      "options": {
+        "A": "No, because statement coverage can be achieved without executing empty 'else' branches or testing false outcomes of single-branch 'if' statements.",
+        "B": "Yes, statement coverage is the strongest possible coverage.",
+        "C": "Yes, if the statements are written in C++.",
+        "D": "Only when all statements are print statements."
+      },
+      "correctAnswer": "A",
+      "explanation": "For an 'if (cond) { doSomething(); }' without an 'else', a single test making 'cond' true achieves 100% statement coverage, but never tests the false outcome where bugs might occur.",
+      "difficulty": "medium",
+      "sourcePages": [
+        5
+      ]
+    },
+    {
+      "id": "gsc-src-018",
+      "question": "What is the region-based formula for Cyclomatic Complexity on a planar graph?",
+      "options": {
+        "A": "V(G) = Number of enclosed regions + 1",
+        "B": "V(G) = Number of regions - 1",
+        "C": "V(G) = Total nodes / Total edges",
+        "D": "V(G) = Number of external regions only"
+      },
+      "correctAnswer": "A",
+      "explanation": "In a planar representation of a CFG, Cyclomatic Complexity equals the number of enclosed (bounded) regions plus 1 (the unbounded external region).",
+      "difficulty": "medium",
+      "sourcePages": [
+        15
+      ]
+    },
+    {
+      "id": "gsc-src-019",
+      "question": "In source-code CFG analysis, what is an 'unreachable node' (dead code)?",
+      "options": {
+        "A": "A node for which no path exists from the initial node N0.",
+        "B": "A node with no outgoing edges.",
+        "C": "A node that contains a return statement.",
+        "D": "A node with prime path length 0."
+      },
+      "correctAnswer": "A",
+      "explanation": "An unreachable node has no valid path connecting it from the entry node N0. In code, this corresponds to unreachable or dead code (e.g. statements following an unconditional return).",
+      "difficulty": "easy",
+      "sourcePages": [
+        13
+      ]
+    },
+    {
+      "id": "gsc-src-020",
+      "question": "Why is Cyclomatic Complexity widely used as a software quality and testing metric?",
+      "options": {
+        "A": "High complexity correlates with higher defect rates and indicates how many test cases are minimally required to cover all decision outcomes.",
+        "B": "It measures CPU clock speed during test execution.",
+        "C": "It measures user interface responsiveness.",
+        "D": "It guarantees that the software will never crash."
+      },
+      "correctAnswer": "A",
+      "explanation": "Cyclomatic complexity provides an objective measurement of structural branching, indicating cognitive difficulty, fault-proneness, and the minimum test effort needed for branch coverage.",
+      "difficulty": "easy",
+      "sourcePages": [
+        16
+      ]
+    }
+  ]
+}

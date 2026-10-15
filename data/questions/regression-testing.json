@@ -1,0 +1,333 @@
+{
+  "topicId": "regression-testing",
+  "topicName": "Regression Testing (Selection & Prioritization)",
+  "sourcePdf": "regression-testing.pdf",
+  "questions": [
+    {
+      "id": "reg-001",
+      "question": "What is the fundamental objective of Regression Testing?",
+      "options": {
+        "A": "To retest software after modifications to confirm that new bugs or regressions have not been introduced into existing, previously working features.",
+        "B": "To write code backwards.",
+        "C": "To test the software only once before deletion.",
+        "D": "To revert the software to version 1.0."
+      },
+      "correctAnswer": "A",
+      "explanation": "Regression testing ensures that code modifications (bug fixes, enhancements, refactoring) do not unintentionally break existing functionality.",
+      "difficulty": "easy",
+      "sourcePages": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "reg-002",
+      "question": "What is the 'Retest-All' regression testing strategy?",
+      "options": {
+        "A": "Re-running every single test case in the entire test suite on every modified build.",
+        "B": "Writing all tests again from scratch.",
+        "C": "Retesting only failed tests.",
+        "D": "Retesting only once per year."
+      },
+      "correctAnswer": "A",
+      "explanation": "The Retest-All strategy re-executes the entire existing test suite indiscriminately. While safe, it becomes prohibitively slow and expensive as suites grow.",
+      "difficulty": "easy",
+      "sourcePages": [
+        4
+      ]
+    },
+    {
+      "id": "reg-003",
+      "question": "What is Regression Test Selection (RTS)?",
+      "options": {
+        "A": "Selecting a relevant subset of existing test cases that execute the modified parts of the software or components affected by the changes.",
+        "B": "Selecting tests at random.",
+        "C": "Selecting tests based on author names.",
+        "D": "Deleting test cases that take more than 1 second."
+      },
+      "correctAnswer": "A",
+      "explanation": "RTS algorithms analyze source code diffs or impact graphs to identify and execute only those test cases whose execution traces traverse modified code.",
+      "difficulty": "easy",
+      "sourcePages": [
+        5,
+        6
+      ]
+    },
+    {
+      "id": "reg-004",
+      "question": "What is a 'Safe' Regression Test Selection technique?",
+      "options": {
+        "A": "An RTS technique that guarantees selecting every test case in the suite that could possibly reveal a fault in the modified program (under certain standard assumptions).",
+        "B": "A technique that never runs tests.",
+        "C": "A technique that encrypts test scripts.",
+        "D": "A technique that runs in an isolated sandbox."
+      },
+      "correctAnswer": "A",
+      "explanation": "A safe RTS algorithm guarantees that any test case capable of producing a different output between the original and modified version will be included in the selected test subset.",
+      "difficulty": "medium",
+      "sourcePages": [
+        6,
+        7
+      ]
+    },
+    {
+      "id": "reg-005",
+      "question": "What is Test Suite Minimization (TSM) / Test Suite Reduction?",
+      "options": {
+        "A": "Permanently identifying and removing redundant test cases from the test suite while preserving coverage of all test requirements.",
+        "B": "Compressing test files with ZIP.",
+        "C": "Shortening test method names.",
+        "D": "Running tests in low-power mode."
+      },
+      "correctAnswer": "A",
+      "explanation": "Test Suite Minimization removes redundant tests that cover requirements already satisfied by other tests, permanently reducing maintenance overhead.",
+      "difficulty": "medium",
+      "sourcePages": [
+        8
+      ]
+    },
+    {
+      "id": "reg-006",
+      "question": "What is Test Case Prioritization (TCP)?",
+      "options": {
+        "A": "Re-ordering test cases so that those with higher likelihood of revealing faults or higher code coverage are executed earlier in the test run.",
+        "B": "Deleting low priority tests.",
+        "C": "Running only high-priority user stories.",
+        "D": "Assigning tests to senior developers."
+      },
+      "correctAnswer": "A",
+      "explanation": "Test Case Prioritization schedules tests in an optimal execution order to maximize the rate of fault detection, giving developers rapid feedback on breakages.",
+      "difficulty": "easy",
+      "sourcePages": [
+        9,
+        10
+      ]
+    },
+    {
+      "id": "reg-007",
+      "question": "What metric is standardly used to evaluate the effectiveness of Test Case Prioritization schedules?",
+      "options": {
+        "A": "APFD (Average Percentage of Faults Detected)",
+        "B": "LOC (Lines of Code)",
+        "C": "CPU utilization percentage",
+        "D": "Cyclomatic complexity"
+      },
+      "correctAnswer": "A",
+      "explanation": "APFD measures how quickly a prioritized test suite reveals faults: higher APFD values indicate that faults are detected earlier in the test execution cycle.",
+      "difficulty": "medium",
+      "sourcePages": [
+        11
+      ]
+    },
+    {
+      "id": "reg-008",
+      "question": "What is the formula for APFD (Average Percentage of Faults Detected) for n tests and m faults, where TFi is the index of the first test that detects fault i?",
+      "options": {
+        "A": "APFD = 1 - (∑ TFi) / (n × m) + 1 / (2n)",
+        "B": "APFD = (n × m) / ∑ TFi",
+        "C": "APFD = ∑ TFi / (n + m)",
+        "D": "APFD = 1 - (n / m)"
+      },
+      "correctAnswer": "A",
+      "explanation": "The standard APFD formula is: APFD = 1 - (TF1 + TF2 + ... + TFm) / (n × m) + 1 / (2n). It ranges from 0 to 1 (or 0% to 100%).",
+      "difficulty": "hard",
+      "sourcePages": [
+        11,
+        12
+      ]
+    },
+    {
+      "id": "reg-009",
+      "question": "Suppose a test suite of 5 tests {T1, T2, T3, T4, T5} detects 2 faults. If the faults are detected by T1 (position 1) and T2 (position 2), what is the APFD?",
+      "options": {
+        "A": "APFD = 1 - (1 + 2) / (5 × 2) + 1 / (2 × 5) = 1 - 3/10 + 1/10 = 0.80 (80%)",
+        "B": "0.50 (50%)",
+        "C": "0.20 (20%)",
+        "D": "1.00 (100%)"
+      },
+      "correctAnswer": "A",
+      "explanation": "APFD = 1 - (1 + 2) / 10 + 1 / 10 = 1 - 0.3 + 0.1 = 0.80 (80%).",
+      "difficulty": "hard",
+      "sourcePages": [
+        12
+      ]
+    },
+    {
+      "id": "reg-010",
+      "question": "What is a 'flaky test' in regression testing?",
+      "options": {
+        "A": "A test that exhibits both passing and failing outcomes across different runs on the exact same version of code without any source changes.",
+        "B": "A test that takes less than 1 ms.",
+        "C": "A test written in JavaScript.",
+        "D": "A test that tests floating-point numbers."
+      },
+      "correctAnswer": "A",
+      "explanation": "Flaky tests exhibit non-deterministic results due to race conditions, timing issues, network latencies, or order dependencies, undermining developer trust in CI.",
+      "difficulty": "easy",
+      "sourcePages": [
+        14
+      ]
+    },
+    {
+      "id": "reg-011",
+      "question": "In Regression Test Selection, what is the 'analysis cost vs execution cost' tradeoff?",
+      "options": {
+        "A": "If the time required to perform dependency/impact analysis to select tests exceeds the execution time saved by skipping tests, RTS provides no net benefit.",
+        "B": "RTS always costs zero time.",
+        "C": "Analysis cost only applies to cloud testing.",
+        "D": "Execution cost is always higher than analysis cost."
+      },
+      "correctAnswer": "A",
+      "explanation": "For RTS to be economically viable: Cost(Analysis) + Cost(Selected Tests) must be strictly less than Cost(Retest-All). For very small suites, Retest-All is faster.",
+      "difficulty": "medium",
+      "sourcePages": [
+        7
+      ]
+    },
+    {
+      "id": "reg-012",
+      "question": "What is 'Code Churn' in regression testing analysis?",
+      "options": {
+        "A": "The volume of lines of code added, modified, or deleted between two software versions.",
+        "B": "The rotation speed of a hard disk.",
+        "C": "The frequency of developer coffee breaks.",
+        "D": "The number of comments in a file."
+      },
+      "correctAnswer": "A",
+      "explanation": "High code churn (frequent edits across many files) indicates high change instability and correlates strongly with regression defect density.",
+      "difficulty": "easy",
+      "sourcePages": [
+        13
+      ]
+    },
+    {
+      "id": "reg-013",
+      "question": "What is 'Change Impact Analysis'?",
+      "options": {
+        "A": "Techniques that determine the potential ripple effects and affected dependencies resulting from a proposed modification to software.",
+        "B": "A financial audit.",
+        "C": "Measuring the download speed of git clone.",
+        "D": "Checking disk space before writing code."
+      },
+      "correctAnswer": "A",
+      "explanation": "Impact analysis traces data and call dependencies from changed code to identify all callers, data structures, and downstream features that could be influenced.",
+      "difficulty": "easy",
+      "sourcePages": [
+        13
+      ]
+    },
+    {
+      "id": "reg-014",
+      "question": "How does Test Case Prioritization based on 'Total Statement Coverage' differ from 'Additional Statement Coverage'?",
+      "options": {
+        "A": "Total coverage orders tests by overall statements covered; Additional coverage iteratively picks the test that covers the maximum number of statements NOT YET covered by previously chosen tests.",
+        "B": "Total coverage deletes tests; Additional coverage adds new tests.",
+        "C": "They produce the identical ordering in all cases.",
+        "D": "Additional coverage requires running tests in reverse."
+      },
+      "correctAnswer": "A",
+      "explanation": "Total prioritization picks tests greedily by total coverage. Additional prioritization dynamically recalculates coverage, selecting tests that maximize marginal coverage gain.",
+      "difficulty": "hard",
+      "sourcePages": [
+        10
+      ]
+    },
+    {
+      "id": "reg-015",
+      "question": "What is the primary risk of aggressive Test Suite Minimization (TSM)?",
+      "options": {
+        "A": "Minimization permanently removes tests that are redundant for a specific coverage metric (e.g. branch coverage), but those removed tests might have detected future regression faults.",
+        "B": "Minimization makes the test suite run too fast.",
+        "C": "Minimization corrupts git commits.",
+        "D": "Minimization increases file size."
+      },
+      "correctAnswer": "A",
+      "explanation": "Two tests might cover the same branch with different inputs. Minimizing one test preserves branch coverage, but sacrifices fault-detection capability for other subtle bugs.",
+      "difficulty": "medium",
+      "sourcePages": [
+        8
+      ]
+    },
+    {
+      "id": "reg-016",
+      "question": "What role does Continuous Integration (CI) play in modern regression testing?",
+      "options": {
+        "A": "It automatically builds and runs regression tests upon every code commit or pull request, giving immediate regression feedback to developers.",
+        "B": "It replaces manual code reviews with automated deployment.",
+        "C": "It eliminates the need for unit testing.",
+        "D": "It prevents developers from committing code."
+      },
+      "correctAnswer": "A",
+      "explanation": "CI platforms (e.g. GitHub Actions, Jenkins) automate test execution on every change, detecting regression bugs within minutes of commit.",
+      "difficulty": "easy",
+      "sourcePages": [
+        15
+      ]
+    },
+    {
+      "id": "reg-017",
+      "question": "What is 'test order dependency' in regression test execution?",
+      "options": {
+        "A": "When test B only passes if test A runs before it (due to shared mutable state or database side-effects).",
+        "B": "Sorting test files alphabetically.",
+        "C": "Running unit tests before integration tests.",
+        "D": "Executing tests on a single CPU core."
+      },
+      "correctAnswer": "A",
+      "explanation": "Order dependency occurs when tests are not cleanly isolated and leak state, causing tests to pass or fail depending on the sequence in which they execute.",
+      "difficulty": "medium",
+      "sourcePages": [
+        14
+      ]
+    },
+    {
+      "id": "reg-018",
+      "question": "What is a 'regression test oracle'?",
+      "options": {
+        "A": "A mechanism (such as golden master outputs, assertions, or diff comparisons) that verifies current execution results against expected correct behavior.",
+        "B": "A database server.",
+        "C": "A machine learning model predicting stock prices.",
+        "D": "A developer who writes requirements."
+      },
+      "correctAnswer": "A",
+      "explanation": "An oracle determines whether test execution produced the expected behavior, flagging regressions when discrepancies emerge.",
+      "difficulty": "easy",
+      "sourcePages": [
+        3
+      ]
+    },
+    {
+      "id": "reg-019",
+      "question": "Why is history-based test prioritization (prioritizing tests that failed recently or test frequently modified files) effective?",
+      "options": {
+        "A": "Empirical evidence shows that faults cluster in recently modified code and in components that have historically failed.",
+        "B": "Because older tests expire.",
+        "C": "Because recent files have smaller sizes.",
+        "D": "Because historical tests take less time to execute."
+      },
+      "correctAnswer": "A",
+      "explanation": "Defect clustering and churn correlation mean tests touching recently modified or historically buggy components have a significantly higher likelihood of finding new regressions.",
+      "difficulty": "medium",
+      "sourcePages": [
+        10,
+        13
+      ]
+    },
+    {
+      "id": "reg-020",
+      "question": "What is 'smoke testing' in the context of regression test suites?",
+      "options": {
+        "A": "A quick preliminary subset of critical tests executed first to verify that core builds and basic functionalities work before running exhaustive regression suites.",
+        "B": "Testing hardware cooling fans.",
+        "C": "Stress testing until the server overheats.",
+        "D": "Testing only network firewalls."
+      },
+      "correctAnswer": "A",
+      "explanation": "Smoke tests (or build verification tests) verify fundamental sanity. If basic smoke tests fail, the build is rejected immediately without wasting time on full regression runs.",
+      "difficulty": "easy",
+      "sourcePages": [
+        15
+      ]
+    }
+  ]
+}

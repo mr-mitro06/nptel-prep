@@ -1,0 +1,332 @@
+{
+  "topicId": "logic-source-code1",
+  "topicName": "Logic Coverage from Source Code (Part 1)",
+  "sourcePdf": "logic-source-code1.pdf",
+  "questions": [
+    {
+      "id": "lsc1-001",
+      "question": "What four conditions constitute the RIPR model for a software failure to be observed?",
+      "options": {
+        "A": "Reachability, Infection, Propagation, Revealability",
+        "B": "Regression, Integration, Performance, Recovery",
+        "C": "Read, Inspect, Process, Return",
+        "D": "Refactor, Instrument, Profile, Release"
+      },
+      "correctAnswer": "A",
+      "explanation": "The RIPR model establishes that for a fault to result in an observed failure: (1) execution must Reach the fault, (2) the fault must Infect internal state, (3) the infected state must Propagate to output, and (4) the incorrect output must be Revealed to the oracle.",
+      "difficulty": "easy",
+      "sourcePages": [
+        3
+      ]
+    },
+    {
+      "id": "lsc1-002",
+      "question": "In the RIPR model, what is 'Infection'?",
+      "options": {
+        "A": "The program state becomes incorrect immediately after executing the faulted statement.",
+        "B": "A computer virus enters the machine.",
+        "C": "The test runner crashes.",
+        "D": "The compiler issues a warning."
+      },
+      "correctAnswer": "A",
+      "explanation": "Infection occurs when executing the faulty statement causes the internal state (variable values, memory, program counter) to differ from what the correct version would hold.",
+      "difficulty": "medium",
+      "sourcePages": [
+        3
+      ]
+    },
+    {
+      "id": "lsc1-003",
+      "question": "In the RIPR model, what is 'Propagation'?",
+      "options": {
+        "A": "The infected internal state persists through subsequent computations until it affects the program's observable output.",
+        "B": "Sharing the code on GitHub.",
+        "C": "Running tests across multiple threads.",
+        "D": "Executing a loop 10 times."
+      },
+      "correctAnswer": "A",
+      "explanation": "Propagation means the corrupted internal state is not masked or overwritten by subsequent computations, but instead flows forward to taint observable variables or output.",
+      "difficulty": "medium",
+      "sourcePages": [
+        3
+      ]
+    },
+    {
+      "id": "lsc1-004",
+      "question": "In the Thermostat program example, what does the clause 'override' typically represent in the heating decision predicate?",
+      "options": {
+        "A": "A manual override setting that can force heating ON regardless of the scheduled time program.",
+        "B": "An error code indicating sensor failure.",
+        "C": "A method to delete user preferences.",
+        "D": "The cooling fan speed."
+      },
+      "correctAnswer": "A",
+      "explanation": "In the thermostat control predicate, the 'override' boolean clause models manual user intervention that takes precedence over the automated schedule.",
+      "difficulty": "easy",
+      "sourcePages": [
+        5,
+        6
+      ]
+    },
+    {
+      "id": "lsc1-005",
+      "question": "How does short-circuit evaluation of logical operators (&&, ||) in source code affect logic coverage testing?",
+      "options": {
+        "A": "If earlier clauses evaluate such that the predicate outcome is fixed, later clauses are not evaluated by the runtime, which can mask potential runtime faults in those skipped expressions.",
+        "B": "It doubles execution speed with no testing impact.",
+        "C": "It converts all booleans to integers.",
+        "D": "It forces every clause to be evaluated in all tests."
+      },
+      "correctAnswer": "A",
+      "explanation": "In languages with short-circuiting, if clause A is false in 'A && B', clause B is never executed. Testing must explicitly choose inputs where A is true to execute and verify clause B.",
+      "difficulty": "medium",
+      "sourcePages": [
+        4,
+        7
+      ]
+    },
+    {
+      "id": "lsc1-006",
+      "question": "Consider 'if (p != null && p.isActive())'. What happens if short-circuit evaluation is NOT used?",
+      "options": {
+        "A": "A NullPointerException would occur when p is null, because p.isActive() would still be evaluated.",
+        "B": "The program executes faster.",
+        "C": "isActive() returns false.",
+        "D": "The compiler optimizes out the check."
+      },
+      "correctAnswer": "A",
+      "explanation": "Short-circuit evaluation is essential here to protect against dereferencing null pointers. Without short-circuiting, p.isActive() would execute when p is null, crashing the system.",
+      "difficulty": "easy",
+      "sourcePages": [
+        4
+      ]
+    },
+    {
+      "id": "lsc1-007",
+      "question": "In source code logic testing, why is Predicate Coverage (Branch Coverage) considered insufficient to uncover faults in complex conditions like 'if (a || b)'?",
+      "options": {
+        "A": "Because tests {(a=T, b=F) [true], (a=F, b=F) [false]} achieve 100% Branch Coverage without ever testing clause 'b' evaluating to true.",
+        "B": "Because branch coverage is black-box.",
+        "C": "Because branch coverage cannot test while loops.",
+        "D": "Because branch coverage requires writing new compilers."
+      },
+      "correctAnswer": "A",
+      "explanation": "100% Branch Coverage can be achieved without ever exercising individual clauses (like 'b') under both truth values, leaving sub-condition bugs undetected.",
+      "difficulty": "medium",
+      "sourcePages": [
+        8
+      ]
+    },
+    {
+      "id": "lsc1-008",
+      "question": "In the Thermostat logic, if predicate is 'p = (temp < target - threshold) || override', what makes 'override' determine p?",
+      "options": {
+        "A": "(temp < target - threshold) must be FALSE.",
+        "B": "(temp < target - threshold) must be TRUE.",
+        "C": "target must be 0.",
+        "D": "temp must equal target."
+      },
+      "correctAnswer": "A",
+      "explanation": "In an OR expression (A || B), clause B determines the outcome only when clause A is FALSE. If A were TRUE, the predicate would evaluate to TRUE regardless of B.",
+      "difficulty": "medium",
+      "sourcePages": [
+        6
+      ]
+    },
+    {
+      "id": "lsc1-009",
+      "question": "What is 'state masking' in the context of the RIPR propagation step?",
+      "options": {
+        "A": "When an infected variable value is overwritten or neutralized before it can alter the program output.",
+        "B": "Setting a variable to 0.",
+        "C": "Using private variables in a class.",
+        "D": "Hiding GUI windows."
+      },
+      "correctAnswer": "A",
+      "explanation": "State masking occurs when a corrupted state is wiped out (e.g., multiplied by 0, overwritten by a subsequent assignment, or filtered by a min/max clamp) so the output appears normal despite the internal fault.",
+      "difficulty": "medium",
+      "sourcePages": [
+        3,
+        9
+      ]
+    },
+    {
+      "id": "lsc1-010",
+      "question": "When generating tests for source code logic, what is a 'reachability condition'?",
+      "options": {
+        "A": "The path condition that must be satisfied by input variables to execute control flow up to the decision statement containing the predicate.",
+        "B": "Connecting to the internet.",
+        "C": "Checking if a variable is in scope.",
+        "D": "Checking if the server is running."
+      },
+      "correctAnswer": "A",
+      "explanation": "Before a predicate's clauses can be tested, the test inputs must satisfy all prior branching conditions required to reach that decision point in the program.",
+      "difficulty": "easy",
+      "sourcePages": [
+        10
+      ]
+    },
+    {
+      "id": "lsc1-011",
+      "question": "Suppose predicate p in source code has 3 clauses: a, b, c. If short-circuiting is active, how does the order of clauses matter?",
+      "options": {
+        "A": "Clauses placed first are always evaluated, while clauses placed later may be skipped depending on the outcome of earlier clauses.",
+        "B": "The order has no operational effect whatsoever.",
+        "C": "Short-circuiting reverses the order of execution.",
+        "D": "Only the middle clause is evaluated."
+      },
+      "correctAnswer": "A",
+      "explanation": "Left-to-right evaluation with short-circuiting means that whether clause b and c are reached depends entirely on the truth value returned by preceding clauses.",
+      "difficulty": "easy",
+      "sourcePages": [
+        7
+      ]
+    },
+    {
+      "id": "lsc1-012",
+      "question": "Why might a clause in a source code predicate be syntactically present but semantically dead?",
+      "options": {
+        "A": "Because prior enclosing if-conditions or mathematical identities prevent the conditions required for that clause to determine the predicate.",
+        "B": "Because it has no semicolon.",
+        "C": "Because the programmer forgot to capitalize it.",
+        "D": "Because it is inside a comment."
+      },
+      "correctAnswer": "A",
+      "explanation": "Contextual constraints (such as an outer guard 'if (x > 0)') can make a sub-clause in an inner predicate unreachable or unable to toggle the predicate, rendering it semantically dead.",
+      "difficulty": "hard",
+      "sourcePages": [
+        11,
+        12
+      ]
+    },
+    {
+      "id": "lsc1-013",
+      "question": "In the Thermostat program, what test inputs are needed to satisfy Clause Coverage for 'temp < target - threshold'?",
+      "options": {
+        "A": "One test where temp < target - threshold evaluates to true, and one test where it evaluates to false.",
+        "B": "Testing with temp = -100 only.",
+        "C": "Testing only when target = 0.",
+        "D": "Four tests covering all combinations of day and night."
+      },
+      "correctAnswer": "A",
+      "explanation": "Clause Coverage requires each clause to evaluate to both True and False at least once during test execution.",
+      "difficulty": "easy",
+      "sourcePages": [
+        6
+      ]
+    },
+    {
+      "id": "lsc1-014",
+      "question": "If an infected state does NOT propagate to the output during testing, what is the consequence?",
+      "options": {
+        "A": "The test will pass (false negative), leaving the latent bug undetected.",
+        "B": "The test will automatically fail.",
+        "C": "The compiler will halt.",
+        "D": "The source code will be corrupted."
+      },
+      "correctAnswer": "A",
+      "explanation": "If propagation fails, the external oracle observes the expected output and marks the test as passed, despite the fact that a faulty statement was executed.",
+      "difficulty": "medium",
+      "sourcePages": [
+        3
+      ]
+    },
+    {
+      "id": "lsc1-015",
+      "question": "What is the role of test oracles in the 'Revealability' step of the RIPR model?",
+      "options": {
+        "A": "The test oracle must actively inspect the relevant output or state to detect and report the discrepancy.",
+        "B": "The test oracle predicts future weather.",
+        "C": "The test oracle only measures execution time.",
+        "D": "The test oracle compiles source code."
+      },
+      "correctAnswer": "A",
+      "explanation": "Even if the output is corrupted, if the test oracle fails to assert or check that specific output value, the failure will not be revealed to the tester.",
+      "difficulty": "easy",
+      "sourcePages": [
+        3
+      ]
+    },
+    {
+      "id": "lsc1-016",
+      "question": "How can multiple occurrences of the same variable in a predicate (e.g. 'x > 0 && x < 10') be handled in logic coverage?",
+      "options": {
+        "A": "As two correlated clauses that share a domain constraint, where certain combinations like (F, F) are infeasible.",
+        "B": "By renaming one of the variables in the code.",
+        "C": "By deleting the second condition.",
+        "D": "By treating them as completely independent variables."
+      },
+      "correctAnswer": "A",
+      "explanation": "When the same variable occurs in multiple clauses, relational constraints tie their truth values together. Tests must be chosen respecting their mutual feasibility.",
+      "difficulty": "medium",
+      "sourcePages": [
+        13
+      ]
+    },
+    {
+      "id": "lsc1-017",
+      "question": "What is a 'side-effect' in a predicate clause (e.g. 'if (a && b++ > 0)')?",
+      "options": {
+        "A": "Evaluating the clause alters program state (variable values), which can lead to unpredictable behavior if short-circuiting skips the clause.",
+        "B": "A compiler error.",
+        "C": "A database rollback.",
+        "D": "A hardware interruption."
+      },
+      "correctAnswer": "A",
+      "explanation": "Side-effects in boolean expressions (like modifying b with ++) mean that whether state changes occur depends on whether preceding clauses short-circuit, a notorious source of bugs.",
+      "difficulty": "medium",
+      "sourcePages": [
+        14
+      ]
+    },
+    {
+      "id": "lsc1-018",
+      "question": "Why is testing boolean methods used as clauses (e.g. 'if (isValid(x) && isReady(y))') particularly important?",
+      "options": {
+        "A": "Because the internal implementation of the called method could fail or alter state, and its return value directly dictates high-level branch decisions.",
+        "B": "Because boolean methods cannot be compiled.",
+        "C": "Because methods cannot be called in if statements.",
+        "D": "Because boolean methods always return true."
+      },
+      "correctAnswer": "A",
+      "explanation": "Method calls in predicates hide procedural complexity inside a single clause. Testing both true and false outcomes validates both return pathways and their effects on callers.",
+      "difficulty": "easy",
+      "sourcePages": [
+        15
+      ]
+    },
+    {
+      "id": "lsc1-019",
+      "question": "In the Thermostat program, what test pair demonstrates that 'override' actively determines the heating decision?",
+      "options": {
+        "A": "Hold normal conditions such that heating is OFF (temp > target); then toggling override from FALSE to TRUE turns heating from OFF to ON.",
+        "B": "Set override to FALSE in both tests.",
+        "C": "Disconnect the temperature sensor.",
+        "D": "Set temperature to absolute zero."
+      },
+      "correctAnswer": "A",
+      "explanation": "Holding minor clauses in the state where heating is normally off isolates 'override' as the sole deciding factor, proving it actively determines the heating command.",
+      "difficulty": "medium",
+      "sourcePages": [
+        6
+      ]
+    },
+    {
+      "id": "lsc1-020",
+      "question": "What is the primary takeaway of applying the RIPR model to source code testing?",
+      "options": {
+        "A": "Executing a line of code containing a fault does not guarantee finding a bug; the test must also infect state, propagate to output, and be verified by an oracle.",
+        "B": "Writing tests is unnecessary if code compiles.",
+        "C": "Coverage metrics alone guarantee software reliability.",
+        "D": "All faults automatically propagate to stdout."
+      },
+      "correctAnswer": "A",
+      "explanation": "The RIPR model proves that coverage (reachability) is merely a prerequisite. High-quality tests must also trigger state infection, ensure propagation, and verify outputs.",
+      "difficulty": "medium",
+      "sourcePages": [
+        3,
+        16
+      ]
+    }
+  ]
+}

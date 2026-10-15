@@ -1,0 +1,335 @@
+{
+  "topicId": "logic-coverage-criteria",
+  "topicName": "Logic Coverage Criteria (ACC, GACC, CACC, RACC)",
+  "sourcePdf": "logic-coverage-criteria.pdf",
+  "questions": [
+    {
+      "id": "lcc-001",
+      "question": "In logic coverage criteria, what is the formal definition of a 'predicate'?",
+      "options": {
+        "A": "An expression that evaluates to a Boolean value (true or false).",
+        "B": "A function that returns an integer.",
+        "C": "A loop counter variable.",
+        "D": "A string concatenation operator."
+      },
+      "correctAnswer": "A",
+      "explanation": "A predicate is an expression that evaluates to a Boolean value. It may contain Boolean variables, relational operators (<, >, ==), and logical connectives (AND, OR, NOT).",
+      "difficulty": "easy",
+      "sourcePages": [
+        2
+      ]
+    },
+    {
+      "id": "lcc-002",
+      "question": "What is a 'clause' in a Boolean predicate?",
+      "options": {
+        "A": "A sub-expression that does not contain any logical operators (AND, OR, NOT).",
+        "B": "Any expression that contains an if-statement.",
+        "C": "A complete Java class.",
+        "D": "A loop condition."
+      },
+      "correctAnswer": "A",
+      "explanation": "A clause is an atomic Boolean expression that contains no logical operators. E.g., in ((x > 0) || y), '(x > 0)' and 'y' are individual clauses.",
+      "difficulty": "easy",
+      "sourcePages": [
+        2
+      ]
+    },
+    {
+      "id": "lcc-003",
+      "question": "What does Predicate Coverage (PC) require?",
+      "options": {
+        "A": "For each predicate p, TR contains two requirements: p evaluates to true, and p evaluates to false.",
+        "B": "Every clause in the predicate must be true.",
+        "C": "Every clause must be evaluated 2^N times.",
+        "D": "Predicates must only contain AND operators."
+      },
+      "correctAnswer": "A",
+      "explanation": "Predicate Coverage (PC) requires test cases that make the entire predicate evaluate to true at least once, and to false at least once.",
+      "difficulty": "easy",
+      "sourcePages": [
+        5
+      ]
+    },
+    {
+      "id": "lcc-004",
+      "question": "What does Clause Coverage (CC) require?",
+      "options": {
+        "A": "For each individual clause c in predicate p, TR contains two requirements: c evaluates to true, and c evaluates to false.",
+        "B": "The whole predicate must evaluate to true.",
+        "C": "Only the first clause in the predicate is tested.",
+        "D": "All clauses must be true at the same time."
+      },
+      "correctAnswer": "A",
+      "explanation": "Clause Coverage (CC) requires that each individual clause in the predicate evaluates to true at least once and false at least once.",
+      "difficulty": "easy",
+      "sourcePages": [
+        6
+      ]
+    },
+    {
+      "id": "lcc-005",
+      "question": "Does Clause Coverage (CC) subsume Predicate Coverage (PC)?",
+      "options": {
+        "A": "No! CC does not subsume PC, and PC does not subsume CC.",
+        "B": "Yes, CC always subsumes PC.",
+        "C": "Yes, PC always subsumes CC.",
+        "D": "Only when the predicate has 1 clause."
+      },
+      "correctAnswer": "A",
+      "explanation": "Surprisingly, CC does not subsume PC! E.g. in p = a OR b, tests {(a=T, b=F), (a=F, b=T)} satisfy CC, but p evaluates to true in both tests! Thus PC is not satisfied.",
+      "difficulty": "medium",
+      "sourcePages": [
+        7
+      ]
+    },
+    {
+      "id": "lcc-006",
+      "question": "How many test cases are required to satisfy Combinatorial Coverage (CoC) for a predicate with N independent clauses?",
+      "options": {
+        "A": "2^N",
+        "B": "2 × N",
+        "C": "N + 1",
+        "D": "N!"
+      },
+      "correctAnswer": "A",
+      "explanation": "Combinatorial Coverage (CoC) requires testing every possible combination of truth assignments to the N clauses, which equals 2^N tests.",
+      "difficulty": "easy",
+      "sourcePages": [
+        8
+      ]
+    },
+    {
+      "id": "lcc-007",
+      "question": "When is a clause c said to 'determine' predicate p?",
+      "options": {
+        "A": "When toggling the truth value of c changes the truth value of p (with all minor clauses held fixed).",
+        "B": "When c is the longest clause.",
+        "C": "When c evaluates to true.",
+        "D": "When c is an arithmetic expression."
+      },
+      "correctAnswer": "A",
+      "explanation": "Clause c determines p if and only if: changing the truth value of c while keeping the values of all other clauses fixed causes the evaluation of p to invert.",
+      "difficulty": "medium",
+      "sourcePages": [
+        10,
+        11
+      ]
+    },
+    {
+      "id": "lcc-008",
+      "question": "In Active Clause Coverage (ACC), what are 'major clauses' and 'minor clauses'?",
+      "options": {
+        "A": "For each requirement, one clause is chosen as the 'major clause' (the clause being tested for determination), while the remaining clauses are 'minor clauses'.",
+        "B": "Major clauses are in main(); minor clauses are in subroutines.",
+        "C": "Major clauses contain relational operators; minor clauses contain variables.",
+        "D": "Major clauses evaluate to true; minor clauses evaluate to false."
+      },
+      "correctAnswer": "A",
+      "explanation": "When testing a specific clause c under ACC, c is designated as the major clause. All other clauses in that predicate are minor clauses.",
+      "difficulty": "easy",
+      "sourcePages": [
+        12
+      ]
+    },
+    {
+      "id": "lcc-009",
+      "question": "What is General Active Clause Coverage (GACC)?",
+      "options": {
+        "A": "For each major clause c, choose minor clauses such that c determines p. The minor clauses do NOT have to take the same truth values when c is true as when c is false.",
+        "B": "Minor clauses must be identical in both tests.",
+        "C": "All clauses must be active simultaneously.",
+        "D": "Predicate must evaluate to false in both tests."
+      },
+      "correctAnswer": "A",
+      "explanation": "In GACC, clause c must determine p when c=T and when c=F, but the values assigned to minor clauses in the c=T test are allowed to differ from the c=F test.",
+      "difficulty": "hard",
+      "sourcePages": [
+        14,
+        15
+      ]
+    },
+    {
+      "id": "lcc-010",
+      "question": "What is the defining condition of Restricted Active Clause Coverage (RACC)?",
+      "options": {
+        "A": "The values assigned to the minor clauses MUST be strictly identical in the test where c is true and in the test where c is false.",
+        "B": "The predicate must contain at most 2 clauses.",
+        "C": "The predicate cannot contain the NOT operator.",
+        "D": "The test suite must be restricted to 1 test case."
+      },
+      "correctAnswer": "A",
+      "explanation": "RACC restricts minor clauses to remain exactly identical in both the c=true and c=false tests for major clause c.",
+      "difficulty": "medium",
+      "sourcePages": [
+        16,
+        17
+      ]
+    },
+    {
+      "id": "lcc-011",
+      "question": "What is Correlated Active Clause Coverage (CACC)?",
+      "options": {
+        "A": "For each major clause c, minor clauses are chosen such that p evaluates to true when c is true (or false), and p evaluates to false when c is false (or true), but minor clauses may differ between the two tests.",
+        "B": "All clauses must be mathematically correlated.",
+        "C": "CACC is identical to Predicate Coverage.",
+        "D": "CACC requires 2^N tests."
+      },
+      "correctAnswer": "A",
+      "explanation": "CACC requires that toggling major clause c in the test pair causes predicate p to toggle as well, while allowing minor clauses to differ between the two tests.",
+      "difficulty": "hard",
+      "sourcePages": [
+        18,
+        19
+      ]
+    },
+    {
+      "id": "lcc-012",
+      "question": "Which of the following correctly orders the Active Clause Coverage criteria by strength?",
+      "options": {
+        "A": "RACC subsumes CACC, CACC subsumes GACC.",
+        "B": "GACC subsumes CACC, CACC subsumes RACC.",
+        "C": "CACC subsumes RACC, RACC subsumes GACC.",
+        "D": "GACC subsumes PC, but RACC does not."
+      },
+      "correctAnswer": "A",
+      "explanation": "RACC imposes the strictest requirement (identical minor clauses). Any test pair satisfying RACC satisfies CACC. CACC guarantees the predicate toggles, satisfying GACC.",
+      "difficulty": "medium",
+      "sourcePages": [
+        20,
+        21
+      ]
+    },
+    {
+      "id": "lcc-013",
+      "question": "Does GACC guarantee Predicate Coverage (PC)?",
+      "options": {
+        "A": "No! In GACC, it is possible for p to evaluate to true (or false) in both the c=T and c=F tests if minor clauses change between tests.",
+        "B": "Yes, GACC always guarantees PC.",
+        "C": "Only if N = 2.",
+        "D": "Only when the predicate has no AND operators."
+      },
+      "correctAnswer": "A",
+      "explanation": "Under GACC, minor clauses may differ between the two tests, which can result in the predicate evaluating to True in both tests. Thus GACC does NOT subsume PC!",
+      "difficulty": "hard",
+      "sourcePages": [
+        21,
+        22
+      ]
+    },
+    {
+      "id": "lcc-014",
+      "question": "Do CACC and RACC guarantee Predicate Coverage (PC)?",
+      "options": {
+        "A": "Yes, both CACC and RACC guarantee that p evaluates to True in one test and False in the other.",
+        "B": "No, neither does.",
+        "C": "Only RACC does.",
+        "D": "Only CACC does."
+      },
+      "correctAnswer": "A",
+      "explanation": "Both CACC and RACC explicitly require that the predicate evaluates to opposite truth values in the test pair, directly satisfying Predicate Coverage.",
+      "difficulty": "medium",
+      "sourcePages": [
+        20
+      ]
+    },
+    {
+      "id": "lcc-015",
+      "question": "For predicate p = A ∧ B, what truth assignment to minor clause B makes major clause A determine p?",
+      "options": {
+        "A": "B must be TRUE.",
+        "B": "B must be FALSE.",
+        "C": "B can be either TRUE or FALSE.",
+        "D": "B must be null."
+      },
+      "correctAnswer": "A",
+      "explanation": "If B is FALSE, p = A ∧ F = F regardless of A (A has no effect). If B is TRUE, p = A ∧ T = A. Thus, A determines p if and only if B is TRUE.",
+      "difficulty": "easy",
+      "sourcePages": [
+        10
+      ]
+    },
+    {
+      "id": "lcc-016",
+      "question": "For predicate p = A ∨ B, what truth assignment to minor clause B makes major clause A determine p?",
+      "options": {
+        "A": "B must be FALSE.",
+        "B": "B must be TRUE.",
+        "C": "B can be either TRUE or FALSE.",
+        "D": "B must be undefined."
+      },
+      "correctAnswer": "A",
+      "explanation": "If B is TRUE, p = A ∨ T = T regardless of A. If B is FALSE, p = A ∨ F = A. Thus, A determines p if and only if B is FALSE.",
+      "difficulty": "easy",
+      "sourcePages": [
+        10
+      ]
+    },
+    {
+      "id": "lcc-017",
+      "question": "What is Inactive Clause Coverage (ICC)?",
+      "options": {
+        "A": "Tests where minor clauses are chosen such that major clause c does NOT determine the predicate p.",
+        "B": "Tests where no code is executed.",
+        "C": "Testing dead code.",
+        "D": "Testing inactive user sessions."
+      },
+      "correctAnswer": "A",
+      "explanation": "Inactive Clause Coverage tests situations where the major clause is prevented from determining the predicate by the configuration of minor clauses.",
+      "difficulty": "medium",
+      "sourcePages": [
+        24,
+        25
+      ]
+    },
+    {
+      "id": "lcc-018",
+      "question": "Why is Combinatorial Coverage (CoC) impractical for predicates with many clauses (e.g. N = 10)?",
+      "options": {
+        "A": "Because 2^10 = 1024 tests are required for a single decision predicate, leading to combinatorial explosion.",
+        "B": "Because compilers limit predicates to 5 clauses.",
+        "C": "Because CoC does not test all clauses.",
+        "D": "Because CoC cannot be used with boolean variables."
+      },
+      "correctAnswer": "A",
+      "explanation": "2^N grows exponentially. For N=10, 1024 test cases are needed for just one condition. Active Clause Coverage criteria provide rigorous testing with approximately 2N tests.",
+      "difficulty": "easy",
+      "sourcePages": [
+        8,
+        9
+      ]
+    },
+    {
+      "id": "lcc-019",
+      "question": "What is the Minimum Number of tests required for RACC on a predicate with N independent clauses?",
+      "options": {
+        "A": "N + 1 tests (by sharing tests among different major clauses).",
+        "B": "2^N tests.",
+        "C": "1 test.",
+        "D": "N! tests."
+      },
+      "correctAnswer": "A",
+      "explanation": "Each major clause requires 2 tests (one T, one F). By carefully sharing test cases between different major clauses, RACC can often be satisfied with as few as N + 1 tests.",
+      "difficulty": "hard",
+      "sourcePages": [
+        26
+      ]
+    },
+    {
+      "id": "lcc-020",
+      "question": "Which of the following Federal Aviation Administration (FAA) software safety standards requires Modified Condition/Decision Coverage (MC/DC), which is closely related to RACC/CACC?",
+      "options": {
+        "A": "DO-178B / DO-178C (Level A avionics software)",
+        "B": "ISO 9001",
+        "C": "IEEE 802.11",
+        "D": "PCI-DSS"
+      },
+      "correctAnswer": "A",
+      "explanation": "DO-178B/C Level A avionics safety mandates MC/DC (which corresponds directly to Correlated / Restricted Active Clause Coverage) for flight-critical code.",
+      "difficulty": "medium",
+      "sourcePages": [
+        27
+      ]
+    }
+  ]
+}

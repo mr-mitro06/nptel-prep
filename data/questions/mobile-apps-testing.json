@@ -1,0 +1,334 @@
+{
+  "topicId": "mobile-apps-testing",
+  "topicName": "Mobile Applications Testing",
+  "sourcePdf": "mobile-apps-testing.pdf",
+  "questions": [
+    {
+      "id": "mat-001",
+      "question": "What is the primary factor driving 'Device Fragmentation' in mobile applications testing?",
+      "options": {
+        "A": "The vast multitude of different device hardware configurations, screen sizes, processor architectures, and operating system versions (especially in Android).",
+        "B": "Broken glass screens.",
+        "C": "Different charging cables.",
+        "D": "Too many mobile games."
+      },
+      "correctAnswer": "A",
+      "explanation": "Device fragmentation arises from thousands of distinct hardware models, diverse display resolutions/aspect ratios, hardware sensors, and fragmented OS distributions.",
+      "difficulty": "easy",
+      "sourcePages": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "mat-002",
+      "question": "What is 'Interrupt Testing' in mobile application quality assurance?",
+      "options": {
+        "A": "Verifying that the application gracefully pauses, handles state, and resumes when interrupted by events such as incoming phone calls, SMS alerts, low battery warnings, or alarm notifications.",
+        "B": "Interrupting the developer while coding.",
+        "C": "Unplugging the battery during compilation.",
+        "D": "Testing keyboard shortcuts."
+      },
+      "correctAnswer": "A",
+      "explanation": "Mobile apps operate in an environment with frequent unexpected system events. Interrupt testing ensures the app saves state when backgrounded and restores seamlessly.",
+      "difficulty": "easy",
+      "sourcePages": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": "mat-003",
+      "question": "What is the fundamental difference between an Emulator, a Simulator, and a Real Physical Device in mobile testing?",
+      "options": {
+        "A": "An emulator mimics hardware and software architecture (CPU binary translation); a simulator mimics software behavior/APIs without hardware emulation; a real device provides the actual physical hardware environment.",
+        "B": "Emulators are for iOS only; Simulators are for Android only.",
+        "C": "Simulators are physical phones; Emulators are cloud servers.",
+        "D": "There is no technical difference."
+      },
+      "correctAnswer": "A",
+      "explanation": "Emulators reproduce target device hardware architecture and OS (e.g. Android QEMU). Simulators replicate software environment at API level (e.g. iOS Simulator). Physical devices test real touch, thermal, and sensor behaviors.",
+      "difficulty": "medium",
+      "sourcePages": [
+        6,
+        7
+      ]
+    },
+    {
+      "id": "mat-004",
+      "question": "What is 'Network Variability Testing' for mobile apps?",
+      "options": {
+        "A": "Testing app behavior under varying network conditions: switching between Wi-Fi, 4G, 5G, high packet loss, high latency, and offline mode.",
+        "B": "Testing if the Wi-Fi router is plugged in.",
+        "C": "Testing fiber-optic cable durability.",
+        "D": "Measuring server room temperature."
+      },
+      "correctAnswer": "A",
+      "explanation": "Mobile devices constantly change connections. Network variability testing verifies offline caching, connection retries, and graceful degradation during network handoffs.",
+      "difficulty": "easy",
+      "sourcePages": [
+        8,
+        9
+      ]
+    },
+    {
+      "id": "mat-005",
+      "question": "What is 'Battery Drain Testing' (Power Profiling)?",
+      "options": {
+        "A": "Measuring the energy consumption of the application to ensure it does not exhaust device battery through excessive background wake-locks, GPS polling, or CPU spinning.",
+        "B": "Draining the battery to 0% to test the charger.",
+        "C": "Testing battery chemical stability.",
+        "D": "Testing screen brightness settings."
+      },
+      "correctAnswer": "A",
+      "explanation": "High battery consumption leads to immediate user uninstalls. Power profiling tools monitor wake-locks, background service frequency, and sensor usage.",
+      "difficulty": "easy",
+      "sourcePages": [
+        10
+      ]
+    },
+    {
+      "id": "mat-006",
+      "question": "What is 'App Lifecycle Testing' in mobile OS environments (Android / iOS)?",
+      "options": {
+        "A": "Testing that the app correctly transitions between lifecycle states (Created, Started, Resumed, Paused, Stopped, Destroyed) and restores state after process death.",
+        "B": "Testing how many years the app will be published on the App Store.",
+        "C": "Testing the marketing roadmap.",
+        "D": "Testing employee hiring cycles."
+      },
+      "correctAnswer": "A",
+      "explanation": "Mobile OSes aggressively kill background apps to reclaim RAM. Testing lifecycle hooks (onSaveInstanceState, onResume) verifies that user input is not lost when returning to the app.",
+      "difficulty": "medium",
+      "sourcePages": [
+        11,
+        12
+      ]
+    },
+    {
+      "id": "mat-007",
+      "question": "What is 'Screen Orientation Testing'?",
+      "options": {
+        "A": "Verifying that rotating the device between portrait and landscape modes preserves view hierarchy, input field data, and user progress without crashing.",
+        "B": "Measuring compass accuracy.",
+        "C": "Checking device tilt angles.",
+        "D": "Testing camera optical zoom."
+      },
+      "correctAnswer": "A",
+      "explanation": "In Android, screen rotation restarts the Activity by default. If state is not properly preserved, rotation causes immediate data loss or NullPointerExceptions.",
+      "difficulty": "easy",
+      "sourcePages": [
+        13
+      ]
+    },
+    {
+      "id": "mat-008",
+      "question": "What unique UI interactions must be validated in mobile testing compared to traditional desktop applications?",
+      "options": {
+        "A": "Multi-touch gestures such as pinch-to-zoom, swipe, fling, drag-and-drop, tap-and-hold (long press), and edge swipes.",
+        "B": "Mouse double-clicks.",
+        "C": "VGA monitor connections.",
+        "D": "Physical keyboard caps-lock keys."
+      },
+      "correctAnswer": "A",
+      "explanation": "Touch-based interaction requires validating touch targets (minimum 48x48dp accessibility guideline), multi-finger gestures, and gesture responsiveness.",
+      "difficulty": "easy",
+      "sourcePages": [
+        14
+      ]
+    },
+    {
+      "id": "mat-009",
+      "question": "What is 'Sensor Interaction Testing' in mobile apps?",
+      "options": {
+        "A": "Testing application features that rely on hardware sensors such as Accelerometer, Gyroscope, GPS/Location, Ambient Light, Barometer, and Biometrics (Fingerprint/FaceID).",
+        "B": "Testing smoke detectors in the building.",
+        "C": "Testing server heat sensors.",
+        "D": "Testing water temperature."
+      },
+      "correctAnswer": "A",
+      "explanation": "Mobile apps leverage rich onboard sensors; tests must inject mock sensor data (simulated GPS coordinates, shake events, biometric tokens) to verify features.",
+      "difficulty": "easy",
+      "sourcePages": [
+        15
+      ]
+    },
+    {
+      "id": "mat-010",
+      "question": "What is 'App Permission Testing'?",
+      "options": {
+        "A": "Verifying that the application functions appropriately when runtime permissions (camera, microphone, contacts, location) are granted, denied, or revoked by the user.",
+        "B": "Checking if the developer has a developer license.",
+        "C": "Testing copyright law compliance.",
+        "D": "Testing App Store pricing permissions."
+      },
+      "correctAnswer": "A",
+      "explanation": "Modern OSes require dynamic runtime permissions. Tests must confirm that denying a permission displays an informative rationale rather than crashing the app.",
+      "difficulty": "medium",
+      "sourcePages": [
+        16
+      ]
+    },
+    {
+      "id": "mat-011",
+      "question": "What is a 'Mobile Device Cloud' in automated test execution?",
+      "options": {
+        "A": "A cloud infrastructure service (e.g. Firebase Test Lab, BrowserStack, Sauce Labs) that provides remote access to hundreds of real mobile devices for automated parallel testing.",
+        "B": "A weather cloud containing smartphones.",
+        "C": "A mobile storage backup like iCloud.",
+        "D": "A database on a smartphone."
+      },
+      "correctAnswer": "A",
+      "explanation": "Device clouds host real physical devices in data centers, enabling QA teams to run test scripts in parallel across dozens of device/OS combinations without purchasing them locally.",
+      "difficulty": "easy",
+      "sourcePages": [
+        17
+      ]
+    },
+    {
+      "id": "mat-012",
+      "question": "What is 'Monkey Testing' (or UI Exerciser Monkey) on Android?",
+      "options": {
+        "A": "A tool that sends pseudo-random streams of user events (clicks, touches, gestures, system events) into the device to stress-test stability and find crash bugs.",
+        "B": "Testing mobile games about animals.",
+        "C": "Testing user interface colors.",
+        "D": "Testing Bluetooth accessories."
+      },
+      "correctAnswer": "A",
+      "explanation": "The Android Monkey tool generates rapid, randomized input events to stress the application and uncover memory leaks, race conditions, and unhandled exceptions.",
+      "difficulty": "medium",
+      "sourcePages": [
+        18
+      ]
+    },
+    {
+      "id": "mat-013",
+      "question": "What is 'App Upgrade Testing'?",
+      "options": {
+        "A": "Verifying that updating an older version of the app to a new version preserves user databases (e.g. SQLite/Room migrations), shared preferences, and cached state seamlessly.",
+        "B": "Buying a newer phone model.",
+        "C": "Upgrading the operating system compiler.",
+        "D": "Testing in-app purchase payments."
+      },
+      "correctAnswer": "A",
+      "explanation": "Upgrade testing ensures that database schema migrations execute smoothly and user data/settings are not corrupted or wiped when an app update is installed.",
+      "difficulty": "medium",
+      "sourcePages": [
+        19
+      ]
+    },
+    {
+      "id": "mat-014",
+      "question": "What is 'Memory Leak / Out of Memory (OOM) Testing' in mobile apps?",
+      "options": {
+        "A": "Monitoring heap memory usage across repeated screen navigations to detect leaked Activity contexts or unreleased Bitmaps that cause the OS to kill the app with OutOfMemoryError.",
+        "B": "Removing the micro-SD card.",
+        "C": "Testing flash storage write cycles.",
+        "D": "Testing device RAM clock speed."
+      },
+      "correctAnswer": "A",
+      "explanation": "Retaining references to destroyed Activities (e.g. via static listeners or background tasks) leaks substantial memory, eventually triggering OOM crashes.",
+      "difficulty": "medium",
+      "sourcePages": [
+        12,
+        19
+      ]
+    },
+    {
+      "id": "mat-015",
+      "question": "Why is 'Cold Start' vs 'Warm Start' performance testing important for mobile apps?",
+      "options": {
+        "A": "Cold start launches the app from scratch without prior process state, while warm start resumes from memory; slow cold start times lead to high user abandonment.",
+        "B": "Cold start is testing in winter.",
+        "C": "Warm start is testing in summer.",
+        "D": "It measures battery temperature."
+      },
+      "correctAnswer": "A",
+      "explanation": "App launch latency directly impacts user perception. App stores track cold start metrics (time to initial display), penalizing apps that take longer than 2-3 seconds.",
+      "difficulty": "easy",
+      "sourcePages": [
+        10,
+        20
+      ]
+    },
+    {
+      "id": "mat-016",
+      "question": "What is 'Localization / Internationalization (i18n / L10n) Testing' in mobile apps?",
+      "options": {
+        "A": "Verifying that translated text strings fit within UI buttons without text clipping, and date, currency, and right-to-left (RTL) layouts render correctly.",
+        "B": "Testing GPS coordinates in Paris.",
+        "C": "Testing airplane mode.",
+        "D": "Measuring download size in different countries."
+      },
+      "correctAnswer": "A",
+      "explanation": "Translated words often vary in length (e.g. German text is often 30% longer than English), causing UI truncation. L10n testing validates formatting, text fit, and RTL layout.",
+      "difficulty": "medium",
+      "sourcePages": [
+        14
+      ]
+    },
+    {
+      "id": "mat-017",
+      "question": "In cross-platform mobile frameworks (such as Flutter or React Native), what additional testing layer is essential?",
+      "options": {
+        "A": "Testing the JavaScript/native bridge or platform channel communication between framework code and underlying platform APIs.",
+        "B": "Testing only on Android.",
+        "C": "Testing with web browsers only.",
+        "D": "Deleting platform native libraries."
+      },
+      "correctAnswer": "A",
+      "explanation": "Cross-platform frameworks bridge shared logic to native UI and platform services. Testing must verify that serialization and communication across the bridge work smoothly.",
+      "difficulty": "medium",
+      "sourcePages": [
+        7
+      ]
+    },
+    {
+      "id": "mat-018",
+      "question": "What is 'Push Notification Testing' in mobile applications?",
+      "options": {
+        "A": "Testing that push notification payloads are properly received, displayed in the notification tray, and tapping them routes the user directly to the correct deep link screen.",
+        "B": "Testing physical phone buttons.",
+        "C": "Testing user email delivery.",
+        "D": "Testing push-to-talk walkie-talkies."
+      },
+      "correctAnswer": "A",
+      "explanation": "Notifications involve cloud messaging (FCM/APNs), background handlers, payload parsing, and deep-linking into specific app activities when tapped.",
+      "difficulty": "easy",
+      "sourcePages": [
+        5
+      ]
+    },
+    {
+      "id": "mat-019",
+      "question": "What is 'Low Storage Testing' on mobile devices?",
+      "options": {
+        "A": "Verifying that the application handles device storage exhaustion gracefully without crashing or corrupting local databases.",
+        "B": "Testing devices with 1 GB storage.",
+        "C": "Deleting user photos.",
+        "D": "Measuring micro-SD card read speed."
+      },
+      "correctAnswer": "A",
+      "explanation": "When device storage is almost full, file write and database transaction operations fail. Testing ensures the app informs the user rather than failing abruptly.",
+      "difficulty": "medium",
+      "sourcePages": [
+        15
+      ]
+    },
+    {
+      "id": "mat-020",
+      "question": "Which of the following automated testing frameworks is standard for cross-platform mobile UI automation?",
+      "options": {
+        "A": "Appium",
+        "B": "JUnit 3",
+        "C": "Valgrind",
+        "D": "GCC"
+      },
+      "correctAnswer": "A",
+      "explanation": "Appium is an open-source, cross-platform mobile automation framework that uses the WebDriver protocol to automate Android and iOS applications natively.",
+      "difficulty": "easy",
+      "sourcePages": [
+        17
+      ]
+    }
+  ]
+}

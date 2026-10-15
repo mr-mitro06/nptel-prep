@@ -1,0 +1,332 @@
+{
+  "topicId": "graphs-specification",
+  "topicName": "Graph Coverage from Specifications",
+  "sourcePdf": "graphs-specification.pdf",
+  "questions": [
+    {
+      "id": "gsp-001",
+      "question": "When deriving test graphs from software specifications, what formal model is most commonly used?",
+      "options": {
+        "A": "Finite State Machines (FSM) or State Transition Diagrams",
+        "B": "Entity Relationship Diagrams",
+        "C": "Bar charts",
+        "D": "Truth tables only"
+      },
+      "correctAnswer": "A",
+      "explanation": "Finite State Machines (FSM) and State Transition Diagrams provide a natural graph model where states are nodes and transitions are edges.",
+      "difficulty": "easy",
+      "sourcePages": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "gsp-002",
+      "question": "In a Finite State Machine specification, what do the nodes and directed edges correspond to?",
+      "options": {
+        "A": "Nodes represent states of the system; edges represent transitions triggered by events or inputs.",
+        "B": "Nodes represent input variables; edges represent arithmetic operations.",
+        "C": "Nodes represent test cases; edges represent bugs.",
+        "D": "Nodes represent database tables; edges represent foreign keys."
+      },
+      "correctAnswer": "A",
+      "explanation": "In an FSM graph representation, vertices/nodes represent recognizable software states (e.g., Idle, Connected, Authenticated), and edges represent valid transitions triggered by events.",
+      "difficulty": "easy",
+      "sourcePages": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": "gsp-003",
+      "question": "What is 'State Coverage' in specification-based testing?",
+      "options": {
+        "A": "Visiting every defined state in the FSM at least once (equivalent to Node Coverage).",
+        "B": "Executing every transition in both directions.",
+        "C": "Testing only the initial and final states.",
+        "D": "Checking the CPU register states."
+      },
+      "correctAnswer": "A",
+      "explanation": "State Coverage requires that every state in the specification model is visited by at least one test path, directly corresponding to Node Coverage on the FSM graph.",
+      "difficulty": "easy",
+      "sourcePages": [
+        5
+      ]
+    },
+    {
+      "id": "gsp-004",
+      "question": "What is 'Transition Coverage' in specification-based testing?",
+      "options": {
+        "A": "Executing every valid state transition in the FSM at least once (equivalent to Edge Coverage).",
+        "B": "Executing only transitions that lead to error states.",
+        "C": "Testing each transition 100 times.",
+        "D": "Testing transitions without sending inputs."
+      },
+      "correctAnswer": "A",
+      "explanation": "Transition Coverage requires that each valid transition between states is traversed at least once, which is equivalent to Edge Coverage on the state graph.",
+      "difficulty": "easy",
+      "sourcePages": [
+        6
+      ]
+    },
+    {
+      "id": "gsp-005",
+      "question": "What is 'Transition-Pair Coverage'?",
+      "options": {
+        "A": "Executing every pair of adjacent transitions in the FSM (equivalent to Edge-Pair Coverage).",
+        "B": "Executing two tests at the same time.",
+        "C": "Testing only transitions with two input parameters.",
+        "D": "Pairing state coverage with statement coverage."
+      },
+      "correctAnswer": "A",
+      "explanation": "Transition-Pair Coverage requires testing every sequence of two consecutive transitions in the FSM, testing whether taking one transition leaves the system in a state capable of taking the next.",
+      "difficulty": "medium",
+      "sourcePages": [
+        7
+      ]
+    },
+    {
+      "id": "gsp-006",
+      "question": "What is a 'sneak path' in state-based testing?",
+      "options": {
+        "A": "An illegal transition that occurs when an unexpected event is accepted by the implementation in a state where the specification does not allow it.",
+        "B": "A secret backdoor planted by malware.",
+        "C": "The fastest path through the graph.",
+        "D": "A test path with zero execution time."
+      },
+      "correctAnswer": "A",
+      "explanation": "A sneak path is an erroneous or unspecified transition taken by the software when an input/event arrives that should have been ignored or rejected in that state.",
+      "difficulty": "hard",
+      "sourcePages": [
+        8,
+        9
+      ]
+    },
+    {
+      "id": "gsp-007",
+      "question": "What does a 'guard condition' on a transition signify?",
+      "options": {
+        "A": "A Boolean condition that must evaluate to true for the transition to fire upon receiving an event.",
+        "B": "A security antivirus scanner.",
+        "C": "A loop counter that limits transitions.",
+        "D": "The destination state."
+      },
+      "correctAnswer": "A",
+      "explanation": "Transitions often have the syntax Event [Guard] / Action. The guard is a predicate that must hold true before the event can trigger the state transition.",
+      "difficulty": "easy",
+      "sourcePages": [
+        4
+      ]
+    },
+    {
+      "id": "gsp-008",
+      "question": "Why is testing unspecified events (robustness/negative testing) critical in state-based specifications?",
+      "options": {
+        "A": "To verify that the system gracefully handles unexpected user inputs or out-of-order events without crashing or corrupting state.",
+        "B": "To increase compile time.",
+        "C": "Because the specification guarantees no unexpected events will ever occur.",
+        "D": "To avoid achieving 100% state coverage."
+      },
+      "correctAnswer": "A",
+      "explanation": "Systems must be robust against invalid sequences (e.g. clicking 'Checkout' before adding items to cart); testing unspecified events verifies error handling.",
+      "difficulty": "medium",
+      "sourcePages": [
+        9
+      ]
+    },
+    {
+      "id": "gsp-009",
+      "question": "In UML Statecharts, what is a 'composite state' (or superstate)?",
+      "options": {
+        "A": "A state that contains substates and internal transitions.",
+        "B": "A state with no incoming edges.",
+        "C": "A final state that halts the system.",
+        "D": "A state that has no name."
+      },
+      "correctAnswer": "A",
+      "explanation": "Composite states encapsulate nested sub-states, enabling hierarchical organization and avoiding state space explosion in complex specifications.",
+      "difficulty": "medium",
+      "sourcePages": [
+        10,
+        11
+      ]
+    },
+    {
+      "id": "gsp-010",
+      "question": "What are 'orthogonal regions' in UML Statecharts?",
+      "options": {
+        "A": "Independent concurrent state machines running simultaneously within a composite state.",
+        "B": "States that can never be reached.",
+        "C": "Regions with 90-degree transition angles.",
+        "D": "Transitions that have no actions."
+      },
+      "correctAnswer": "A",
+      "explanation": "Orthogonal regions model concurrent sub-behaviors where the system exists in multiple sub-states at the same time (e.g., UI state and Background Network Sync state).",
+      "difficulty": "medium",
+      "sourcePages": [
+        11,
+        12
+      ]
+    },
+    {
+      "id": "gsp-011",
+      "question": "What is the 'state explosion problem' when testing FSMs with multiple concurrent components?",
+      "options": {
+        "A": "The number of global states is the Cartesian product of individual component states, growing exponentially.",
+        "B": "The graph runs out of nodes.",
+        "C": "Memory on the server catches fire.",
+        "D": "The compiler refuses to draw more than 5 circles."
+      },
+      "correctAnswer": "A",
+      "explanation": "Combining concurrent components results in a global state space whose size is the product of component state spaces (S1 × S2 × ... × Sn), leading to exponential growth.",
+      "difficulty": "medium",
+      "sourcePages": [
+        12
+      ]
+    },
+    {
+      "id": "gsp-012",
+      "question": "How does Complete Path Coverage (CPC) apply to an FSM with cycles?",
+      "options": {
+        "A": "Like CFGs, CPC is infinite if the FSM has cycles, making it impractical.",
+        "B": "CPC is always 1 test case on FSMs.",
+        "C": "Cycles are banned in FSMs.",
+        "D": "CPC only tests initial states."
+      },
+      "correctAnswer": "A",
+      "explanation": "FSMs with feedback transitions or repetitive loops admit infinitely many transition sequences, rendering complete path coverage infeasible.",
+      "difficulty": "easy",
+      "sourcePages": [
+        7
+      ]
+    },
+    {
+      "id": "gsp-013",
+      "question": "What is a 'history state' in a statechart?",
+      "options": {
+        "A": "A pseudostate that restores the most recently active substate of a composite state when re-entered.",
+        "B": "A log of all previous test runs.",
+        "C": "The initial state of the program.",
+        "D": "A deleted state."
+      },
+      "correctAnswer": "A",
+      "explanation": "The history state (H or H*) allows a composite state to resume execution at the specific nested substate it occupied immediately prior to being interrupted.",
+      "difficulty": "hard",
+      "sourcePages": [
+        13
+      ]
+    },
+    {
+      "id": "gsp-014",
+      "question": "How are test cases constructed from a test path through an FSM?",
+      "options": {
+        "A": "By applying the sequence of input events that trigger the transitions and verifying that the expected output actions and target states occur.",
+        "B": "By randomly generating bytes.",
+        "C": "By inspecting variable names in the debugger.",
+        "D": "By deleting all intermediate states."
+      },
+      "correctAnswer": "A",
+      "explanation": "A test path through an FSM maps to an input sequence of events. The test oracle checks that each event produces expected actions and transitions to the correct state.",
+      "difficulty": "easy",
+      "sourcePages": [
+        14
+      ]
+    },
+    {
+      "id": "gsp-015",
+      "question": "What is an 'or-state' versus an 'and-state' in hierarchical state machines?",
+      "options": {
+        "A": "An or-state means the system is in exactly one substate; an and-state represents concurrent orthogonal regions where the system is in all substates simultaneously.",
+        "B": "Or-states are used only for error handling.",
+        "C": "And-states cannot have transitions.",
+        "D": "They are synonymous in statechart theory."
+      },
+      "correctAnswer": "A",
+      "explanation": "An OR-state is mutually exclusive (active in one substate at a time). An AND-state decomposes into parallel orthogonal regions that are all active simultaneously.",
+      "difficulty": "medium",
+      "sourcePages": [
+        11
+      ]
+    },
+    {
+      "id": "gsp-016",
+      "question": "What is a 'deadlock state' in an FSM model?",
+      "options": {
+        "A": "A non-final state from which no outgoing transitions can ever be taken.",
+        "B": "A state that executes forever.",
+        "C": "The start state.",
+        "D": "A state with 10 outgoing edges."
+      },
+      "correctAnswer": "A",
+      "explanation": "A deadlock state is an unintended sink node where the system becomes permanently stuck because no valid transition exists to exit the state.",
+      "difficulty": "easy",
+      "sourcePages": [
+        15
+      ]
+    },
+    {
+      "id": "gsp-017",
+      "question": "What is an 'unreachable state' in specification graphs?",
+      "options": {
+        "A": "A state that cannot be reached by any sequence of transitions starting from the initial state.",
+        "B": "A state with no incoming edges.",
+        "C": "A state that is reachable from every node.",
+        "D": "A state representing power off."
+      },
+      "correctAnswer": "A",
+      "explanation": "An unreachable state cannot be reached from the initial state under any valid sequence of transitions, indicating a specification error or orphaned design.",
+      "difficulty": "easy",
+      "sourcePages": [
+        15
+      ]
+    },
+    {
+      "id": "gsp-018",
+      "question": "Why is specification-based testing considered a black-box technique?",
+      "options": {
+        "A": "Because test requirements are derived entirely from behavioral specifications and models, without relying on internal source code structure.",
+        "B": "Because it runs in the dark.",
+        "C": "Because the source code is encrypted.",
+        "D": "Because it only tests database tables."
+      },
+      "correctAnswer": "A",
+      "explanation": "Black-box testing derives tests from external requirements, user stories, or behavioral models (like FSMs) without inspecting internal implementation source code.",
+      "difficulty": "easy",
+      "sourcePages": [
+        2
+      ]
+    },
+    {
+      "id": "gsp-019",
+      "question": "In a state machine for an ATM, if the user enters 3 incorrect PINs, the system transitions from 'CardInserted' to 'CardConfiscated'. What is this transition testing?",
+      "options": {
+        "A": "An exceptional/security error handling transition.",
+        "B": "A normal withdrawal path.",
+        "C": "An infeasible path.",
+        "D": "A sneak path."
+      },
+      "correctAnswer": "A",
+      "explanation": "This transition explicitly tests the security countermeasure and error-recovery behavior specified for unauthorized access attempts.",
+      "difficulty": "easy",
+      "sourcePages": [
+        6
+      ]
+    },
+    {
+      "id": "gsp-020",
+      "question": "What is the primary advantage of generating tests from formal specifications before implementation begins?",
+      "options": {
+        "A": "Tests can reveal specification ambiguities, omissions, and contradictions before code is even written, preventing costly defect propagation.",
+        "B": "It eliminates the need to compile the code.",
+        "C": "It guarantees 100% bug-free software.",
+        "D": "It replaces developers with compilers."
+      },
+      "correctAnswer": "A",
+      "explanation": "Deriving tests from models early exposes gaps and inconsistencies in requirements, preventing defects from being baked into the implementation.",
+      "difficulty": "medium",
+      "sourcePages": [
+        16
+      ]
+    }
+  ]
+}

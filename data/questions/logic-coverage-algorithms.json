@@ -1,0 +1,334 @@
+{
+  "topicId": "logic-coverage-algorithms",
+  "topicName": "Logic Coverage Algorithms",
+  "sourcePdf": "logic-coverage-algorithms.pdf",
+  "questions": [
+    {
+      "id": "lca-001",
+      "question": "What is the Boolean derivative (Boolean difference) of predicate p with respect to clause c, denoted pc?",
+      "options": {
+        "A": "pc = p(c=true) ⊕ p(c=false)",
+        "B": "pc = p(c=true) ∧ p(c=false)",
+        "C": "pc = p(c=true) ∨ p(c=false)",
+        "D": "pc = ¬p(c=true)"
+      },
+      "correctAnswer": "A",
+      "explanation": "The Boolean difference pc is formally defined as p(c=true) XOR p(c=false). It evaluates to true if and only if changing c changes the value of p.",
+      "difficulty": "medium",
+      "sourcePages": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "lca-002",
+      "question": "What does pc = true indicate regarding clause c and predicate p?",
+      "options": {
+        "A": "Clause c determines predicate p under those minor clause truth assignments.",
+        "B": "Clause c has no effect on predicate p.",
+        "C": "Predicate p is a contradiction.",
+        "D": "Clause c is false."
+      },
+      "correctAnswer": "A",
+      "explanation": "When pc evaluates to true, the truth value of p depends directly on c; toggling c will toggle p. Hence c determines p.",
+      "difficulty": "easy",
+      "sourcePages": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": "lca-003",
+      "question": "For predicate p = a ∧ (b ∨ c), what is the condition for clause 'a' to determine p, computed via pa?",
+      "options": {
+        "A": "b ∨ c must be TRUE.",
+        "B": "b ∧ c must be TRUE.",
+        "C": "b must be FALSE.",
+        "D": "c must be FALSE."
+      },
+      "correctAnswer": "A",
+      "explanation": "pa = p(a=T) ⊕ p(a=F) = (T ∧ (b ∨ c)) ⊕ (F ∧ (b ∨ c)) = (b ∨ c) ⊕ F = b ∨ c. Thus, 'a' determines p whenever (b ∨ c) is TRUE.",
+      "difficulty": "medium",
+      "sourcePages": [
+        5,
+        6
+      ]
+    },
+    {
+      "id": "lca-004",
+      "question": "For predicate p = a ∨ (b ∧ c), what is the condition for clause 'a' to determine p?",
+      "options": {
+        "A": "¬(b ∧ c) must be TRUE (i.e. at least one of b or c is FALSE).",
+        "B": "b ∧ c must be TRUE.",
+        "C": "b must be TRUE and c must be TRUE.",
+        "D": "b and c must both be TRUE."
+      },
+      "correctAnswer": "A",
+      "explanation": "pa = p(a=T) ⊕ p(a=F) = (T ∨ (b ∧ c)) ⊕ (F ∨ (b ∧ c)) = T ⊕ (b ∧ c) = ¬(b ∧ c). Thus 'a' determines p when b ∧ c is FALSE.",
+      "difficulty": "medium",
+      "sourcePages": [
+        6,
+        7
+      ]
+    },
+    {
+      "id": "lca-005",
+      "question": "What algebraic identity applies when simplifying XOR expressions with FALSE: X ⊕ FALSE?",
+      "options": {
+        "A": "X",
+        "B": "FALSE",
+        "C": "TRUE",
+        "D": "¬X"
+      },
+      "correctAnswer": "A",
+      "explanation": "In Boolean algebra, XOR with false is the identity operation: X ⊕ 0 = X.",
+      "difficulty": "easy",
+      "sourcePages": [
+        4
+      ]
+    },
+    {
+      "id": "lca-006",
+      "question": "What algebraic identity applies when simplifying XOR expressions with TRUE: X ⊕ TRUE?",
+      "options": {
+        "A": "¬X",
+        "B": "X",
+        "C": "TRUE",
+        "D": "FALSE"
+      },
+      "correctAnswer": "A",
+      "explanation": "XOR with true inverts the value: X ⊕ 1 = ¬X (NOT X).",
+      "difficulty": "easy",
+      "sourcePages": [
+        4
+      ]
+    },
+    {
+      "id": "lca-007",
+      "question": "For predicate p = a ⊕ b, what is pa (the condition under which clause 'a' determines p)?",
+      "options": {
+        "A": "TRUE (clause 'a' ALWAYS determines p, regardless of b!)",
+        "B": "b must be TRUE.",
+        "C": "b must be FALSE.",
+        "D": "FALSE"
+      },
+      "correctAnswer": "A",
+      "explanation": "pa = (T ⊕ b) ⊕ (F ⊕ b) = ¬b ⊕ b = TRUE. In an XOR predicate, any clause always determines the predicate regardless of the other clause's value!",
+      "difficulty": "hard",
+      "sourcePages": [
+        8
+      ]
+    },
+    {
+      "id": "lca-008",
+      "question": "If pc simplifies to FALSE for some clause c, what does this imply about clause c in predicate p?",
+      "options": {
+        "A": "Clause c is redundant (irrelevant) and can never determine predicate p under any condition.",
+        "B": "Clause c is the most important clause.",
+        "C": "Predicate p is always true.",
+        "D": "Clause c must be tested 100 times."
+      },
+      "correctAnswer": "A",
+      "explanation": "If pc = FALSE, no truth assignment to minor clauses can ever allow c to toggle p. Clause c is logically dead/redundant in that predicate.",
+      "difficulty": "medium",
+      "sourcePages": [
+        9
+      ]
+    },
+    {
+      "id": "lca-009",
+      "question": "How can Karnaugh maps (K-maps) or truth tables assist in finding ACC test cases?",
+      "options": {
+        "A": "By finding adjacent cells in the map differing in only clause c where the output cell values differ (one 1, one 0).",
+        "B": "By eliminating all prime implicants.",
+        "C": "By converting Boolean logic into assembly code.",
+        "D": "By proving the code has no memory leaks."
+      },
+      "correctAnswer": "A",
+      "explanation": "In a K-map, adjacent cells differ by exactly one variable (clause). If two adjacent cells along variable c have opposite outputs (one 1, one 0), they form an exact RACC test pair for c.",
+      "difficulty": "medium",
+      "sourcePages": [
+        10,
+        11
+      ]
+    },
+    {
+      "id": "lca-010",
+      "question": "What is an 'infeasible test requirement' in logic coverage?",
+      "options": {
+        "A": "A clause assignment that violates semantic constraints (e.g. requiring x > 5 to be true AND x < 2 to be true simultaneously).",
+        "B": "A test that takes more than 1 millisecond.",
+        "C": "A test written in Python.",
+        "D": "A test requirement with no ID."
+      },
+      "correctAnswer": "A",
+      "explanation": "Clauses are not always independent; relational expressions sharing variables may be contradictory (e.g., x < 0 and x > 10 cannot both be true), making certain rows of the truth table infeasible.",
+      "difficulty": "easy",
+      "sourcePages": [
+        12,
+        13
+      ]
+    },
+    {
+      "id": "lca-011",
+      "question": "If a clause assignment is infeasible, what is the proper action in RACC/CACC testing?",
+      "options": {
+        "A": "Recognize the constraint, declare the requirement infeasible, and select an alternate feasible test pair (or document the infeasibility).",
+        "B": "Force memory to corrupt.",
+        "C": "Delete the entire method.",
+        "D": "Ignore all testing criteria."
+      },
+      "correctAnswer": "A",
+      "explanation": "Infeasible test requirements cannot be satisfied by any real execution input; they must be identified, documented, and excluded from achievable coverage goals.",
+      "difficulty": "easy",
+      "sourcePages": [
+        13
+      ]
+    },
+    {
+      "id": "lca-012",
+      "question": "For predicate p = (a ∧ b) ∨ (a ∧ c), what is pa?",
+      "options": {
+        "A": "b ∨ c",
+        "B": "b ∧ c",
+        "C": "¬b ∧ ¬c",
+        "D": "TRUE"
+      },
+      "correctAnswer": "A",
+      "explanation": "Factoring gives p = a ∧ (b ∨ c). When a=T, p = b ∨ c. When a=F, p = F. pa = (b ∨ c) ⊕ F = b ∨ c.",
+      "difficulty": "medium",
+      "sourcePages": [
+        7
+      ]
+    },
+    {
+      "id": "lca-013",
+      "question": "When can RACC be impossible to satisfy while CACC is satisfiable?",
+      "options": {
+        "A": "When clause dependencies or multiple occurrences of a clause prevent minor clauses from remaining identical while toggling p.",
+        "B": "Never; RACC and CACC are identical.",
+        "C": "Only when N = 1.",
+        "D": "Only when predicates contain no variables."
+      },
+      "correctAnswer": "A",
+      "explanation": "If a clause appears multiple times in different parts of an expression or has relational dependencies, fixing minor clauses identically might be impossible, while allowing correlated variations (CACC) succeeds.",
+      "difficulty": "hard",
+      "sourcePages": [
+        14,
+        15
+      ]
+    },
+    {
+      "id": "lca-014",
+      "question": "In the predicate p = a ∧ b, which pair of (a, b) inputs satisfies RACC for major clause a?",
+      "options": {
+        "A": "(T, T) and (F, T)",
+        "B": "(T, F) and (F, F)",
+        "C": "(T, T) and (T, F)",
+        "D": "(F, T) and (F, F)"
+      },
+      "correctAnswer": "A",
+      "explanation": "For major clause a, minor clause b must be fixed to T. The test pair is (a=T, b=T) [p=T] and (a=F, b=T) [p=F].",
+      "difficulty": "easy",
+      "sourcePages": [
+        11
+      ]
+    },
+    {
+      "id": "lca-015",
+      "question": "In the predicate p = a ∨ b, which pair of (a, b) inputs satisfies RACC for major clause a?",
+      "options": {
+        "A": "(T, F) and (F, F)",
+        "B": "(T, T) and (F, T)",
+        "C": "(T, T) and (T, F)",
+        "D": "(F, T) and (F, F)"
+      },
+      "correctAnswer": "A",
+      "explanation": "For major clause a, minor clause b must be fixed to F. The test pair is (a=T, b=F) [p=T] and (a=F, b=F) [p=F].",
+      "difficulty": "easy",
+      "sourcePages": [
+        11
+      ]
+    },
+    {
+      "id": "lca-016",
+      "question": "Can the test (T, T) for p = a ∧ b be reused as the 'c is true' test when testing major clause b under RACC?",
+      "options": {
+        "A": "Yes! For b=T with a=T, the test is (T, T). This enables sharing test cases across clauses to minimize test suite size.",
+        "B": "No, tests cannot be shared.",
+        "C": "Only if b is defined as a global variable.",
+        "D": "Only if a == b."
+      },
+      "correctAnswer": "A",
+      "explanation": "For clause a, tests are (T, T) and (F, T). For clause b, tests are (T, T) and (T, F). The test (T, T) is shared, giving a total of only 3 tests: {(T, T), (F, T), (T, F)} for N+1 = 3 tests.",
+      "difficulty": "medium",
+      "sourcePages": [
+        16
+      ]
+    },
+    {
+      "id": "lca-017",
+      "question": "What is the boolean difference for p = ¬a with respect to clause a?",
+      "options": {
+        "A": "pa = ¬T ⊕ ¬F = F ⊕ T = TRUE",
+        "B": "pa = FALSE",
+        "C": "pa = a",
+        "D": "pa = ¬a"
+      },
+      "correctAnswer": "A",
+      "explanation": "Inverting a single clause always determines its negation: changing a from T to F changes ¬a from F to T. The derivative is identically TRUE.",
+      "difficulty": "easy",
+      "sourcePages": [
+        4
+      ]
+    },
+    {
+      "id": "lca-018",
+      "question": "What algorithmic representation allows efficient computation of boolean derivatives for large predicates?",
+      "options": {
+        "A": "Binary Decision Diagrams (BDDs)",
+        "B": "Linked lists of strings",
+        "C": "Floating-point arrays",
+        "D": "Stack traces"
+      },
+      "correctAnswer": "A",
+      "explanation": "Reduced Ordered Binary Decision Diagrams (ROBDDs) provide canonical representations of Boolean functions, enabling fast Boolean difference and satisfiability checks.",
+      "difficulty": "hard",
+      "sourcePages": [
+        17
+      ]
+    },
+    {
+      "id": "lca-019",
+      "question": "Suppose p = a ↔ b (equivalence / XNOR). What is pa?",
+      "options": {
+        "A": "TRUE (toggling a always changes whether a equals b)",
+        "B": "FALSE",
+        "C": "b",
+        "D": "¬b"
+      },
+      "correctAnswer": "A",
+      "explanation": "a ↔ b is the negation of XOR (a XNOR b). Like XOR, toggling either operand unconditionally flips the equivalence, so pa = TRUE.",
+      "difficulty": "hard",
+      "sourcePages": [
+        8
+      ]
+    },
+    {
+      "id": "lca-020",
+      "question": "What is the primary practical goal of logic coverage algorithms in safety-critical software engineering?",
+      "options": {
+        "A": "To systematically prove that each decision condition independently controls program branching without requiring exhaustive 2^N testing.",
+        "B": "To eliminate the need for functional specifications.",
+        "C": "To automatically translate code into assembly.",
+        "D": "To verify processor clock frequency."
+      },
+      "correctAnswer": "A",
+      "explanation": "Logic coverage algorithms (like RACC/MC-DC) mathematically ensure that every single decision clause is tested to show it can independently affect execution, achieving near-exhaustive confidence with linear test effort.",
+      "difficulty": "medium",
+      "sourcePages": [
+        18
+      ]
+    }
+  ]
+}

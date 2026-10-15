@@ -1,0 +1,334 @@
+{
+  "topicId": "mutation-testing-source-code",
+  "topicName": "Mutation Testing Principles & Practice",
+  "sourcePdf": "mutation-testing-source-code.pdf",
+  "questions": [
+    {
+      "id": "mut-src-001",
+      "question": "In mutation testing, what is the 'ground string'?",
+      "options": {
+        "A": "The original, unmodified program or software artifact under test.",
+        "B": "A string of zeros in memory.",
+        "C": "The text of the mutation operator.",
+        "D": "The console error log."
+      },
+      "correctAnswer": "A",
+      "explanation": "The ground string P is the original program (or grammar/specification) before any mutation operators are applied.",
+      "difficulty": "easy",
+      "sourcePages": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "mut-src-002",
+      "question": "What is a 'mutant' in mutation testing?",
+      "options": {
+        "A": "A modified version of the ground string program created by applying a single syntactic change (mutation operator).",
+        "B": "A test case that fails.",
+        "C": "A compiler error message.",
+        "D": "An infected operating system process."
+      },
+      "correctAnswer": "A",
+      "explanation": "A mutant P' is a syntactically valid program that differs from the original program P by a small syntactic modification introduced by a mutation operator.",
+      "difficulty": "easy",
+      "sourcePages": [
+        3
+      ]
+    },
+    {
+      "id": "mut-src-003",
+      "question": "When is a mutant said to be 'strongly killed' by a test case t?",
+      "options": {
+        "A": "When the observable output of the mutant differs from the observable output of the original program: P'(t) ≠ P(t).",
+        "B": "When the mutant crashes the computer.",
+        "C": "When the compiler rejects the mutant.",
+        "D": "When the test case is executed twice."
+      },
+      "correctAnswer": "A",
+      "explanation": "Strongly killing a mutant requires that the test case produces a different final output on the mutant compared to the original program (Reachability + Infection + Propagation).",
+      "difficulty": "medium",
+      "sourcePages": [
+        8,
+        9
+      ]
+    },
+    {
+      "id": "mut-src-004",
+      "question": "When is a mutant said to be 'weakly killed' by a test case t?",
+      "options": {
+        "A": "When execution reaches the mutated statement and immediately causes an infected (differing) internal program state, regardless of whether it propagates to the final output.",
+        "B": "When the test runs with low CPU priority.",
+        "C": "When the mutant produces the same output as the original program.",
+        "D": "When the mutant is killed on only 1 operating system."
+      },
+      "correctAnswer": "A",
+      "explanation": "Weak mutation requires only Reachability and Infection: the internal execution state immediately following the mutated statement must differ between P and P'.",
+      "difficulty": "medium",
+      "sourcePages": [
+        9,
+        10
+      ]
+    },
+    {
+      "id": "mut-src-005",
+      "question": "What is an 'equivalent mutant'?",
+      "options": {
+        "A": "A mutant that has different syntax but always produces the exact same output behavior as the original program for all possible inputs.",
+        "B": "A mutant that has the same file size.",
+        "C": "A mutant created by two different programmers.",
+        "D": "A mutant with identical line numbers."
+      },
+      "correctAnswer": "A",
+      "explanation": "An equivalent mutant is semantically identical to the original program. No test case can ever kill an equivalent mutant because its output never differs from the original.",
+      "difficulty": "medium",
+      "sourcePages": [
+        11
+      ]
+    },
+    {
+      "id": "mut-src-006",
+      "question": "What is the formula for Mutation Score (MS) in mutation testing?",
+      "options": {
+        "A": "MS = K / (M - E), where K = killed mutants, M = total mutants, and E = equivalent mutants.",
+        "B": "MS = K / M",
+        "C": "MS = (M - K) / E",
+        "D": "MS = K × M"
+      },
+      "correctAnswer": "A",
+      "explanation": "Mutation Score represents the percentage of non-equivalent mutants killed by the test suite: K / (M - E). If MS = 1.0 (100%), the test suite is mutation-adequate.",
+      "difficulty": "medium",
+      "sourcePages": [
+        12
+      ]
+    },
+    {
+      "id": "mut-src-007",
+      "question": "Why is the Equivalent Mutant Problem known to be fundamentally undecidable in general software engineering?",
+      "options": {
+        "A": "Because deciding whether two arbitrary programs compute identical functions is equivalent to the Halting Problem (Rice's Theorem).",
+        "B": "Because mutants are deleted after compilation.",
+        "C": "Because compilers do not support math.",
+        "D": "Because test suites are always finite."
+      },
+      "correctAnswer": "A",
+      "explanation": "Determining semantic equivalence between two arbitrary programs is undecidable in general computability theory (Rice's theorem / Halting problem).",
+      "difficulty": "hard",
+      "sourcePages": [
+        11
+      ]
+    },
+    {
+      "id": "mut-src-008",
+      "question": "What are the two core fundamental hypotheses underlying mutation testing?",
+      "options": {
+        "A": "The Competent Programmer Hypothesis and the Coupling Effect Hypothesis",
+        "B": "The Halting Hypothesis and Church-Turing Thesis",
+        "C": "Moore's Law and Amdahl's Law",
+        "D": "Agile Manifesto and Waterfall Model"
+      },
+      "correctAnswer": "A",
+      "explanation": "Mutation testing rests on: (1) Competent Programmer Hypothesis (programmers write code close to correct, so faults are small syntactic slips) and (2) Coupling Effect (tests that kill simple faults also detect complex faults).",
+      "difficulty": "medium",
+      "sourcePages": [
+        13
+      ]
+    },
+    {
+      "id": "mut-src-009",
+      "question": "What does the 'Coupling Effect' hypothesis state?",
+      "options": {
+        "A": "Complex faults are coupled to simple faults in such a way that a test suite capable of detecting all simple first-order mutants will detect the vast majority of complex faults.",
+        "B": "Hardware and software must be tightly coupled.",
+        "C": "Two classes that call each other cannot be tested.",
+        "D": "Mutants must be tested in pairs."
+      },
+      "correctAnswer": "A",
+      "explanation": "The Coupling Effect asserts that simple single-token mutations simulate fundamental flaws so well that test suites killing them are sufficiently thorough to catch complex, multi-point bugs.",
+      "difficulty": "medium",
+      "sourcePages": [
+        13
+      ]
+    },
+    {
+      "id": "mut-src-010",
+      "question": "Consider the method 'int Min(int A, int B) { if (A < B) return A; else return B; }'. If mutant 1 changes 'A < B' to 'A <= B', is this an equivalent mutant?",
+      "options": {
+        "A": "Yes! When A < B, both return A. When A > B, both return B. When A == B, original returns B (=A) and mutant returns A (=B). Their output is identical for all inputs!",
+        "B": "No, it is killed by input (3, 3).",
+        "C": "No, it is killed by input (2, 5).",
+        "D": "It causes a compile error."
+      },
+      "correctAnswer": "A",
+      "explanation": "When A == B, returning A vs returning B produces the exact same numerical result. For all other inputs, the branch outcome is identical. Thus the mutant is semantically equivalent!",
+      "difficulty": "hard",
+      "sourcePages": [
+        4,
+        5,
+        11
+      ]
+    },
+    {
+      "id": "mut-src-011",
+      "question": "For the same Min method 'if (A < B) return A; else return B;', suppose mutant 2 changes 'A < B' to 'A > B'. Which test input kills this mutant strongly?",
+      "options": {
+        "A": "A = 2, B = 5",
+        "B": "A = 3, B = 3",
+        "C": "A = 0, B = 0",
+        "D": "No test case can kill it."
+      },
+      "correctAnswer": "A",
+      "explanation": "With (2, 5): Original checks 2 < 5 (True) and returns 2. Mutant checks 2 > 5 (False) and returns 5. Since 2 ≠ 5, the mutant is strongly killed!",
+      "difficulty": "easy",
+      "sourcePages": [
+        5,
+        6
+      ]
+    },
+    {
+      "id": "mut-src-012",
+      "question": "What is a 'First-Order Mutant' versus a 'Higher-Order Mutant'?",
+      "options": {
+        "A": "A First-Order mutant has exactly one mutation applied; a Higher-Order mutant has two or more mutations applied simultaneously.",
+        "B": "First-Order mutants are for Java; Higher-Order are for Python.",
+        "C": "First-Order mutants run first.",
+        "D": "Higher-Order mutants are equivalent mutants."
+      },
+      "correctAnswer": "A",
+      "explanation": "First-Order Mutants (FOM) introduce exactly one mutation per program instance. Higher-Order Mutants (HOM) combine two or more mutations in a single program copy.",
+      "difficulty": "easy",
+      "sourcePages": [
+        7
+      ]
+    },
+    {
+      "id": "mut-src-013",
+      "question": "What is the primary computational bottleneck of mutation testing in continuous integration pipelines?",
+      "options": {
+        "A": "The large number of mutants generated, requiring running the test suite hundreds or thousands of times (one per mutant).",
+        "B": "It requires special quantum hardware.",
+        "C": "It cannot run on Windows.",
+        "D": "It consumes all hard drive storage permanently."
+      },
+      "correctAnswer": "A",
+      "explanation": "Mutation generates O(Lines × Operators) mutants. Running the test suite against every single mutant is computationally expensive ('do-fewer, do-faster, do-smarter' optimizations are used).",
+      "difficulty": "medium",
+      "sourcePages": [
+        14
+      ]
+    },
+    {
+      "id": "mut-src-014",
+      "question": "How does 'weak mutation' achieve significant performance speedups over 'strong mutation'?",
+      "options": {
+        "A": "It checks state infection immediately after the mutated statement inside the same execution run without executing the rest of the program.",
+        "B": "It deletes all assertions from tests.",
+        "C": "It skips running the original program.",
+        "D": "It only tests 1 mutant per repository."
+      },
+      "correctAnswer": "A",
+      "explanation": "Weak mutation monitors whether the state is infected right after the mutated statement executes. This avoids running the rest of the program or propagating to the end, enabling fast in-process checks.",
+      "difficulty": "medium",
+      "sourcePages": [
+        9,
+        10
+      ]
+    },
+    {
+      "id": "mut-src-015",
+      "question": "If a test suite executes 100 mutants, kills 80, and 10 are proven to be equivalent mutants, what is the Mutation Score?",
+      "options": {
+        "A": "80 / (100 - 10) = 80 / 90 ≈ 88.89%",
+        "B": "80 / 100 = 80%",
+        "C": "70 / 90 ≈ 77.78%",
+        "D": "100%"
+      },
+      "correctAnswer": "A",
+      "explanation": "Mutation Score = K / (M - E) = 80 / (100 - 10) = 80 / 90 = 88.89%.",
+      "difficulty": "medium",
+      "sourcePages": [
+        12
+      ]
+    },
+    {
+      "id": "mut-src-016",
+      "question": "What is a 'stillborn mutant' in mutation testing?",
+      "options": {
+        "A": "A mutant that cannot even be compiled or syntactically parsed.",
+        "B": "A mutant that kills the operating system.",
+        "C": "An equivalent mutant.",
+        "D": "A mutant that passes all tests."
+      },
+      "correctAnswer": "A",
+      "explanation": "A stillborn mutant is syntactically invalid or fails compilation; modern mutation tools only generate valid mutants that successfully compile.",
+      "difficulty": "easy",
+      "sourcePages": [
+        3
+      ]
+    },
+    {
+      "id": "mut-src-017",
+      "question": "What is a 'trivial mutant'?",
+      "options": {
+        "A": "A mutant that is killed by almost any test case that reaches it.",
+        "B": "A mutant that cannot be killed.",
+        "C": "An equivalent mutant.",
+        "D": "A mutant with no operators."
+      },
+      "correctAnswer": "A",
+      "explanation": "Trivial mutants are very easy to kill (e.g. replacing a return value with null or crashing on entry), providing little discriminative value for test quality.",
+      "difficulty": "easy",
+      "sourcePages": [
+        15
+      ]
+    },
+    {
+      "id": "mut-src-018",
+      "question": "Why is mutation testing considered the 'gold standard' for evaluating test suite quality?",
+      "options": {
+        "A": "Because it directly measures the test suite's ability to detect synthetic faults, exposing deficiencies that code coverage metrics miss.",
+        "B": "Because it requires no programming skills.",
+        "C": "Because it is required by HTML5.",
+        "D": "Because it guarantees zero lines of code."
+      },
+      "correctAnswer": "A",
+      "explanation": "High line/branch coverage does not guarantee assertions are thorough. Mutation testing measures whether test assertions actually catch deliberate bugs, revealing gaps in test oracles.",
+      "difficulty": "medium",
+      "sourcePages": [
+        16
+      ]
+    },
+    {
+      "id": "mut-src-019",
+      "question": "What is 'mutant subsumption'?",
+      "options": {
+        "A": "Mutant m1 subsumes mutant m2 if any test case that kills m1 is guaranteed to also kill m2.",
+        "B": "When a mutant deletes another mutant.",
+        "C": "When all mutants are equivalent.",
+        "D": "When tests run in parallel."
+      },
+      "correctAnswer": "A",
+      "explanation": "If killing m1 always implies killing m2, m1 is strictly harder to kill and subsumes m2. Subsumption helps identify minimal sets of non-redundant mutants.",
+      "difficulty": "hard",
+      "sourcePages": [
+        15
+      ]
+    },
+    {
+      "id": "mut-src-020",
+      "question": "In mutation testing, what is 'test suite minimization' based on mutant kills?",
+      "options": {
+        "A": "Finding a minimal subset of test cases that kills all killable mutants.",
+        "B": "Deleting all tests that fail.",
+        "C": "Running only 1 test.",
+        "D": "Minimizing compiler warnings."
+      },
+      "correctAnswer": "A",
+      "explanation": "By framing test selection as a set-cover problem over killed mutants, one can identify the smallest subset of tests that maintains 100% mutation score.",
+      "difficulty": "medium",
+      "sourcePages": [
+        17
+      ]
+    }
+  ]
+}

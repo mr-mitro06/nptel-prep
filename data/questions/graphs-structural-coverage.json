@@ -1,0 +1,335 @@
+{
+  "topicId": "graphs-structural-coverage",
+  "topicName": "Graph Structural Coverage Criteria",
+  "sourcePdf": "graphs-structural-coverage.pdf",
+  "questions": [
+    {
+      "id": "gsc-001",
+      "question": "In graph coverage testing, how is a 'test path' formally defined?",
+      "options": {
+        "A": "Any arbitrary sequence of vertices in the graph.",
+        "B": "A path that starts at an initial node n0 ∈ N0 and ends at a final node nf ∈ Nf.",
+        "C": "A cycle that visits every node in the graph at least twice.",
+        "D": "A path containing only prime paths."
+      },
+      "correctAnswer": "B",
+      "explanation": "A test path is a path that begins at an initial node (n0 ∈ N0) and terminates at a final/exit node (nf ∈ Nf). It corresponds to a complete execution trace of a test case.",
+      "difficulty": "easy",
+      "sourcePages": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "gsc-002",
+      "question": "What does Node Coverage (NC) require?",
+      "options": {
+        "A": "Every reachable node in graph G must be visited by at least one test path.",
+        "B": "Every edge and node must be visited simultaneously.",
+        "C": "Every node must be visited in every test case.",
+        "D": "Every node must be visited an even number of times."
+      },
+      "correctAnswer": "A",
+      "explanation": "Node Coverage requires the set of test requirements TR to contain every reachable node in the graph G. Test paths must visit each node at least once.",
+      "difficulty": "easy",
+      "sourcePages": [
+        4
+      ]
+    },
+    {
+      "id": "gsc-003",
+      "question": "What is the formal definition of Edge Coverage (EC)?",
+      "options": {
+        "A": "TR contains each reachable path of length up to 1, inclusive, in G.",
+        "B": "TR contains all cycles of length 2.",
+        "C": "TR contains all paths between initial nodes and final nodes.",
+        "D": "TR contains each node with in-degree greater than 1."
+      },
+      "correctAnswer": "A",
+      "explanation": "Edge Coverage requires that TR contains each reachable path of length up to 1 inclusive in G, which corresponds to visiting every reachable edge (and isolated node).",
+      "difficulty": "easy",
+      "sourcePages": [
+        5
+      ]
+    },
+    {
+      "id": "gsc-004",
+      "question": "Does Edge Coverage (EC) always subsume Node Coverage (NC)?",
+      "options": {
+        "A": "No, Node Coverage subsumes Edge Coverage.",
+        "B": "Yes, visiting every edge (and reachable path of length up to 1) guarantees visiting every reachable node.",
+        "C": "Only in directed acyclic graphs.",
+        "D": "Only when the graph has no loops."
+      },
+      "correctAnswer": "B",
+      "explanation": "Edge coverage subsumes node coverage because every reachable node (except isolated nodes, which have a path of length 0) is an endpoint of some reachable edge.",
+      "difficulty": "easy",
+      "sourcePages": [
+        6,
+        17
+      ]
+    },
+    {
+      "id": "gsc-005",
+      "question": "What is a 'simple path' in a graph G?",
+      "options": {
+        "A": "A path that contains no loops at all.",
+        "B": "A path from node ni to nj where no node appears more than once, except that the first and last nodes may be identical.",
+        "C": "A path containing at most two nodes.",
+        "D": "A path that executes in constant time O(1)."
+      },
+      "correctAnswer": "B",
+      "explanation": "A path is simple if no node appears more than once, with the single exception that the first and last nodes may be the same (forming a simple cycle).",
+      "difficulty": "medium",
+      "sourcePages": [
+        10,
+        11
+      ]
+    },
+    {
+      "id": "gsc-006",
+      "question": "What is a 'prime path'?",
+      "options": {
+        "A": "A path whose length is a prime number.",
+        "B": "A simple path that does not appear as a proper subpath of any other simple path.",
+        "C": "A path containing only initial and final nodes.",
+        "D": "A path that visits every node in the graph."
+      },
+      "correctAnswer": "B",
+      "explanation": "A prime path is a maximal simple path: a simple path that is not a proper subpath of any other simple path in the graph.",
+      "difficulty": "medium",
+      "sourcePages": [
+        12
+      ]
+    },
+    {
+      "id": "gsc-007",
+      "question": "What is the key difference between touring with 'sidetrips' versus touring with 'detours'?",
+      "options": {
+        "A": "A sidetrip leaves path p at node ni and returns to node ni; a detour leaves at ni and returns to a successor node ni+1.",
+        "B": "Sidetrips are allowed only in trees; detours are allowed only in DAGs.",
+        "C": "Detours return to the same node; sidetrips return to a predecessor node.",
+        "D": "There is no difference; both terms are strictly synonymous."
+      },
+      "correctAnswer": "A",
+      "explanation": "Touring with sidetrips means departing from node ni to visit a cycle and returning to the exact same node ni. Touring with detours means departing at ni and returning to ni+1 (the next node in the subpath).",
+      "difficulty": "hard",
+      "sourcePages": [
+        14,
+        15
+      ]
+    },
+    {
+      "id": "gsc-008",
+      "question": "Why is Complete Path Coverage (CPC) generally impossible or impractical for programs containing loops?",
+      "options": {
+        "A": "Because loops can execute an unbounded number of iterations, making the number of paths infinite.",
+        "B": "Because loops cannot be represented in a Control Flow Graph.",
+        "C": "Because CPC only applies to specification graphs.",
+        "D": "Because CPC violates the definition of a test path."
+      },
+      "correctAnswer": "A",
+      "explanation": "If a graph contains a cycle/loop, an infinite number of paths can be constructed by iterating the loop different numbers of times. Hence, CPC is impossible to satisfy with a finite test suite.",
+      "difficulty": "easy",
+      "sourcePages": [
+        9
+      ]
+    },
+    {
+      "id": "gsc-009",
+      "question": "What is the requirement for Edge-Pair Coverage (EPC)?",
+      "options": {
+        "A": "TR contains each reachable path of length up to 2, inclusive, in G.",
+        "B": "Every test case must execute exactly two edges.",
+        "C": "Every edge must be paired with every other edge in the graph.",
+        "D": "Edges must be visited in pairs of forwards and backwards traversals."
+      },
+      "correctAnswer": "A",
+      "explanation": "Edge-Pair Coverage requires TR to contain every reachable path of length up to 2 (i.e. every pair of adjacent edges) in G.",
+      "difficulty": "medium",
+      "sourcePages": [
+        8
+      ]
+    },
+    {
+      "id": "gsc-010",
+      "question": "Which of the following correctly displays the subsumption hierarchy among structural graph criteria?",
+      "options": {
+        "A": "Node Coverage → Edge Coverage → Edge-Pair Coverage → Prime Path Coverage",
+        "B": "Complete Path Coverage → Prime Path Coverage → Edge-Pair Coverage → Edge Coverage → Node Coverage",
+        "C": "Prime Path Coverage → Complete Path Coverage → Edge Coverage",
+        "D": "Edge-Pair Coverage → Prime Path Coverage → Node Coverage"
+      },
+      "correctAnswer": "B",
+      "explanation": "CPC subsumes PPC; PPC subsumes EPC; EPC subsumes EC; EC subsumes NC. (Where A → B denotes A subsumes B).",
+      "difficulty": "medium",
+      "sourcePages": [
+        17
+      ]
+    },
+    {
+      "id": "gsc-011",
+      "question": "Consider a graph with nodes {1, 2, 3} and edges (1, 2), (2, 3), (3, 2). What is the path [2, 3, 2]?",
+      "options": {
+        "A": "A prime path of length 2.",
+        "B": "A simple path that is not prime.",
+        "C": "Not a simple path because node 2 is repeated.",
+        "D": "An infeasible path in all graphs."
+      },
+      "correctAnswer": "A",
+      "explanation": "[2, 3, 2] is a simple path because the only repeated node is the first and last (a simple cycle). It cannot be extended without repeating an internal node, so it is a prime path of length 2.",
+      "difficulty": "hard",
+      "sourcePages": [
+        11,
+        12
+      ]
+    },
+    {
+      "id": "gsc-012",
+      "question": "Can a path of length 0 be a prime path?",
+      "options": {
+        "A": "Yes, if a node has no incoming and no outgoing edges (an isolated node).",
+        "B": "No, prime paths must have length at least 1.",
+        "C": "No, length 0 paths are not paths.",
+        "D": "Yes, every single node in any graph is always a prime path."
+      },
+      "correctAnswer": "A",
+      "explanation": "A path of length 0 is a single node [n]. If n has no edges connected to it, [n] cannot be extended to any longer simple path, making it a maximal simple path (prime path).",
+      "difficulty": "hard",
+      "sourcePages": [
+        12
+      ]
+    },
+    {
+      "id": "gsc-013",
+      "question": "If test path p is [1, 2, 3, 4, 5], does p tour subpath [2, 3, 4] directly?",
+      "options": {
+        "A": "Yes, [2, 3, 4] is a subpath of [1, 2, 3, 4, 5].",
+        "B": "No, because p starts at 1, not 2.",
+        "C": "No, it only tours [2, 3, 4] with sidetrips.",
+        "D": "Only if [2, 3, 4] is a prime path."
+      },
+      "correctAnswer": "A",
+      "explanation": "A test path p tours a subpath q directly if q is a contiguous subpath of p. Here, [2, 3, 4] appears contiguously in [1, 2, 3, 4, 5].",
+      "difficulty": "easy",
+      "sourcePages": [
+        13
+      ]
+    },
+    {
+      "id": "gsc-014",
+      "question": "Why does Prime Path Coverage (PPC) avoid the problem of infinite paths in graphs with loops?",
+      "options": {
+        "A": "Because prime paths are simple paths, and by definition simple paths cannot loop indefinitely.",
+        "B": "Because PPC deletes all loops from the graph before testing.",
+        "C": "Because loops can only be traversed backwards under PPC.",
+        "D": "Because PPC limits test cases to at most 10 paths."
+      },
+      "correctAnswer": "A",
+      "explanation": "Simple paths visit each node at most once (except possibly start and end nodes of a cycle). Therefore, on any finite graph, the length of simple paths is strictly bounded by |N| + 1, making the set of prime paths finite.",
+      "difficulty": "medium",
+      "sourcePages": [
+        11,
+        12
+      ]
+    },
+    {
+      "id": "gsc-015",
+      "question": "What is Complete Round Trip Coverage (CRTC)?",
+      "options": {
+        "A": "TR contains all round-trip paths (cycles of length >= 1) in G.",
+        "B": "TR requires touring each round-trip path of length 0.",
+        "C": "TR contains at least one round-trip path for each node.",
+        "D": "TR requires executing the program until it reboots."
+      },
+      "correctAnswer": "A",
+      "explanation": "Complete Round Trip Coverage requires that TR contains all round-trip paths (paths of length 1 or more that start and end at the same node) in G.",
+      "difficulty": "medium",
+      "sourcePages": [
+        16
+      ]
+    },
+    {
+      "id": "gsc-016",
+      "question": "What is Simple Round Trip Coverage (SRTC)?",
+      "options": {
+        "A": "TR contains at least one round-trip path for each reachable node that is the start of a round-trip path.",
+        "B": "TR contains all simple paths of length 1.",
+        "C": "TR requires round trips to be executed in zero time.",
+        "D": "TR contains all paths with no round trips."
+      },
+      "correctAnswer": "A",
+      "explanation": "Simple Round Trip Coverage requires TR to contain at least one round-trip path for each reachable node that can begin a round-trip path.",
+      "difficulty": "medium",
+      "sourcePages": [
+        16
+      ]
+    },
+    {
+      "id": "gsc-017",
+      "question": "Does Prime Path Coverage subsume Complete Round Trip Coverage?",
+      "options": {
+        "A": "Yes, prime paths include all simple cycles, but not non-simple round trips.",
+        "B": "No, because CRTC can include round trips that are not simple paths.",
+        "C": "Yes, PPC subsumes all path coverage criteria.",
+        "D": "Neither can be compared."
+      },
+      "correctAnswer": "B",
+      "explanation": "CRTC requires all round trips, including those formed by composing multiple cycles. Prime paths only include simple cycles; thus PPC does not subsume CRTC.",
+      "difficulty": "hard",
+      "sourcePages": [
+        17
+      ]
+    },
+    {
+      "id": "gsc-018",
+      "question": "If a graph has no cycles (is a Directed Acyclic Graph - DAG), what is the relationship between Prime Path Coverage and Complete Path Coverage?",
+      "options": {
+        "A": "PPC is equivalent to CPC for all paths from initial to final nodes.",
+        "B": "CPC is still infinite.",
+        "C": "PPC generates fewer paths than Edge Coverage.",
+        "D": "PPC cannot be applied to DAGs."
+      },
+      "correctAnswer": "A",
+      "explanation": "In an acyclic graph, every path is a simple path. Prime paths starting at initial nodes and ending at final nodes correspond precisely to all complete paths in the DAG.",
+      "difficulty": "hard",
+      "sourcePages": [
+        12,
+        17
+      ]
+    },
+    {
+      "id": "gsc-019",
+      "question": "Which of the following test requirements can be infeasible?",
+      "options": {
+        "A": "Only node coverage requirements.",
+        "B": "Test requirements in any criterion if the semantics of the code make that path or condition unreachable.",
+        "C": "Only edge-pair coverage requirements.",
+        "D": "Infeasible test requirements never occur in software testing."
+      },
+      "correctAnswer": "B",
+      "explanation": "Infeasibility arises when control flow structures allow a theoretical path in the graph, but program semantics (contradictory branch conditions, impossible variable values) make executing that path impossible.",
+      "difficulty": "easy",
+      "sourcePages": [
+        18
+      ]
+    },
+    {
+      "id": "gsc-020",
+      "question": "In best-effort touring, if a prime path cannot be toured directly due to infeasibility, what does the tester attempt?",
+      "options": {
+        "A": "Tour the path with sidetrips or detours.",
+        "B": "Delete the node from the program.",
+        "C": "Declare 100% coverage immediately.",
+        "D": "Crash the compiler."
+      },
+      "correctAnswer": "A",
+      "explanation": "When touring directly is infeasible, touring with sidetrips is permitted as a relaxed (best-effort) requirement to visit the critical segments of the subpath.",
+      "difficulty": "medium",
+      "sourcePages": [
+        14,
+        15
+      ]
+    }
+  ]
+}

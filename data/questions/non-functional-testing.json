@@ -1,0 +1,333 @@
+{
+  "topicId": "non-functional-testing",
+  "topicName": "Non-Functional Testing (Performance & Security)",
+  "sourcePdf": "non-functional-testing.pdf",
+  "questions": [
+    {
+      "id": "nft-001",
+      "question": "What is the primary difference between Functional Testing and Non-Functional Testing?",
+      "options": {
+        "A": "Functional testing verifies WHAT the system does (behavior/features); Non-functional testing verifies HOW WELL the system performs (speed, scalability, security, reliability).",
+        "B": "Functional testing is automated; non-functional is manual.",
+        "C": "Functional testing tests hardware; non-functional tests software.",
+        "D": "Non-functional testing is optional in safety-critical systems."
+      },
+      "correctAnswer": "A",
+      "explanation": "Functional testing checks feature correctness against requirements. Non-functional testing evaluates operational quality attributes like response time, throughput, security, and resource efficiency.",
+      "difficulty": "easy",
+      "sourcePages": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "nft-002",
+      "question": "What is 'Load Testing' in performance engineering?",
+      "options": {
+        "A": "Evaluating system performance, response time, and throughput under anticipated normal and peak user workloads over a period of time.",
+        "B": "Testing system behavior beyond maximum design capacity until it breaks.",
+        "C": "Testing shipping weight of servers.",
+        "D": "Testing with zero users."
+      },
+      "correctAnswer": "A",
+      "explanation": "Load testing verifies that the system meets Service Level Agreements (SLAs) under expected concurrent user traffic and transaction volumes.",
+      "difficulty": "easy",
+      "sourcePages": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": "nft-003",
+      "question": "What is 'Stress Testing'?",
+      "options": {
+        "A": "Subjecting the system to workloads beyond its design limits to determine its breaking point, stability thresholds, and how gracefully it recovers from failure.",
+        "B": "Testing stressed software engineers.",
+        "C": "Running unit tests once.",
+        "D": "Testing cooling fans."
+      },
+      "correctAnswer": "A",
+      "explanation": "Stress testing pushes system demand beyond maximum capacity (CPU, memory, connection pools) to test graceful degradation, fault isolation, and self-recovery.",
+      "difficulty": "easy",
+      "sourcePages": [
+        5
+      ]
+    },
+    {
+      "id": "nft-004",
+      "question": "What is 'Spike Testing'?",
+      "options": {
+        "A": "Testing system stability and recovery by subjecting it to sudden, dramatic surges in user load followed by immediate drops back to normal levels.",
+        "B": "Testing electrical voltage spikes.",
+        "C": "Testing graph data flow.",
+        "D": "Testing with high CPU overclocking."
+      },
+      "correctAnswer": "A",
+      "explanation": "Spike testing evaluates whether systems can absorb abrupt, flash traffic surges (e.g. ticket sales launch, breaking news alerts) without crashing and recover cleanly.",
+      "difficulty": "medium",
+      "sourcePages": [
+        6
+      ]
+    },
+    {
+      "id": "nft-005",
+      "question": "What is 'Endurance / Soak Testing'?",
+      "options": {
+        "A": "Running a sustained, realistic workload over an extended duration (hours or days) to detect slow memory leaks, resource exhaustion, or performance degradation over time.",
+        "B": "Testing underwater hardware.",
+        "C": "Testing battery charging speed.",
+        "D": "Testing compile times."
+      },
+      "correctAnswer": "A",
+      "explanation": "Soak testing reveals issues that emerge only over long runtimes, such as memory leaks, database connection pool exhaustion, log file overflows, and OS handle leaks.",
+      "difficulty": "medium",
+      "sourcePages": [
+        6
+      ]
+    },
+    {
+      "id": "nft-006",
+      "question": "In performance testing, what is the difference between 'Response Time' and 'Latency'?",
+      "options": {
+        "A": "Latency is the transit delay for a request to reach the server; Response Time is the total elapsed time from sending the request until receiving the complete response (including server processing).",
+        "B": "Response time is network transit only; latency includes database processing.",
+        "C": "They are identical mathematical terms.",
+        "D": "Latency is measured in hours; response time in seconds."
+      },
+      "correctAnswer": "A",
+      "explanation": "Latency measures transmission delay across the network pipeline. Response Time = Network Latency + Server Processing Time + Response Transfer Time.",
+      "difficulty": "medium",
+      "sourcePages": [
+        7
+      ]
+    },
+    {
+      "id": "nft-007",
+      "question": "What does 'Throughput' measure in performance testing?",
+      "options": {
+        "A": "The rate of successful transactions or requests processed by the system per unit of time (e.g. Transactions Per Second - TPS).",
+        "B": "The weight of the server in kilograms.",
+        "C": "The percentage of memory used.",
+        "D": "The number of lines of code compiled."
+      },
+      "correctAnswer": "A",
+      "explanation": "Throughput quantifies processing capacity, typically expressed as Requests Per Second (RPS) or Transactions Per Second (TPS).",
+      "difficulty": "easy",
+      "sourcePages": [
+        7
+      ]
+    },
+    {
+      "id": "nft-008",
+      "question": "What are the three pillars of information security in the classic CIA Triad?",
+      "options": {
+        "A": "Confidentiality, Integrity, Availability",
+        "B": "Complexity, Inheritance, Abstraction",
+        "C": "Coverage, Infection, Assertion",
+        "D": "Centralized, Integrated, Automated"
+      },
+      "correctAnswer": "A",
+      "explanation": "The CIA Triad constitutes the foundational model of information security: Confidentiality (data secrecy), Integrity (data accuracy/tamper-resistance), and Availability (system accessibility).",
+      "difficulty": "easy",
+      "sourcePages": [
+        10,
+        11
+      ]
+    },
+    {
+      "id": "nft-009",
+      "question": "What is the difference between Authentication and Authorization in security testing?",
+      "options": {
+        "A": "Authentication verifies identity (WHO you are); Authorization verifies access permissions (WHAT resources you are permitted to access).",
+        "B": "Authentication is for passwords; authorization is for usernames.",
+        "C": "They are synonymous in security engineering.",
+        "D": "Authorization occurs before authentication."
+      },
+      "correctAnswer": "A",
+      "explanation": "Authentication checks credentials (e.g. password, MFA). Authorization determines whether that authenticated principal possesses privileges to execute the requested action.",
+      "difficulty": "easy",
+      "sourcePages": [
+        12
+      ]
+    },
+    {
+      "id": "nft-010",
+      "question": "What is 'Penetration Testing' (Pen Testing)?",
+      "options": {
+        "A": "An authorized simulated cyberattack against a software system to evaluate security vulnerabilities and exploit pathways before real adversaries do.",
+        "B": "Physical drill testing of server racks.",
+        "C": "Running unit tests with 100 threads.",
+        "D": "Checking network cable connections."
+      },
+      "correctAnswer": "A",
+      "explanation": "Penetration testing employs ethical hacking techniques to actively discover and exploit vulnerabilities across network, application, and infrastructure layers.",
+      "difficulty": "easy",
+      "sourcePages": [
+        13,
+        14
+      ]
+    },
+    {
+      "id": "nft-011",
+      "question": "What is a 'Denial of Service (DoS)' vulnerability in security testing?",
+      "options": {
+        "A": "A flaw that allows an attacker to exhaust system resources (CPU, memory, network, threads), rendering the service unavailable to legitimate users.",
+        "B": "A password reset request.",
+        "C": "A database backup failure.",
+        "D": "An incorrect email address."
+      },
+      "correctAnswer": "A",
+      "explanation": "DoS attacks overwhelm system capacities or exploit algorithmic complexity flaws (e.g. ReDoS in regex) to starve legitimate users of system availability.",
+      "difficulty": "easy",
+      "sourcePages": [
+        15
+      ]
+    },
+    {
+      "id": "nft-012",
+      "question": "What is 'Scalability Testing'?",
+      "options": {
+        "A": "Testing how well the software scales up (adding more CPU/RAM to a server) or scales out (adding more server nodes) to handle growing traffic gracefully.",
+        "B": "Scaling images to fit screen size.",
+        "C": "Measuring the physical dimensions of computer monitors.",
+        "D": "Testing with small fonts."
+      },
+      "correctAnswer": "A",
+      "explanation": "Scalability testing measures whether system throughput increases proportionally when hardware resources (vertical or horizontal scaling) are added.",
+      "difficulty": "medium",
+      "sourcePages": [
+        8
+      ]
+    },
+    {
+      "id": "nft-013",
+      "question": "What is a 'Performance Bottleneck'?",
+      "options": {
+        "A": "A critical component, resource, or code section (e.g. unindexed database query, lock contention) that restricts the overall capacity and slows down the entire system.",
+        "B": "The shape of a network cable.",
+        "C": "A compiler error.",
+        "D": "A software license restriction."
+      },
+      "correctAnswer": "A",
+      "explanation": "A bottleneck is the narrowest point in an execution pipeline that limits total throughput, regardless of how powerful other components in the system are.",
+      "difficulty": "easy",
+      "sourcePages": [
+        8,
+        9
+      ]
+    },
+    {
+      "id": "nft-014",
+      "question": "What is 'Usability Testing' in non-functional testing?",
+      "options": {
+        "A": "Evaluating how intuitive, learnable, and user-friendly the software is for its target audience to accomplish their goals effectively and satisfactorily.",
+        "B": "Testing if the software can be turned on.",
+        "C": "Testing with robots.",
+        "D": "Measuring server power usage."
+      },
+      "correctAnswer": "A",
+      "explanation": "Usability testing measures user satisfaction, error rates during common tasks, navigation clarity, and the ease with which users learn the interface.",
+      "difficulty": "easy",
+      "sourcePages": [
+        16
+      ]
+    },
+    {
+      "id": "nft-015",
+      "question": "What is 'Interoperability Testing'?",
+      "options": {
+        "A": "Verifying that two or more distinct software systems, protocols, or hardware platforms can successfully exchange information and use the information exchanged.",
+        "B": "Testing within a single method.",
+        "C": "Testing code that has no inputs.",
+        "D": "Testing compiler speed."
+      },
+      "correctAnswer": "A",
+      "explanation": "Interoperability testing confirms compliance with open industry standards and protocols, ensuring independent heterogeneous systems communicate seamlessly.",
+      "difficulty": "medium",
+      "sourcePages": [
+        17
+      ]
+    },
+    {
+      "id": "nft-016",
+      "question": "What is 'Reliability / Availability Testing' (Mean Time Between Failures - MTBF)?",
+      "options": {
+        "A": "Testing the probability that the software will execute without operational failures for a specified period in a specified environment.",
+        "B": "Testing if developers are available on call.",
+        "C": "Testing only on Mondays.",
+        "D": "Counting total lines of code."
+      },
+      "correctAnswer": "A",
+      "explanation": "Reliability engineering measures operational stability, tracking metrics like MTBF (Mean Time Between Failures) and MTTR (Mean Time To Recovery).",
+      "difficulty": "medium",
+      "sourcePages": [
+        18
+      ]
+    },
+    {
+      "id": "nft-017",
+      "question": "What is 'Maintainability Testing'?",
+      "options": {
+        "A": "Assessing how easily software can be modified, debugged, modularized, and updated in response to defects or changing requirements.",
+        "B": "Cleaning computer fans.",
+        "C": "Testing server backup generators.",
+        "D": "Buying software warranties."
+      },
+      "correctAnswer": "A",
+      "explanation": "Maintainability evaluates code modularity, documentation completeness, adherence to coding standards, and cyclomatic complexity to gauge long-term engineering cost.",
+      "difficulty": "easy",
+      "sourcePages": [
+        19
+      ]
+    },
+    {
+      "id": "nft-018",
+      "question": "What tool is widely used for enterprise load and performance testing?",
+      "options": {
+        "A": "Apache JMeter / k6 / Locust",
+        "B": "Microsoft Paint",
+        "C": "GDB debugger",
+        "D": "Notepad++"
+      },
+      "correctAnswer": "A",
+      "explanation": "Apache JMeter, k6, and Locust are standard open-source tools designed to generate massive virtual user concurrent loads against web applications and APIs.",
+      "difficulty": "easy",
+      "sourcePages": [
+        9
+      ]
+    },
+    {
+      "id": "nft-019",
+      "question": "In security testing, what is 'Vulnerability Scanning'?",
+      "options": {
+        "A": "Using automated scanners (e.g. OWASP ZAP, Nessus, Snyk) to inspect systems for known CVE vulnerabilities, misconfigurations, and outdated libraries.",
+        "B": "Manually reviewing all code line-by-line.",
+        "C": "Scanning printed documents with OCR.",
+        "D": "Checking hard drive bad sectors."
+      },
+      "correctAnswer": "A",
+      "explanation": "Automated vulnerability scanning compares system signatures, open ports, HTTP headers, and dependency manifests against public vulnerability databases.",
+      "difficulty": "easy",
+      "sourcePages": [
+        14
+      ]
+    },
+    {
+      "id": "nft-020",
+      "question": "Why must performance testing be executed in a dedicated staging environment that mirrors production architecture?",
+      "options": {
+        "A": "Because tests on developer laptops do not reflect real-world network latencies, database sizes, clustering, load balancers, or server hardware capacities.",
+        "B": "Because production environments are deleted after testing.",
+        "C": "Because performance tests cannot run on Linux.",
+        "D": "Because staging environments run at double speed."
+      },
+      "correctAnswer": "A",
+      "explanation": "Valid performance metrics require architectural parity with production (similar CPU, RAM, network bandwidth, database volume, and topology) to yield realistic benchmarks.",
+      "difficulty": "medium",
+      "sourcePages": [
+        9,
+        20
+      ]
+    }
+  ]
+}

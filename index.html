@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NPTEL Prep - Interactive Software Testing MCQ Study Platform</title>
+  <meta name="description" content="Fast, distraction-free NPTEL examination revision and MCQ preparation platform based on lecture materials.">
+  
+  <!-- Modern Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Application Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-section" id="brand-home-btn" title="Go to Dashboard">
+        <span class="brand-badge">NPTEL</span>
+        <div>
+          <span class="brand-title">NPTEL Prep</span>
+          <span class="brand-subtitle">Software Testing Examination Revision</span>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <button class="nav-btn active" data-view="dashboard-view" id="nav-dash-btn">🏠 Dashboard</button>
+        <button class="nav-btn" data-view="library-view" id="nav-lib-btn">📚 Topic Library</button>
+        <button class="nav-btn" data-view="practice-view" id="nav-practice-btn">🎯 Practice</button>
+        <button class="nav-btn" data-view="mock-view" id="nav-mock-btn">⏱️ Mock Exam</button>
+        <button class="nav-btn" data-view="weak-view" id="nav-weak-btn">⚠️ Weak Areas</button>
+        <button class="nav-btn" data-view="revision-view" id="nav-rev-btn">⚡ Quick Revision</button>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn" id="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">🌙</button>
+        <button class="icon-btn" id="reset-progress-btn" title="Reset Progress" aria-label="Reset Progress">🔄</button>
+      </div>
+    </div>
+
+    <!-- Quick Progress Banner -->
+    <div class="stats-banner">
+      <div class="stats-banner-inner">
+        <div class="stat-item">
+          <span>Attempted:</span>
+          <span class="stat-val" id="header-stat-attempted">0 / 400</span>
+        </div>
+        <div class="stat-item">
+          <span>Accuracy:</span>
+          <span class="stat-val" id="header-stat-accuracy">0%</span>
+        </div>
+        <div class="stat-item">
+          <span>Weak Questions:</span>
+          <span class="stat-val" id="header-stat-weak">0</span>
+        </div>
+        <div class="stat-item" style="flex:1; justify-content:flex-end;">
+          <span style="font-size:0.75rem;">Syllabus Completion:</span>
+          <div class="stat-progress-bar">
+            <div class="stat-progress-fill" id="header-progress-fill"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="main-content">
+
+    <!-- 1. DASHBOARD VIEW -->
+    <section id="dashboard-view" class="view-section active">
+      <div class="dashboard-hero">
+        <div class="hero-text">
+          <h1>Master Your NPTEL Exam</h1>
+          <p>400 rigorous, lecture-grounded MCQs converted from 20 course lecture slide decks. Practice systematically, simulate mock tests, and drill weak concepts with zero distractions.</p>
+        </div>
+        <div class="hero-actions">
+          <button class="btn btn-primary btn-lg" id="dash-start-btn">Start Practice</button>
+          <button class="btn btn-secondary btn-lg" id="dash-continue-btn" style="display:none;">Continue Last Session</button>
+          <button class="btn btn-outline-primary btn-lg" onclick="switchView('mock-view')">Simulate Mock Exam</button>
+        </div>
+      </div>
+
+      <!-- Key Metrics -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-label">Course Topics</div>
+          <div class="metric-number" id="dash-total-topics">20</div>
+          <div class="metric-sub">Complete lecture material</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Available Questions</div>
+          <div class="metric-number" id="dash-total-q">400</div>
+          <div class="metric-sub">20 MCQs per lecture topic</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Questions Attempted</div>
+          <div class="metric-number" id="dash-attempted">0</div>
+          <div class="metric-sub">Persisted in browser storage</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Overall Accuracy</div>
+          <div class="metric-number" id="dash-accuracy">0%</div>
+          <div class="metric-sub">Across all practice sessions</div>
+        </div>
+      </div>
+
+      <!-- Quick Topics Row -->
+      <div class="section-header">
+        <h2 class="section-title">Topic Study Progress</h2>
+        <button class="btn btn-outline-primary btn-sm" onclick="switchView('library-view')">View All 20 Topics →</button>
+      </div>
+
+      <div class="topic-grid" id="dash-topics-list">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+
+    <!-- 2. TOPIC LIBRARY VIEW -->
+    <section id="library-view" class="view-section">
+      <div class="section-header">
+        <div>
+          <h1 class="section-title">Lecture Topic Library</h1>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.2rem;">Select any of the 20 course modules to practice or study directly.</p>
+        </div>
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="library-search-input" class="search-input" placeholder="Search topics or PDFs...">
+        </div>
+      </div>
+
+      <div class="topic-grid" id="library-topic-grid">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+
+    <!-- 3. PRACTICE & STUDY MODE VIEW -->
+    <section id="practice-view" class="view-section">
+      <div class="practice-container">
+        
+        <!-- Left: Question & Options Area -->
+        <div class="question-card">
+          <div class="question-top-bar">
+            <div class="q-badge-group">
+              <span class="q-topic-badge" id="q-topic-badge">Topic Name</span>
+              <span class="q-diff-badge q-diff-medium" id="q-diff-badge">Medium</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:0.75rem;">
+              <span class="q-counter" id="q-counter">Question 1 of 20</span>
+              <button class="q-bookmark-btn" id="q-bookmark-btn">☆ Mark for Review</button>
+            </div>
+          </div>
+
+          <div class="question-text" id="q-text">Loading question text...</div>
+
+          <div class="options-list" id="options-list">
+            <!-- Rendered dynamically -->
+          </div>
+
+          <!-- Solution & Concept Breakdown -->
+          <div class="explanation-box" id="q-explanation-box">
+            <div class="exp-header">Explanation & Concept Analysis:</div>
+            <div class="exp-text" id="q-exp-text"></div>
+            <div class="exp-source" id="q-exp-source">Source: Lecture Slides</div>
+          </div>
+
+          <!-- Bottom Control Bar -->
+          <div class="practice-controls">
+            <div style="display:flex; gap:0.5rem;">
+              <button class="btn btn-secondary btn-sm" id="q-prev-btn">← Previous</button>
+              <button class="btn btn-secondary btn-sm" id="q-next-btn">Next →</button>
+            </div>
+            
+            <button class="btn btn-primary" id="q-check-btn">Check Answer</button>
+          </div>
+        </div>
+
+        <!-- Right: Question Palette Sidebar -->
+        <aside class="palette-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+            <div class="palette-title">Question Palette</div>
+          </div>
+          
+          <div class="palette-grid" id="palette-grid">
+            <!-- 1 to 20 buttons rendered dynamically -->
+          </div>
+
+          <div class="palette-legend">
+            <div class="legend-item"><div class="legend-color" style="background:var(--success);"></div> Correct Answer</div>
+            <div class="legend-item"><div class="legend-color" style="background:var(--error);"></div> Incorrect Answer</div>
+            <div class="legend-item"><div class="legend-color" style="background:var(--warning);"></div> Marked for Review</div>
+            <div class="legend-item"><div class="legend-color" style="background:var(--bg-subtle); border:1px solid var(--border-medium);"></div> Unanswered</div>
+          </div>
+
+          <div style="margin-top:1.25rem; padding-top:1rem; border-top:1px solid var(--border-light);">
+            <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:0.35rem;">Keyboard Shortcuts:</div>
+            <div style="font-size:0.75rem; color:var(--text-secondary); line-height:1.5;">
+              <code>A</code> / <code>B</code> / <code>C</code> / <code>D</code> : Select Option<br>
+              <code>Enter</code> : Check Answer / Next<br>
+              <code>←</code> / <code>→</code> : Previous / Next
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+
+    <!-- 4. MOCK EXAM MODE VIEW -->
+    <section id="mock-view" class="view-section">
+      
+      <!-- 4A. Setup Screen -->
+      <div id="mock-setup-section" class="mock-setup-card">
+        <h2 style="font-size:1.4rem; font-weight:800; margin-bottom:0.5rem; color:var(--text-primary);">Simulated NPTEL Mock Examination</h2>
+        <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:1.5rem;">Configure your practice exam session. Questions will be randomized and answers will not be revealed until final submission.</p>
+
+        <div class="form-group">
+          <label class="form-label" for="mock-topic-select">Topic Selection:</label>
+          <select id="mock-topic-select" class="form-select">
+            <option value="all">All Topics (Full Course Syllabus)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="mock-count-select">Number of Questions:</label>
+          <select id="mock-count-select" class="form-select">
+            <option value="10">10 Questions (Quick Quiz)</option>
+            <option value="20" selected>20 Questions (Standard Section)</option>
+            <option value="30">30 Questions (Comprehensive)</option>
+            <option value="50">50 Questions (Full Mock)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="mock-time-select">Time Limit:</label>
+          <select id="mock-time-select" class="form-select">
+            <option value="0">Untimed Practice</option>
+            <option value="15">15 Minutes</option>
+            <option value="30" selected>30 Minutes</option>
+            <option value="45">45 Minutes</option>
+            <option value="60">60 Minutes</option>
+          </select>
+        </div>
+
+        <div style="margin-top:2rem;">
+          <button class="btn btn-primary btn-lg" id="mock-start-btn" style="width:100%;">Start Mock Examination</button>
+        </div>
+      </div>
+
+      <!-- 4B. Active Exam Screen -->
+      <div id="mock-exam-section" class="practice-container" style="display:none;">
+        <div class="question-card">
+          <div class="question-top-bar">
+            <div class="q-badge-group">
+              <span class="q-topic-badge" id="mock-q-topic">Topic Name</span>
+              <span class="timer-badge" id="mock-timer-display">⏱ 30:00</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:0.75rem;">
+              <span class="q-counter" id="mock-q-counter">Question 1 of 20</span>
+              <button class="q-bookmark-btn" id="mock-mark-btn">☆ Mark for Review</button>
+            </div>
+          </div>
+
+          <div class="question-text" id="mock-q-text">Mock question text...</div>
+
+          <div class="options-list" id="mock-options-list">
+            <!-- Rendered dynamically -->
+          </div>
+
+          <div class="practice-controls">
+            <div style="display:flex; gap:0.5rem;">
+              <button class="btn btn-secondary btn-sm" id="mock-prev-btn">← Previous</button>
+              <button class="btn btn-secondary btn-sm" id="mock-next-btn">Next →</button>
+              <button class="btn btn-secondary btn-sm" id="mock-clear-btn">Clear Choice</button>
+            </div>
+            <button class="btn btn-primary" id="mock-submit-btn">Submit Test</button>
+          </div>
+        </div>
+
+        <!-- Exam Palette -->
+        <aside class="palette-card">
+          <div class="palette-title">Question Grid</div>
+          <div class="palette-grid" id="mock-palette-grid">
+            <!-- Palette buttons -->
+          </div>
+          <div class="palette-legend">
+            <div class="legend-item"><div class="legend-color" style="background:var(--primary);"></div> Answered</div>
+            <div class="legend-item"><div class="legend-color" style="background:var(--warning);"></div> Marked for Review</div>
+            <div class="legend-item"><div class="legend-color" style="background:var(--bg-subtle); border:1px solid var(--border-medium);"></div> Unanswered</div>
+          </div>
+        </aside>
+      </div>
+
+      <!-- 4C. Score Summary Screen -->
+      <div id="mock-score-section" style="display:none;">
+        <div class="score-card">
+          <span class="topic-badge" style="font-size:0.85rem;">Mock Exam Results</span>
+          <div class="score-number" id="mock-score-val">16 / 20</div>
+          <p style="color:var(--text-secondary); font-size:1.1rem; font-weight:600;">Overall Accuracy: <span id="mock-accuracy-val" style="color:var(--primary);">80%</span></p>
+
+          <div class="score-stats">
+            <div>
+              <div class="metric-label">Time Elapsed</div>
+              <div style="font-weight:700; font-size:1.1rem;" id="mock-time-taken-val">18m 42s</div>
+            </div>
+          </div>
+
+          <div style="max-width:550px; margin:2rem auto 1.5rem auto; text-align:left;">
+            <h3 style="font-size:1rem; font-weight:700; margin-bottom:1rem; color:var(--text-primary);">Topic Performance Breakdown:</h3>
+            <div id="mock-topic-breakdown">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; margin-top:2rem;">
+            <button class="btn btn-primary" id="mock-review-btn">Review All Questions</button>
+            <button class="btn btn-secondary" id="mock-retake-btn">Take Another Test</button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- 5. WEAK AREAS VIEW -->
+    <section id="weak-view" class="view-section">
+      <div class="section-header">
+        <div>
+          <h1 class="section-title">Weak Areas & Mistake Review</h1>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.2rem;">Track questions answered incorrectly and retry them until mastered.</p>
+        </div>
+        <div style="display:flex; align-items:center; gap:0.75rem;">
+          <span class="topic-badge" style="background:var(--error-subtle); color:var(--error-text); font-size:0.85rem;">
+            <span id="weak-count-badge">0</span> Incorrect Questions
+          </span>
+          <button class="btn btn-primary btn-sm" id="practice-weak-btn">Practice Weak Questions</button>
+        </div>
+      </div>
+
+      <div id="weak-questions-container">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+
+    <!-- 6. QUICK REVISION VIEW -->
+    <section id="revision-view" class="view-section">
+      <div class="section-header">
+        <div>
+          <h1 class="section-title">Quick Revision Cheat Sheets</h1>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.2rem;">High-yield definitions, mathematical formulas, and concept comparisons across all 20 modules.</p>
+        </div>
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="revision-search-input" class="search-input" placeholder="Search formulas, terms, concepts...">
+        </div>
+      </div>
+
+      <div class="revision-grid">
+        <!-- Left: Topics Sidebar -->
+        <nav class="revision-nav" id="revision-topics-nav">
+          <!-- Rendered dynamically -->
+        </nav>
+
+        <!-- Right: Cheat Sheet Content Card -->
+        <div class="rev-content-card" id="revision-content-area">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Reset Progress Confirmation Modal -->
+  <div class="modal-overlay" id="reset-modal">
+    <div class="modal-box">
+      <h3 class="modal-title">Reset All Study Progress?</h3>
+      <p class="modal-desc">This action will clear all local test history, accuracy metrics, weak questions, and bookmarks from this browser. This cannot be undone.</p>
+      <div class="modal-actions">
+        <button class="btn btn-secondary btn-sm" id="cancel-reset-btn">Cancel</button>
+        <button class="btn btn-primary btn-sm" style="background-color:var(--error);" id="confirm-reset-btn">Yes, Reset Progress</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    NPTEL Prep — Interactive Topic-Wise MCQ Study Platform • Grounded in Course Lecture Materials • Distraction-Free & Offline Ready
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/progress.js"></script>
+  <script src="js/questions.js"></script>
+  <script src="js/practice.js"></script>
+  <script src="js/mock.js"></script>
+  <script src="js/revision.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>

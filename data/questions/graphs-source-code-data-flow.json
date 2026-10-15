@@ -1,0 +1,336 @@
+{
+  "topicId": "graphs-source-code-data-flow",
+  "topicName": "Graph Coverage - Source Code Data Flow",
+  "sourcePdf": "graphs-source-code-data-flow.pdf",
+  "questions": [
+    {
+      "id": "gsc-df-001",
+      "question": "How are variable declarations with initializers (e.g., 'int x = 10;') mapped in source code data flow?",
+      "options": {
+        "A": "As a definition (def) of variable x at that node.",
+        "B": "Only as a use of variable x.",
+        "C": "Neither a def nor a use.",
+        "D": "As an infeasible path."
+      },
+      "correctAnswer": "A",
+      "explanation": "Initializing a variable assigns a value to its allocated storage, creating a definition (def) of that variable at that node.",
+      "difficulty": "easy",
+      "sourcePages": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "gsc-df-002",
+      "question": "In the statement 'y = x + z;', what are the data flow definitions and uses?",
+      "options": {
+        "A": "Def: {y}; Uses: {x, z}",
+        "B": "Defs: {x, z}; Use: {y}",
+        "C": "Defs: {x, y, z}; Uses: ∅",
+        "D": "Uses: {y}; Defs: ∅"
+      },
+      "correctAnswer": "A",
+      "explanation": "Variable y is being assigned a new value (def), while variables x and z are read in the RHS expression to evaluate the sum (uses).",
+      "difficulty": "easy",
+      "sourcePages": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": "gsc-df-003",
+      "question": "In the statement 'x = x + 1;', which of the following is true?",
+      "options": {
+        "A": "The statement contains both a use of x (RHS) and a definition of x (LHS).",
+        "B": "The statement is only a definition of x.",
+        "C": "The statement is only a use of x.",
+        "D": "The statement creates a dead definition anomaly."
+      },
+      "correctAnswer": "A",
+      "explanation": "The current value of x is read on the RHS (use), and the incremented value is written back to x (def). The use occurs prior to the new def within the statement evaluation.",
+      "difficulty": "medium",
+      "sourcePages": [
+        4
+      ]
+    },
+    {
+      "id": "gsc-df-004",
+      "question": "How does array indexing such as 'a[i] = 5;' complicate data flow analysis?",
+      "options": {
+        "A": "Because the exact element defined depends on runtime value of index 'i', creating potential aliasing and ambiguity about whether subsequent reads of a[j] are def-clear.",
+        "B": "Arrays cannot be represented in CFGs.",
+        "C": "Arrays convert all definitions into uses.",
+        "D": "Array indices are always compile-time constants."
+      },
+      "correctAnswer": "A",
+      "explanation": "If the index i is dynamic, static analysis cannot easily determine if a[i] and a[j] refer to the same memory location, complicating def-clear determination.",
+      "difficulty": "hard",
+      "sourcePages": [
+        7,
+        8
+      ]
+    },
+    {
+      "id": "gsc-df-005",
+      "question": "In pointer-based languages (e.g. C/C++), what is the 'aliasing problem' in data flow testing?",
+      "options": {
+        "A": "When two distinct pointer variables point to the same memory address, a write through one pointer defines the variable referenced by the other.",
+        "B": "When a function has two different names.",
+        "C": "When a file is given a symbolic link.",
+        "D": "When variables have the same identifier name in different scopes."
+      },
+      "correctAnswer": "A",
+      "explanation": "Aliasing occurs when multiple references/pointers refer to the same object or memory cell. Modifying *p implicitly modifies *q if p == q, making def-clear detection challenging.",
+      "difficulty": "hard",
+      "sourcePages": [
+        9,
+        10
+      ]
+    },
+    {
+      "id": "gsc-df-006",
+      "question": "What is the difference between intraprocedural data flow analysis and interprocedural data flow analysis?",
+      "options": {
+        "A": "Intraprocedural analyzes flow within a single method; interprocedural tracks flow across method boundaries, callers, and callees.",
+        "B": "Intraprocedural is dynamic; interprocedural is static.",
+        "C": "Intraprocedural is for integers; interprocedural is for strings.",
+        "D": "There is no difference."
+      },
+      "correctAnswer": "A",
+      "explanation": "Intraprocedural analysis operates strictly within the confines of an individual procedure. Interprocedural analysis traces definitions and uses through argument passing, returns, and global state across calls.",
+      "difficulty": "medium",
+      "sourcePages": [
+        12,
+        13
+      ]
+    },
+    {
+      "id": "gsc-df-007",
+      "question": "In the loop 'for (int i = 0; i < N; i++) { ... }', where are the definitions and uses of loop variable 'i'?",
+      "options": {
+        "A": "Initialization defines i; condition uses i; increment both uses and defines i.",
+        "B": "Initialization uses i; condition defines i.",
+        "C": "Variable i is only defined once and never used.",
+        "D": "i is neither defined nor used."
+      },
+      "correctAnswer": "A",
+      "explanation": "'int i = 0' defines i initially. 'i < N' is a predicate use. 'i++' reads i (use) and updates i (def) at the end of each iteration.",
+      "difficulty": "medium",
+      "sourcePages": [
+        5,
+        6
+      ]
+    },
+    {
+      "id": "gsc-df-008",
+      "question": "In the branch 'if (a > 0 && b < 10)', how are 'a' and 'b' classified?",
+      "options": {
+        "A": "Predicate uses (p-uses)",
+        "B": "Computation uses (c-uses)",
+        "C": "Definitions (defs)",
+        "D": "Global constants"
+      },
+      "correctAnswer": "A",
+      "explanation": "Variables evaluated inside conditional branch statements to determine execution paths are classified as predicate uses (p-uses).",
+      "difficulty": "easy",
+      "sourcePages": [
+        5
+      ]
+    },
+    {
+      "id": "gsc-df-009",
+      "question": "What is a 'kill' of a definition d of variable v in data flow analysis?",
+      "options": {
+        "A": "Any subsequent statement that assigns a new value to variable v, terminating the active lifetime of definition d.",
+        "B": "Terminating the process with SIGKILL.",
+        "C": "Catching an unhandled exception.",
+        "D": "Reading the variable value."
+      },
+      "correctAnswer": "A",
+      "explanation": "A definition of variable v is 'killed' when another definition assigns a new value to v, meaning the earlier definition no longer reaches subsequent uses.",
+      "difficulty": "medium",
+      "sourcePages": [
+        4
+      ]
+    },
+    {
+      "id": "gsc-df-010",
+      "question": "If method M modifies a class instance field 'this.balance', how should this field modification be tracked in data flow?",
+      "options": {
+        "A": "As a definition of the instance field 'balance'.",
+        "B": "As an unused local variable.",
+        "C": "It cannot be tracked in object-oriented code.",
+        "D": "Only as a return expression."
+      },
+      "correctAnswer": "A",
+      "explanation": "Instance variables persist across method invocations; writing to an object field is a state definition (def) that may reach uses in other methods of the object.",
+      "difficulty": "medium",
+      "sourcePages": [
+        14
+      ]
+    },
+    {
+      "id": "gsc-df-011",
+      "question": "In data flow testing, what does a 'def-use pair with multiple def-clear paths' imply?",
+      "options": {
+        "A": "Under All-Uses Coverage (AUC), executing any one def-clear path suffices; under All-du-Paths Coverage (ADUPC), ALL def-clear du-paths must be executed.",
+        "B": "The program is non-deterministic.",
+        "C": "The variable must be duplicated in source code.",
+        "D": "The compiler will reject the code."
+      },
+      "correctAnswer": "A",
+      "explanation": "When multiple distinct paths connect a def to a use without redefining the variable, AUC is satisfied by testing any one path, whereas ADUPC mandates testing every single one.",
+      "difficulty": "medium",
+      "sourcePages": [
+        11
+      ]
+    },
+    {
+      "id": "gsc-df-012",
+      "question": "What is static data flow analysis primarily used for in software engineering?",
+      "options": {
+        "A": "Detecting anomalies such as uninitialized variable reads, dead stores, and null pointer dereferences without running the code.",
+        "B": "Generating CSS styling automatically.",
+        "C": "Measuring network bandwidth.",
+        "D": "Compressing executable files."
+      },
+      "correctAnswer": "A",
+      "explanation": "Static data flow analysis scans the program structure to discover data lifecycle flaws like uninitialized reads (ur-anomaly) and redundant writes (dd-anomaly) at compile time.",
+      "difficulty": "easy",
+      "sourcePages": [
+        15,
+        16
+      ]
+    },
+    {
+      "id": "gsc-df-013",
+      "question": "Consider a swap method: 'temp = a; a = b; b = temp;'. What is the du-pair for variable 'temp'?",
+      "options": {
+        "A": "Def at statement 1 (temp = a), Use at statement 3 (b = temp)",
+        "B": "Def at statement 2, Use at statement 1",
+        "C": "Def at statement 3, Use at statement 2",
+        "D": "There is no du-pair for temp."
+      },
+      "correctAnswer": "A",
+      "explanation": "Variable 'temp' is assigned the value of 'a' in the first statement (def) and read in the third statement (use), with statement 2 being def-clear with respect to temp.",
+      "difficulty": "easy",
+      "sourcePages": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": "gsc-df-014",
+      "question": "When is a du-path considered 'infeasible' in source code?",
+      "options": {
+        "A": "When the branch conditions along the du-path are mutually contradictory, preventing any input from following it.",
+        "B": "When the variable has an integer type.",
+        "C": "When the path contains more than 3 statements.",
+        "D": "When the compiler optimizes the code."
+      },
+      "correctAnswer": "A",
+      "explanation": "A path is semantically infeasible if its accumulated path condition (e.g. x > 5 AND x < 2) evaluates to false for all possible inputs.",
+      "difficulty": "easy",
+      "sourcePages": [
+        17
+      ]
+    },
+    {
+      "id": "gsc-df-015",
+      "question": "How does variable scoping affect data flow analysis when an inner block shadows an outer variable with the same name?",
+      "options": {
+        "A": "Definitions and uses in the inner scope refer to the shadowing variable and must be treated as a distinct variable from the outer one.",
+        "B": "The outer variable is permanently deleted from memory.",
+        "C": "The compiler combines both variables into a single du-pair.",
+        "D": "It causes an infinite loop in the CFG."
+      },
+      "correctAnswer": "A",
+      "explanation": "Variable shadowing creates distinct storage locations with the same identifier; data flow tracking must respect lexical scoping to avoid false du-associations.",
+      "difficulty": "medium",
+      "sourcePages": [
+        6
+      ]
+    },
+    {
+      "id": "gsc-df-016",
+      "question": "In a method with an early 'return' inside an if-statement, what happens to du-paths that pass through statements after the if-block?",
+      "options": {
+        "A": "Executions that take the early return branch exit the method and will not reach uses located below the return statement.",
+        "B": "The return statement is ignored.",
+        "C": "The uses are executed after method termination.",
+        "D": "It creates a circular du-path."
+      },
+      "correctAnswer": "A",
+      "explanation": "An early return diverts control flow directly to the method exit, precluding execution of subsequent code for that test input.",
+      "difficulty": "easy",
+      "sourcePages": [
+        8
+      ]
+    },
+    {
+      "id": "gsc-df-017",
+      "question": "What is a 'du-path across loop iterations'?",
+      "options": {
+        "A": "A du-path where variable v is defined inside the loop, and used during a subsequent iteration of the loop via the back-edge.",
+        "B": "A loop that executes zero times.",
+        "C": "A path that breaks out of the loop.",
+        "D": "A recursive call."
+      },
+      "correctAnswer": "A",
+      "explanation": "Variables modified in one iteration and consumed in a later iteration create loop-carried data dependencies (loop du-paths).",
+      "difficulty": "medium",
+      "sourcePages": [
+        10,
+        11
+      ]
+    },
+    {
+      "id": "gsc-df-018",
+      "question": "Why is dynamic data flow testing often more computationally expensive to monitor than branch coverage?",
+      "options": {
+        "A": "Because runtime instrumentation must track memory read/write operations and verify def-clear paths for numerous variable pairs, not just branch outcomes.",
+        "B": "Because it requires running on supercomputers.",
+        "C": "Because data flow only works on assembly language.",
+        "D": "Because branch coverage requires no execution."
+      },
+      "correctAnswer": "A",
+      "explanation": "Monitoring data flow requires recording variable definitions and tracking their propagation until use across complex execution histories, introducing significant instrumentation overhead.",
+      "difficulty": "medium",
+      "sourcePages": [
+        18
+      ]
+    },
+    {
+      "id": "gsc-df-019",
+      "question": "In the statement 'printf(\"%d\", total);', how is 'total' classified?",
+      "options": {
+        "A": "Computation use (c-use)",
+        "B": "Predicate use (p-use)",
+        "C": "Definition (def)",
+        "D": "Unreachable state"
+      },
+      "correctAnswer": "A",
+      "explanation": "Passing a variable to an output function (like printf) consumes its value in an output computation, classifying it as a computation use (c-use).",
+      "difficulty": "easy",
+      "sourcePages": [
+        3
+      ]
+    },
+    {
+      "id": "gsc-df-020",
+      "question": "If a variable is declared globally and modified by multiple concurrent threads, what hazard does data flow testing aim to detect?",
+      "options": {
+        "A": "Data races and race conditions where unsynchronized concurrent defs and uses corrupt shared state.",
+        "B": "Syntax errors.",
+        "C": "Static typing failure.",
+        "D": "Prime path termination."
+      },
+      "correctAnswer": "A",
+      "explanation": "Concurrent data flow analysis identifies unsynchronized interleaved writes and reads between threads, which manifest as dangerous race conditions.",
+      "difficulty": "medium",
+      "sourcePages": [
+        19
+      ]
+    }
+  ]
+}

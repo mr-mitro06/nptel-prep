@@ -1,0 +1,333 @@
+{
+  "topicId": "oo-testing",
+  "topicName": "Object-Oriented Testing",
+  "sourcePdf": "OO-testing.pdf",
+  "questions": [
+    {
+      "id": "oo-001",
+      "question": "How does Encapsulation (information hiding) impact software testing in Object-Oriented systems?",
+      "options": {
+        "A": "Internal state is hidden within private fields, making it harder to inspect state after test execution and verify postconditions without dedicated accessor methods or state observers.",
+        "B": "Encapsulation prevents classes from being compiled.",
+        "C": "Encapsulation makes all methods static.",
+        "D": "Encapsulation eliminates all software bugs automatically."
+      },
+      "correctAnswer": "A",
+      "explanation": "Because private instance variables cannot be accessed directly by external test cases, observing whether state was correctly mutated (observability) requires getters, inspecting return values, or state instrumentation.",
+      "difficulty": "medium",
+      "sourcePages": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": "oo-002",
+      "question": "What testing challenge is introduced by Inheritance in Object-Oriented programming?",
+      "options": {
+        "A": "Inherited methods operate in a new subclass context with potentially overridden state or collaborator methods, meaning inherited methods cannot simply be assumed correct without re-testing.",
+        "B": "Inherited methods cannot be executed.",
+        "C": "Subclasses cannot have constructors.",
+        "D": "Base classes must be deleted after inheritance."
+      },
+      "correctAnswer": "A",
+      "explanation": "Even if method m() passed all tests in superclass Base, when inherited by SubClass, it may interact with overridden methods or new subclass invariants, necessitating context-sensitive retesting.",
+      "difficulty": "medium",
+      "sourcePages": [
+        6,
+        7
+      ]
+    },
+    {
+      "id": "oo-003",
+      "question": "What testing challenge arises from Polymorphism and Dynamic Binding?",
+      "options": {
+        "A": "A single method call site (e.g. obj.draw()) can bind dynamically to many different subclass implementations at runtime, requiring tests to cover all feasible concrete receiver types.",
+        "B": "Polymorphism causes memory leaks in all compilers.",
+        "C": "Polymorphism requires writing code in C.",
+        "D": "Polymorphism eliminates the need for test oracles."
+      },
+      "correctAnswer": "A",
+      "explanation": "Dynamic dispatch means the actual code executed is decided at runtime based on the object's dynamic type, creating a combinatorial explosion of polymorphic call targets that must be tested.",
+      "difficulty": "medium",
+      "sourcePages": [
+        8,
+        9
+      ]
+    },
+    {
+      "id": "oo-004",
+      "question": "Why can Abstract Classes and Interfaces NOT be tested directly as units?",
+      "options": {
+        "A": "Because they cannot be directly instantiated without providing concrete implementations for their abstract method declarations.",
+        "B": "Because they have no names.",
+        "C": "Because Java bans testing abstract classes.",
+        "D": "Because they only contain integer constants."
+      },
+      "correctAnswer": "A",
+      "explanation": "Abstract classes and interfaces contain unimplemented method signatures and cannot be instantiated with 'new'. Testing their contracts requires concrete subclasses, test doubles, or mock objects.",
+      "difficulty": "easy",
+      "sourcePages": [
+        10
+      ]
+    },
+    {
+      "id": "oo-005",
+      "question": "What is 'State-based Testing' of an Object-Oriented class?",
+      "options": {
+        "A": "Testing that sequences of method invocations correctly transition an object between valid internal states according to its Class State Machine.",
+        "B": "Testing software across different US states.",
+        "C": "Testing only the main method.",
+        "D": "Testing while the computer is turned off."
+      },
+      "correctAnswer": "A",
+      "explanation": "An object encapsulates mutable state. State-based testing treats methods as state transitions, executing sequences of calls to verify that transitions, guards, and invariants are preserved.",
+      "difficulty": "easy",
+      "sourcePages": [
+        12,
+        13
+      ]
+    },
+    {
+      "id": "oo-006",
+      "question": "What is a 'State Definition Anomaly' in class testing?",
+      "options": {
+        "A": "When an instance variable is left uninitialized or corrupted by a method call sequence, placing the object into an inconsistent internal state.",
+        "B": "When a class has too many comments.",
+        "C": "When a method has more than 3 parameters.",
+        "D": "When an interface is implemented twice."
+      },
+      "correctAnswer": "A",
+      "explanation": "A state definition anomaly occurs when method operations violate class invariants or fail to properly initialize/update interrelated instance variables.",
+      "difficulty": "medium",
+      "sourcePages": [
+        14
+      ]
+    },
+    {
+      "id": "oo-007",
+      "question": "In class testing, what is a 'Class Invariant'?",
+      "options": {
+        "A": "A condition that must hold true for every valid instance of the class at all stable points (after constructor execution and after every public method call).",
+        "B": "A constant that cannot be printed.",
+        "C": "A method that takes no arguments.",
+        "D": "The class filename on disk."
+      },
+      "correctAnswer": "A",
+      "explanation": "A class invariant (e.g. balance >= 0, or size <= capacity) expresses fundamental structural truth about the object's valid state that must be maintained across all public operations.",
+      "difficulty": "easy",
+      "sourcePages": [
+        15
+      ]
+    },
+    {
+      "id": "oo-008",
+      "question": "What is the 'flattened class' testing approach for inheritance?",
+      "options": {
+        "A": "Treating a subclass as if all inherited methods were copied directly into it, and testing the entire flattened set of methods in the subclass context.",
+        "B": "Deleting all subclasses.",
+        "C": "Compressing the class bytecode.",
+        "D": "Converting object-oriented code into procedural C."
+      },
+      "correctAnswer": "A",
+      "explanation": "Class flattening conceptually expands the subclass to include all inherited methods as if locally defined, ensuring thorough test coverage of inherited operations in the subclass environment.",
+      "difficulty": "medium",
+      "sourcePages": [
+        16,
+        17
+      ]
+    },
+    {
+      "id": "oo-009",
+      "question": "What is 'Method Interleaving' testing in class state testing?",
+      "options": {
+        "A": "Executing arbitrary permutations and sequences of different public methods (e.g. push, pop, top, push, clear) to discover sequence-dependent defects.",
+        "B": "Writing methods in two languages simultaneously.",
+        "C": "Running two compilers at once.",
+        "D": "Deleting private methods."
+      },
+      "correctAnswer": "A",
+      "explanation": "Method interleaving tests whether methods behave correctly when executed in diverse sequences, catching bugs caused by unexpected state remnants from prior calls.",
+      "difficulty": "medium",
+      "sourcePages": [
+        18
+      ]
+    },
+    {
+      "id": "oo-010",
+      "question": "How does the 'Liskov Substitution Principle (LSP)' relate to testing derived classes?",
+      "options": {
+        "A": "If SubClass is an LSP-compliant subtype of BaseClass, any test case written for BaseClass should pass when executed with a SubClass instance without altering correctness.",
+        "B": "Subclasses must have fewer methods than base classes.",
+        "C": "Subclasses cannot throw exceptions.",
+        "D": "Subclasses must be static."
+      },
+      "correctAnswer": "A",
+      "explanation": "LSP states that objects of a superclass should be replaceable with objects of a subclass without affecting program correctness. Re-executing base class tests on subclasses validates LSP conformance.",
+      "difficulty": "hard",
+      "sourcePages": [
+        19
+      ]
+    },
+    {
+      "id": "oo-011",
+      "question": "What is an 'equivalent state' in class state-machine testing?",
+      "options": {
+        "A": "Two distinct internal state representations that produce identical observable behavior for all subsequent method call sequences.",
+        "B": "Two states with the same integer ID.",
+        "C": "States in two different programs.",
+        "D": "States with the same number of variables."
+      },
+      "correctAnswer": "A",
+      "explanation": "In behavioral testing, two states are equivalent if no sequence of operations can distinguish between them based on observable outputs and return values.",
+      "difficulty": "hard",
+      "sourcePages": [
+        20
+      ]
+    },
+    {
+      "id": "oo-012",
+      "question": "What is a 'Sneaking Method' anomaly in OO testing?",
+      "options": {
+        "A": "A method that inadvertently modifies instance state that it should have treated as read-only, violating encapsulation or contracts.",
+        "B": "A method that runs in background threads.",
+        "C": "A method with no name.",
+        "D": "A method that is never called."
+      },
+      "correctAnswer": "A",
+      "explanation": "A sneaking method introduces unintended state changes (unwanted side-effects) on variables that are outside its defined functional responsibility.",
+      "difficulty": "hard",
+      "sourcePages": [
+        21
+      ]
+    },
+    {
+      "id": "oo-013",
+      "question": "In OO unit testing (such as with JUnit or NUnit), what is the role of the '@BeforeEach' / 'setUp()' fixture method?",
+      "options": {
+        "A": "To create a fresh, clean instance of the object under test before each individual test case, ensuring test isolation.",
+        "B": "To compile the test code.",
+        "C": "To print debugging logs to console.",
+        "D": "To delete old test files."
+      },
+      "correctAnswer": "A",
+      "explanation": "Test isolation is critical in OO testing: setUp() reconstructs a pristine object state before every test method executes, preventing test order leakage and shared state contamination.",
+      "difficulty": "easy",
+      "sourcePages": [
+        22
+      ]
+    },
+    {
+      "id": "oo-014",
+      "question": "What is a 'Mock Object' in OO testing?",
+      "options": {
+        "A": "A simulated collaborator object that verifies expected method invocations, parameter values, and return interactions with the class under test.",
+        "B": "A cartoon drawn by developers.",
+        "C": "An object that throws an error on every line.",
+        "D": "A database backup file."
+      },
+      "correctAnswer": "A",
+      "explanation": "Mocks are test doubles programmed with expectations (which methods should be called, with what arguments) that verify behavioral interactions between components in isolation.",
+      "difficulty": "easy",
+      "sourcePages": [
+        23
+      ]
+    },
+    {
+      "id": "oo-015",
+      "question": "What is the difference between a Stub and a Mock in object testing?",
+      "options": {
+        "A": "A stub provides pre-canned answers to calls made during the test; a mock verifies that specific method calls and interaction protocols actually occurred.",
+        "B": "Stubs are written in Java; mocks are written in C++.",
+        "C": "Stubs test databases; mocks test web pages.",
+        "D": "There is no difference."
+      },
+      "correctAnswer": "A",
+      "explanation": "Stubs provide canned state/data to the system under test (state verification), while Mocks verify behavioral interactions and call protocols (behavior verification).",
+      "difficulty": "medium",
+      "sourcePages": [
+        24
+      ]
+    },
+    {
+      "id": "oo-016",
+      "question": "What problem does Dependency Injection (DI) solve from a testing perspective?",
+      "options": {
+        "A": "It decouples classes from hardcoded dependencies, allowing testers to easily inject mock or stub objects for unit testing.",
+        "B": "It accelerates CPU clock rates.",
+        "C": "It eliminates the need for constructors.",
+        "D": "It replaces relational databases."
+      },
+      "correctAnswer": "A",
+      "explanation": "When classes instantiate concrete dependencies directly with 'new', swapping them with test doubles is difficult. Dependency injection allows test frameworks to supply test doubles seamlessly.",
+      "difficulty": "medium",
+      "sourcePages": [
+        25
+      ]
+    },
+    {
+      "id": "oo-017",
+      "question": "Why is testing generic / parameterized classes (e.g. 'Stack<T>') challenging?",
+      "options": {
+        "A": "Because the class must behave correctly for diverse type parameters (primitive wrappers, custom objects, comparable types, nullable types).",
+        "B": "Because generic classes cannot be compiled.",
+        "C": "Because generics are deleted at compile time in all languages.",
+        "D": "Because generic types cannot be instantiated."
+      },
+      "correctAnswer": "A",
+      "explanation": "Generic components must be verified against heterogeneous type arguments, including types with custom equals/hashCode, edge-case comparison behaviors, and null semantics.",
+      "difficulty": "medium",
+      "sourcePages": [
+        26
+      ]
+    },
+    {
+      "id": "oo-018",
+      "question": "What is 'Object Mutation Testing'?",
+      "options": {
+        "A": "Applying mutation operators specifically tailored to OO language features, such as changing access modifiers, swapping super/this calls, and modifying overriding relationships.",
+        "B": "Mutating DNA in biology.",
+        "C": "Deleting object constructors.",
+        "D": "Running code on different operating systems."
+      },
+      "correctAnswer": "A",
+      "explanation": "Class-level mutation operators mutate OO constructs: access modifiers (public -> private), super calls, method overrides, and polymorphic references.",
+      "difficulty": "medium",
+      "sourcePages": [
+        27
+      ]
+    },
+    {
+      "id": "oo-019",
+      "question": "What is an 'illegal state transition' in class testing?",
+      "options": {
+        "A": "Calling a method when the object is in a state that does not permit it (e.g. calling pop() on an EmptyStack), which should trigger a defined exception.",
+        "B": "Moving a computer across state lines.",
+        "C": "Calling a private method.",
+        "D": "Running a test twice."
+      },
+      "correctAnswer": "A",
+      "explanation": "State machines define valid transitions. Invocations in invalid states (like pop() on empty stack) must be verified to fail gracefully with expected exceptions (e.g. UnderflowException).",
+      "difficulty": "easy",
+      "sourcePages": [
+        13,
+        14
+      ]
+    },
+    {
+      "id": "oo-020",
+      "question": "What is 'Round-Trip Path Testing' on an object's state transition diagram?",
+      "options": {
+        "A": "Testing sequences of method calls that transition an object out of a state and eventually bring it back to that exact same state.",
+        "B": "Testing tests in reverse order.",
+        "C": "Testing round-off errors in floating-point math.",
+        "D": "Testing network pings."
+      },
+      "correctAnswer": "A",
+      "explanation": "Round-trip testing verifies reversible operations (e.g. insert followed by delete, open followed by close), checking that returning to the original state leaves no residual corruptions.",
+      "difficulty": "medium",
+      "sourcePages": [
+        28
+      ]
+    }
+  ]
+}

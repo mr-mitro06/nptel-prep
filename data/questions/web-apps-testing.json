@@ -1,0 +1,337 @@
+{
+  "topicId": "web-apps-testing",
+  "topicName": "Web Applications Testing",
+  "sourcePdf": "web-apps-testing.pdf",
+  "questions": [
+    {
+      "id": "wat-001",
+      "question": "What are the three primary architectural tiers in modern web applications?",
+      "options": {
+        "A": "Client tier (Browser), Business Logic / Application tier (Server), Data tier (Database)",
+        "B": "HTML tier, CSS tier, Font tier",
+        "C": "Input tier, Processing tier, Output tier",
+        "D": "Git tier, Docker tier, Cloud tier"
+      },
+      "correctAnswer": "A",
+      "explanation": "Web applications are organized as multi-tier architectures: Presentation/Client tier (browser/DOM), Business Logic tier (application server/APIs), and Data persistence tier (database).",
+      "difficulty": "easy",
+      "sourcePages": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "wat-002",
+      "question": "Why is client-side form validation alone (using JavaScript or HTML attributes) INSUFFICIENT for web application security and reliability?",
+      "options": {
+        "A": "Because client-side validation can be easily bypassed by attackers using tools like curl, Postman, or disabling JavaScript in the browser.",
+        "B": "Because browsers do not support validation.",
+        "C": "Because client-side validation slows down internet connections.",
+        "D": "Because client-side validation only works on Windows."
+      },
+      "correctAnswer": "A",
+      "explanation": "Never trust the client. Any malicious user can bypass browser validation by crafting raw HTTP requests directly to backend endpoints. Server-side validation is strictly mandatory.",
+      "difficulty": "easy",
+      "sourcePages": [
+        7,
+        8
+      ]
+    },
+    {
+      "id": "wat-003",
+      "question": "Because HTTP is fundamentally a stateless protocol, how do web applications maintain user session state across multiple requests?",
+      "options": {
+        "A": "Using Session Cookies, Server-side Sessions, URL rewriting, or LocalStorage / Token headers (e.g. JWT).",
+        "B": "By keeping the TCP connection open forever.",
+        "C": "By forcing users to re-login on every click.",
+        "D": "Through DNS server records."
+      },
+      "correctAnswer": "A",
+      "explanation": "HTTP is stateless: each request is independent. Session tracking mechanisms (cookies containing session tokens, authorization headers, URL rewriting) tie requests to a persistent session.",
+      "difficulty": "medium",
+      "sourcePages": [
+        9,
+        10
+      ]
+    },
+    {
+      "id": "wat-004",
+      "question": "What is a Cross-Site Scripting (XSS) vulnerability in web testing?",
+      "options": {
+        "A": "An injection attack where malicious client-side JavaScript scripts are injected into web pages viewed by other unsuspecting users.",
+        "B": "When CSS stylesheets do not load.",
+        "C": "When a link points to the wrong URL.",
+        "D": "A database connection timeout."
+      },
+      "correctAnswer": "A",
+      "explanation": "XSS occurs when an application includes untrusted user input without proper HTML sanitization/escaping, allowing attacker scripts to run in victims' browsers and steal session cookies.",
+      "difficulty": "medium",
+      "sourcePages": [
+        18,
+        19
+      ]
+    },
+    {
+      "id": "wat-005",
+      "question": "What is SQL Injection (SQLi) and how is it tested?",
+      "options": {
+        "A": "Inserting malicious SQL query fragments into input fields to manipulate backend database queries; tested using payload strings like '' OR '1'='1'.",
+        "B": "Injecting CSS into a web page.",
+        "C": "Testing if SQL server runs on Linux.",
+        "D": "Measuring query response times."
+      },
+      "correctAnswer": "A",
+      "explanation": "SQLi occurs when user input is concatenated directly into SQL statements without parameterized queries or ORM sanitization, allowing attackers to access or destroy data.",
+      "difficulty": "easy",
+      "sourcePages": [
+        20,
+        21
+      ]
+    },
+    {
+      "id": "wat-006",
+      "question": "What is Cross-Site Request Forgery (CSRF)?",
+      "options": {
+        "A": "An attack that tricks an authenticated user's browser into transmitting unauthorized commands to a web application where the user is currently authenticated.",
+        "B": "A broken hyperlink.",
+        "C": "A fake CSS stylesheet.",
+        "D": "A server restart."
+      },
+      "correctAnswer": "A",
+      "explanation": "CSRF exploits the browser's automatic inclusion of credentials (cookies) to execute unwanted actions on behalf of the victim; tested by checking for anti-CSRF tokens and SameSite cookies.",
+      "difficulty": "medium",
+      "sourcePages": [
+        22,
+        23
+      ]
+    },
+    {
+      "id": "wat-007",
+      "question": "What is 'Cross-Browser Compatibility Testing'?",
+      "options": {
+        "A": "Verifying that a web application renders correctly and functions identically across diverse web browsers (Chrome, Firefox, Safari, Edge) and rendering engines.",
+        "B": "Testing if two browsers can run at the same time.",
+        "C": "Measuring internet download speeds.",
+        "D": "Testing with all browser extensions enabled."
+      },
+      "correctAnswer": "A",
+      "explanation": "Different browsers and layout engines (Blink, Gecko, WebKit) may interpret CSS rules, JavaScript features, and HTML elements differently, requiring compatibility verification.",
+      "difficulty": "easy",
+      "sourcePages": [
+        12,
+        13
+      ]
+    },
+    {
+      "id": "wat-008",
+      "question": "What is the Document Object Model (DOM) in web testing?",
+      "options": {
+        "A": "The in-memory hierarchical tree representation of the HTML document structure manipulated by client-side JavaScript.",
+        "B": "A database format.",
+        "C": "A network protocol.",
+        "D": "A software development methodology."
+      },
+      "correctAnswer": "A",
+      "explanation": "The DOM represents the page structure as a tree of objects. Functional testing frameworks (e.g. Selenium, Playwright, Cypress) interact directly with DOM nodes.",
+      "difficulty": "easy",
+      "sourcePages": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": "wat-009",
+      "question": "Why is testing Asynchronous JavaScript and XML (AJAX) / Fetch requests more complex than traditional static page testing?",
+      "options": {
+        "A": "Because updates occur dynamically and asynchronously in the background without a full page reload, introducing timing dependencies and race conditions for test assertions.",
+        "B": "Because AJAX requests do not use HTTP.",
+        "C": "Because AJAX only works in Chrome.",
+        "D": "Because XML is deprecated."
+      },
+      "correctAnswer": "A",
+      "explanation": "Asynchronous calls mean elements appear or change state dynamically over time; test scripts must use explicit waits rather than hardcoded sleeps to avoid synchronization flakiness.",
+      "difficulty": "medium",
+      "sourcePages": [
+        14,
+        15
+      ]
+    },
+    {
+      "id": "wat-010",
+      "question": "What is 'Broken Link Testing' on static web sites?",
+      "options": {
+        "A": "Crawling all hyperlinks (anchor tags) to verify that none return HTTP 404 (Not Found) or 500 (Server Error) status codes.",
+        "B": "Checking if the keyboard works.",
+        "C": "Testing Wi-Fi connection.",
+        "D": "Testing Bluetooth devices."
+      },
+      "correctAnswer": "A",
+      "explanation": "Hyperlink verification spiders through site URLs to ensure that internal navigation anchors, assets (images, stylesheets), and external links resolve successfully.",
+      "difficulty": "easy",
+      "sourcePages": [
+        6
+      ]
+    },
+    {
+      "id": "wat-011",
+      "question": "In web testing, what does an HTTP 500 status code indicate?",
+      "options": {
+        "A": "Internal Server Error: an unhandled exception occurred on the backend server.",
+        "B": "The page was found successfully.",
+        "C": "The user is not authorized.",
+        "D": "The request was cached."
+      },
+      "correctAnswer": "A",
+      "explanation": "HTTP 500 indicates an unexpected condition on the server that prevented it from fulfilling the request, signaling a server-side bug or crash.",
+      "difficulty": "easy",
+      "sourcePages": [
+        6
+      ]
+    },
+    {
+      "id": "wat-012",
+      "question": "What is 'Responsive Web Design (RWD) Testing'?",
+      "options": {
+        "A": "Testing that the layout, fonts, and controls dynamically adapt gracefully across different viewport widths and screen resolutions (mobile, tablet, desktop).",
+        "B": "Testing how fast the server responds.",
+        "C": "Testing user typing speed.",
+        "D": "Testing email responsiveness."
+      },
+      "correctAnswer": "A",
+      "explanation": "RWD testing checks CSS media queries and fluid grids to ensure visual elements remain legible, interactive, and free from horizontal scrolling across various device widths.",
+      "difficulty": "easy",
+      "sourcePages": [
+        11
+      ]
+    },
+    {
+      "id": "wat-013",
+      "question": "What is the 'Page Object Model' (POM) design pattern in automated web testing?",
+      "options": {
+        "A": "A pattern that encapsulates web page elements and interactions into dedicated class objects, separating test logic from DOM selector details.",
+        "B": "A pattern that converts web pages into PDF documents.",
+        "C": "A database schema for web pages.",
+        "D": "A tool that writes HTML code."
+      },
+      "correctAnswer": "A",
+      "explanation": "POM enhances test maintenance by modeling pages as classes with methods representing services offered by the page, insulating test cases from changes in HTML markup and selectors.",
+      "difficulty": "medium",
+      "sourcePages": [
+        16
+      ]
+    },
+    {
+      "id": "wat-014",
+      "question": "What is the purpose of testing browser LocalStorage and SessionStorage?",
+      "options": {
+        "A": "To verify that client-persisted state, preferences, and offline tokens are accurately saved, retrieved, and cleared upon logout.",
+        "B": "To measure hard drive spin rates.",
+        "C": "To test server disk space.",
+        "D": "To delete browser bookmarks."
+      },
+      "correctAnswer": "A",
+      "explanation": "Web Storage APIs store key-value data on the client. Testing ensures data integrity, quota handling, and that sensitive authentication artifacts are invalidated on logout.",
+      "difficulty": "easy",
+      "sourcePages": [
+        10
+      ]
+    },
+    {
+      "id": "wat-015",
+      "question": "What is 'Session Hijacking' and how is it mitigated and tested?",
+      "options": {
+        "A": "An attacker steals a valid session ID to impersonate the user; tested by verifying the use of HttpOnly and Secure cookie flags and HTTPS encryption.",
+        "B": "When a user logs out.",
+        "C": "When a browser tab crashes.",
+        "D": "When the server reboots."
+      },
+      "correctAnswer": "A",
+      "explanation": "HttpOnly cookies prevent JavaScript from accessing session tokens (mitigating XSS theft), and Secure flags ensure cookies are only transmitted over TLS/HTTPS.",
+      "difficulty": "medium",
+      "sourcePages": [
+        10,
+        24
+      ]
+    },
+    {
+      "id": "wat-016",
+      "question": "What is Web Accessibility Testing (WCAG compliance)?",
+      "options": {
+        "A": "Evaluating whether a web application is usable by individuals with disabilities, including screen reader support, keyboard navigation, and color contrast.",
+        "B": "Testing if the website is available 24/7.",
+        "C": "Testing internet connection speed.",
+        "D": "Testing website translation to Spanish."
+      },
+      "correctAnswer": "A",
+      "explanation": "WCAG (Web Content Accessibility Guidelines) outlines standards for perceivable, operable, understandable, and robust content, verified via accessibility audits and screen readers.",
+      "difficulty": "easy",
+      "sourcePages": [
+        17
+      ]
+    },
+    {
+      "id": "wat-017",
+      "question": "In REST API testing for web backends, what are the standard expectations for idempotency of HTTP methods?",
+      "options": {
+        "A": "GET, PUT, and DELETE should be idempotent (multiple identical requests have the same side-effect as one); POST is typically non-idempotent.",
+        "B": "All HTTP methods must be non-idempotent.",
+        "C": "Only POST is idempotent.",
+        "D": "Idempotency only applies to email servers."
+      },
+      "correctAnswer": "A",
+      "explanation": "Idempotent HTTP methods (GET, PUT, DELETE) guarantee that repeating the request multiple times produces the exact same server state as a single invocation.",
+      "difficulty": "medium",
+      "sourcePages": [
+        25
+      ]
+    },
+    {
+      "id": "wat-018",
+      "question": "What is 'DOM XSS' (Document Object Model-based Cross-Site Scripting)?",
+      "options": {
+        "A": "An XSS vulnerability that executes entirely on the client side when unsafe JavaScript sinks (like innerHTML or eval) consume data from untrusted sources (like location.search).",
+        "B": "An error in the database server.",
+        "C": "A network cable failure.",
+        "D": "An uncompressed image file."
+      },
+      "correctAnswer": "A",
+      "explanation": "In DOM XSS, the malicious payload never touches the backend server; client-side JavaScript reads from an untrusted source (document.location) and writes directly to an unsafe sink (element.innerHTML).",
+      "difficulty": "hard",
+      "sourcePages": [
+        19
+      ]
+    },
+    {
+      "id": "wat-019",
+      "question": "What is a 'Content Security Policy' (CSP) header in web security?",
+      "options": {
+        "A": "An HTTP header that restricts the domains and resource types (scripts, images, styles) that the browser is permitted to load and execute.",
+        "B": "A copyright statement on the homepage.",
+        "C": "A database access token.",
+        "D": "A CSS stylesheet."
+      },
+      "correctAnswer": "A",
+      "explanation": "CSP is a powerful defense-in-depth header that mitigates XSS and data injection by whitelisting trusted script origins and disabling unauthorized inline scripts.",
+      "difficulty": "medium",
+      "sourcePages": [
+        24
+      ]
+    },
+    {
+      "id": "wat-020",
+      "question": "What is headless browser testing?",
+      "options": {
+        "A": "Running automated browser tests without rendering a graphical user interface (GUI) on screen, enabling fast execution in CI/CD environments.",
+        "B": "Testing without a keyboard.",
+        "C": "Testing without an internet connection.",
+        "D": "Testing code that has no main method."
+      },
+      "correctAnswer": "A",
+      "explanation": "Headless browsers (e.g. headless Chrome, Puppeteer, Playwright) execute the real browser engine in memory without UI rendering overhead, ideal for automated pipelines.",
+      "difficulty": "easy",
+      "sourcePages": [
+        16
+      ]
+    }
+  ]
+}

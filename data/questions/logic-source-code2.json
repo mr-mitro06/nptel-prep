@@ -1,0 +1,333 @@
+{
+  "topicId": "logic-source-code2",
+  "topicName": "Logic Coverage from Source Code (Part 2)",
+  "sourcePdf": "logic-source-code2.pdf",
+  "questions": [
+    {
+      "id": "lsc2-001",
+      "question": "In the classic TriTyp program, what is the primary purpose of the method?",
+      "options": {
+        "A": "To classify a triangle given the lengths of its three sides into Equilateral, Isosceles, Scalene, or Invalid.",
+        "B": "To calculate the area of a circle.",
+        "C": "To sort three floating-point numbers.",
+        "D": "To render 3D graphics on GPU."
+      },
+      "correctAnswer": "A",
+      "explanation": "TriTyp is a standard benchmark program in software testing literature that takes three side lengths (s1, s2, s3) and determines if they form a valid triangle and what type it is.",
+      "difficulty": "easy",
+      "sourcePages": [
+        2
+      ]
+    },
+    {
+      "id": "lsc2-002",
+      "question": "In TriTyp, what is the Triangle Inequality theorem condition for three sides a, b, and c to form a valid triangle?",
+      "options": {
+        "A": "(a + b > c) ∧ (a + c > b) ∧ (b + c > a)",
+        "B": "a + b + c = 180",
+        "C": "a^2 + b^2 = c^2",
+        "D": "a = b = c"
+      },
+      "correctAnswer": "A",
+      "explanation": "For any non-degenerate triangle, the sum of the lengths of any two sides must be strictly greater than the length of the remaining side.",
+      "difficulty": "easy",
+      "sourcePages": [
+        3
+      ]
+    },
+    {
+      "id": "lsc2-003",
+      "question": "What triangle classification should TriTyp return for side inputs (3, 3, 3)?",
+      "options": {
+        "A": "Equilateral",
+        "B": "Isosceles",
+        "C": "Scalene",
+        "D": "Not a Triangle"
+      },
+      "correctAnswer": "A",
+      "explanation": "All three sides are equal (3 = 3 = 3), satisfying the definition of an equilateral triangle.",
+      "difficulty": "easy",
+      "sourcePages": [
+        2,
+        4
+      ]
+    },
+    {
+      "id": "lsc2-004",
+      "question": "What triangle classification should TriTyp return for side inputs (3, 3, 5)?",
+      "options": {
+        "A": "Isosceles",
+        "B": "Equilateral",
+        "C": "Scalene",
+        "D": "Not a Triangle"
+      },
+      "correctAnswer": "A",
+      "explanation": "Two sides are equal (3 = 3) and they satisfy the triangle inequality (3 + 3 = 6 > 5), making it an isosceles triangle.",
+      "difficulty": "easy",
+      "sourcePages": [
+        2,
+        4
+      ]
+    },
+    {
+      "id": "lsc2-005",
+      "question": "What classification should TriTyp return for side inputs (1, 2, 5)?",
+      "options": {
+        "A": "Not a Triangle (Invalid)",
+        "B": "Scalene",
+        "C": "Isosceles",
+        "D": "Equilateral"
+      },
+      "correctAnswer": "A",
+      "explanation": "1 + 2 = 3, which is NOT greater than 5 (violates triangle inequality 1 + 2 > 5). Thus, no triangle can be formed.",
+      "difficulty": "easy",
+      "sourcePages": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": "lsc2-006",
+      "question": "What classification should TriTyp return for side inputs (3, 4, 5)?",
+      "options": {
+        "A": "Scalene",
+        "B": "Equilateral",
+        "C": "Isosceles",
+        "D": "Not a Triangle"
+      },
+      "correctAnswer": "A",
+      "explanation": "All three sides are of distinct lengths and satisfy the triangle inequality (3+4>5, 3+5>4, 4+5>3), making it a scalene triangle.",
+      "difficulty": "easy",
+      "sourcePages": [
+        2
+      ]
+    },
+    {
+      "id": "lsc2-007",
+      "question": "In TriTyp, what boundary condition occurs when inputs are (2, 2, 4)?",
+      "options": {
+        "A": "Degenerate line segment (2 + 2 = 4, not strictly greater), which must be classified as Not a Triangle.",
+        "B": "Isosceles triangle.",
+        "C": "Equilateral triangle.",
+        "D": "Right-angled triangle."
+      },
+      "correctAnswer": "A",
+      "explanation": "A common boundary error in TriTyp implementations is using >= instead of >. When 2 + 2 = 4, the sides collapse into a flat straight line segment, not a valid triangle.",
+      "difficulty": "medium",
+      "sourcePages": [
+        3,
+        5
+      ]
+    },
+    {
+      "id": "lsc2-008",
+      "question": "What happens in TriTyp if one of the side lengths is negative or zero, such as (-1, 4, 4)?",
+      "options": {
+        "A": "It must be rejected as Not a Triangle (or invalid input).",
+        "B": "It is classified as an isosceles triangle.",
+        "C": "The program enters an infinite loop.",
+        "D": "It is converted to positive absolute values."
+      },
+      "correctAnswer": "A",
+      "explanation": "Physical side lengths must be strictly positive (> 0). Negative or zero lengths must be caught and rejected by input validation predicates.",
+      "difficulty": "easy",
+      "sourcePages": [
+        3
+      ]
+    },
+    {
+      "id": "lsc2-009",
+      "question": "In the predicate 'if (s1 <= 0 || s2 <= 0 || s3 <= 0)', what does clause 's1 <= 0' determine under RACC?",
+      "options": {
+        "A": "It determines the predicate when minor clauses 's2 <= 0' and 's3 <= 0' are both FALSE.",
+        "B": "It determines the predicate when s2 and s3 are both negative.",
+        "C": "It never determines the predicate.",
+        "D": "Only when s1 == s2."
+      },
+      "correctAnswer": "A",
+      "explanation": "In an OR predicate (A || B || C), clause A determines the outcome if and only if all other clauses (B and C) are FALSE.",
+      "difficulty": "medium",
+      "sourcePages": [
+        6,
+        7
+      ]
+    },
+    {
+      "id": "lsc2-010",
+      "question": "Consider the compound equilateral test: 'if (s1 == s2 && s2 == s3)'. How many clauses are in this predicate?",
+      "options": {
+        "A": "2 clauses: (s1 == s2) and (s2 == s3)",
+        "B": "3 clauses",
+        "C": "1 clause",
+        "D": "4 clauses"
+      },
+      "correctAnswer": "A",
+      "explanation": "The predicate contains two relational sub-expressions joined by &&: clause 1 is (s1 == s2) and clause 2 is (s2 == s3). By transitivity, if both are true, s1 == s3.",
+      "difficulty": "easy",
+      "sourcePages": [
+        8
+      ]
+    },
+    {
+      "id": "lsc2-011",
+      "question": "For the predicate 'if (s1 == s2 && s2 == s3)', what test inputs satisfy RACC for the major clause (s1 == s2)?",
+      "options": {
+        "A": "(3, 3, 3) [True, True -> True] and (4, 3, 3) [False, True -> False]",
+        "B": "(3, 3, 3) and (2, 2, 2)",
+        "C": "(3, 4, 5) and (1, 2, 3)",
+        "D": "(0, 0, 0) and (1, 1, 1)"
+      },
+      "correctAnswer": "A",
+      "explanation": "For major clause (s1 == s2), minor clause (s2 == s3) must be fixed to TRUE (e.g. s2=3, s3=3). Then test 1 uses s1=3 (clause is True), and test 2 uses s1=4 (clause is False).",
+      "difficulty": "hard",
+      "sourcePages": [
+        8,
+        9
+      ]
+    },
+    {
+      "id": "lsc2-012",
+      "question": "Why is TriTyp frequently used as an illustrative benchmark in software testing education?",
+      "options": {
+        "A": "Despite having few lines of code, it features rich decision logic, subtle boundary conditions, and non-trivial relational clause dependencies.",
+        "B": "Because it was the first program ever written.",
+        "C": "Because it has no branch statements.",
+        "D": "Because it runs only on quantum computers."
+      },
+      "correctAnswer": "A",
+      "explanation": "TriTyp is compact yet contains rich boundary logic (triangle inequality, invalid inputs, edge cases), making it an ideal case study for logic criteria and testing techniques.",
+      "difficulty": "easy",
+      "sourcePages": [
+        2
+      ]
+    },
+    {
+      "id": "lsc2-013",
+      "question": "In TriTyp, if integer overflow occurs during side addition (e.g., s1 + s2 wraps around to negative), what defect arises?",
+      "options": {
+        "A": "A valid large triangle could be incorrectly flagged as invalid because (s1 + s2 > s3) evaluates to false due to arithmetic overflow.",
+        "B": "The program automatically converts to floating point.",
+        "C": "The sides become imaginary numbers.",
+        "D": "The compiler catches it at runtime."
+      },
+      "correctAnswer": "A",
+      "explanation": "In 32-bit signed integer arithmetic, if s1 and s2 are very large positive numbers (e.g. Integer.MAX_VALUE - 1), s1 + s2 overflows to negative, corrupting the inequality check.",
+      "difficulty": "hard",
+      "sourcePages": [
+        10
+      ]
+    },
+    {
+      "id": "lsc2-014",
+      "question": "How many permutation tests are necessary to thoroughly test isosceles triangles in TriTyp?",
+      "options": {
+        "A": "3 permutations: (s1 == s2), (s1 == s3), and (s2 == s3).",
+        "B": "1 test is sufficient.",
+        "C": "9 tests.",
+        "D": "0 tests."
+      },
+      "correctAnswer": "A",
+      "explanation": "An isosceles triangle can have any pair of its three sides equal: (a, a, b), (a, b, a), or (b, a, a). All three permutations must be tested to ensure code doesn't favor one pairing.",
+      "difficulty": "medium",
+      "sourcePages": [
+        11
+      ]
+    },
+    {
+      "id": "lsc2-015",
+      "question": "If TriTyp is implemented using nested if-statements rather than compound boolean expressions, how does this affect testing?",
+      "options": {
+        "A": "The predicates become simpler (single clauses), shifting the testing focus from logic coverage criteria to structural branch and path coverage on the CFG.",
+        "B": "It eliminates all bugs automatically.",
+        "C": "It makes the code impossible to test.",
+        "D": "It doubles the number of input parameters."
+      },
+      "correctAnswer": "A",
+      "explanation": "Refactoring compound predicates into nested single-clause conditionals translates logic coverage directly into branch/edge coverage in the resulting CFG.",
+      "difficulty": "medium",
+      "sourcePages": [
+        12
+      ]
+    },
+    {
+      "id": "lsc2-016",
+      "question": "What is an 'off-by-one' boundary value test for the triangle inequality check 'a + b > c' with a = 5 and b = 5?",
+      "options": {
+        "A": "c = 9 (valid, 10 > 9), c = 10 (boundary equality, invalid), c = 11 (invalid, 10 < 11)",
+        "B": "c = 0",
+        "C": "c = 100",
+        "D": "c = -5"
+      },
+      "correctAnswer": "A",
+      "explanation": "Boundary value testing probes values immediately on, below, and above the boundary: c=9 (just inside valid region), c=10 (on boundary threshold), c=11 (just outside).",
+      "difficulty": "medium",
+      "sourcePages": [
+        5
+      ]
+    },
+    {
+      "id": "lsc2-017",
+      "question": "Suppose TriTyp has an optimization that sorts the side lengths such that s1 <= s2 <= s3 first. How does this simplify the validity check?",
+      "options": {
+        "A": "Only the single inequality (s1 + s2 > s3) needs to be tested, because the other two inequalities (s1 + s3 > s2 and s2 + s3 > s1) are mathematically guaranteed.",
+        "B": "All checks are eliminated.",
+        "C": "It converts all triangles to equilateral.",
+        "D": "It requires testing all 6 permutations."
+      },
+      "correctAnswer": "A",
+      "explanation": "If s3 is the longest side (s1 <= s2 <= s3), adding s3 to any positive side will trivially exceed the remaining side. Thus, only s1 + s2 > s3 needs verification.",
+      "difficulty": "medium",
+      "sourcePages": [
+        13
+      ]
+    },
+    {
+      "id": "lsc2-018",
+      "question": "In TriTyp testing, what would a test oracle checking the return code 0 (Invalid), 1 (Scalene), 2 (Isosceles), 3 (Equilateral) verify?",
+      "options": {
+        "A": "Revealability: confirming that the observable output matches the mathematically expected classification for the input sides.",
+        "B": "The CPU temperature.",
+        "C": "The disk space remaining.",
+        "D": "The compiler version."
+      },
+      "correctAnswer": "A",
+      "explanation": "Comparing the returned type against ground truth for that side combination constitutes the test oracle step (Revealability).",
+      "difficulty": "easy",
+      "sourcePages": [
+        14
+      ]
+    },
+    {
+      "id": "lsc2-019",
+      "question": "What happens if a test suite for TriTyp only includes valid triangles (e.g. Equilateral, Isosceles, Scalene) but NO invalid inputs?",
+      "options": {
+        "A": "It fails to achieve complete branch coverage, missing the entire error-handling logic for non-triangles.",
+        "B": "It achieves 100% path coverage.",
+        "C": "It is sufficient for production deployment.",
+        "D": "The compiler throws an error."
+      },
+      "correctAnswer": "A",
+      "explanation": "Omitting invalid inputs leaves the entire 'Not a Triangle' branch untested, failing branch coverage and leaving invalid-input bugs completely exposed.",
+      "difficulty": "easy",
+      "sourcePages": [
+        15
+      ]
+    },
+    {
+      "id": "lsc2-020",
+      "question": "Which of the following side sets represents an Isosceles Right Triangle?",
+      "options": {
+        "A": "(1, 1, √2) or approximately (1, 1, 1.414)",
+        "B": "(3, 4, 5)",
+        "C": "(2, 2, 2)",
+        "D": "(5, 12, 13)"
+      },
+      "correctAnswer": "A",
+      "explanation": "Two sides are equal (1, 1) and their squares satisfy the Pythagorean theorem: 1^2 + 1^2 = 2 = (√2)^2. This is an isosceles right triangle.",
+      "difficulty": "medium",
+      "sourcePages": [
+        4
+      ]
+    }
+  ]
+}

@@ -1,0 +1,334 @@
+{
+  "topicId": "exer-student",
+  "topicName": "Comprehensive Testing Exercises & Case Studies",
+  "sourcePdf": "exer-student.pdf",
+  "questions": [
+    {
+      "id": "exer-001",
+      "question": "In a Control Flow Graph with nodes N = {1, 2, 3, 4, 5, 6} and edges E = {(1, 2), (2, 3), (2, 4), (3, 5), (4, 5), (5, 2), (5, 6)}, what is the Cyclomatic Complexity V(G)?",
+      "options": {
+        "A": "V(G) = 7 - 6 + 2 = 3",
+        "B": "V(G) = 6 - 7 + 2 = 1",
+        "C": "V(G) = 7 + 6 - 2 = 11",
+        "D": "V(G) = 4"
+      },
+      "correctAnswer": "A",
+      "explanation": "Using McCabe's formula V(G) = |E| - |N| + 2P with P=1: V(G) = 7 - 6 + 2 = 3.",
+      "difficulty": "easy",
+      "sourcePages": [
+        15,
+        16
+      ]
+    },
+    {
+      "id": "exer-002",
+      "question": "For a function with 3 input characteristics: C1 with 3 blocks, C2 with 2 blocks, and C3 with 4 blocks. If Base Choice Coverage (BCC) is used, how many tests are generated?",
+      "options": {
+        "A": "1 + (3 - 1) + (2 - 1) + (4 - 1) = 1 + 2 + 1 + 3 = 7 tests",
+        "B": "24 tests",
+        "C": "9 tests",
+        "D": "8 tests"
+      },
+      "correctAnswer": "A",
+      "explanation": "Formula for BCC: 1 + ∑ (|Bi| - 1) = 1 + (3 - 1) + (2 - 1) + (4 - 1) = 1 + 2 + 1 + 3 = 7 tests.",
+      "difficulty": "easy",
+      "sourcePages": [
+        25
+      ]
+    },
+    {
+      "id": "exer-003",
+      "question": "For the same function (C1: 3, C2: 2, C3: 4), how many tests are required for All Combinations Coverage (ACoC)?",
+      "options": {
+        "A": "3 × 2 × 4 = 24 tests",
+        "B": "7 tests",
+        "C": "9 tests",
+        "D": "12 tests"
+      },
+      "correctAnswer": "A",
+      "explanation": "All Combinations Coverage computes the full Cartesian product: 3 × 2 × 4 = 24 tests.",
+      "difficulty": "easy",
+      "sourcePages": [
+        25
+      ]
+    },
+    {
+      "id": "exer-004",
+      "question": "In a graph with nodes {1, 2, 3} and edges {(1, 2), (2, 3), (3, 1), (3, 2)}, what is the path [2, 3, 2]?",
+      "options": {
+        "A": "A simple cycle and a prime path of length 2.",
+        "B": "A path of length 3.",
+        "C": "Not a simple path.",
+        "D": "A test path from initial to final node."
+      },
+      "correctAnswer": "A",
+      "explanation": "The path [2, 3, 2] visits edge (2, 3) and edge (3, 2), starting and ending at node 2 without repeating internal nodes. It is a simple cycle and a prime path of length 2.",
+      "difficulty": "medium",
+      "sourcePages": [
+        32,
+        33
+      ]
+    },
+    {
+      "id": "exer-005",
+      "question": "Consider predicate p = a ∧ (b ∨ c). Which test pair satisfies Restricted Active Clause Coverage (RACC) for major clause 'a'?",
+      "options": {
+        "A": "(a=T, b=T, c=F) and (a=F, b=T, c=F)",
+        "B": "(a=T, b=T, c=F) and (a=F, b=F, c=T)",
+        "C": "(a=T, b=F, c=F) and (a=F, b=F, c=F)",
+        "D": "(a=T, b=T, c=T) and (a=F, b=F, c=F)"
+      },
+      "correctAnswer": "A",
+      "explanation": "For major clause 'a', pa = b ∨ c. We must choose minor clauses making (b ∨ c) TRUE (e.g. b=T, c=F). RACC mandates that minor clauses stay identical in both tests: (T, T, F) gives p=T; (F, T, F) gives p=F.",
+      "difficulty": "hard",
+      "sourcePages": [
+        48,
+        49
+      ]
+    },
+    {
+      "id": "exer-006",
+      "question": "If test suite TS executed 120 mutants and strongly killed 90 mutants, and 15 mutants were identified as equivalent mutants, what is the Mutation Score?",
+      "options": {
+        "A": "90 / (120 - 15) = 90 / 105 ≈ 85.71%",
+        "B": "90 / 120 = 75.00%",
+        "C": "75 / 105 ≈ 71.43%",
+        "D": "100%"
+      },
+      "correctAnswer": "A",
+      "explanation": "Mutation Score = K / (M - E) = 90 / (120 - 15) = 90 / 105 ≈ 85.71%.",
+      "difficulty": "medium",
+      "sourcePages": [
+        65
+      ]
+    },
+    {
+      "id": "exer-007",
+      "question": "Given test suite T = {T1, T2, T3, T4} and 3 faults detected at test positions: Fault 1 at T1, Fault 2 at T3, Fault 3 at T4. What is the APFD value?",
+      "options": {
+        "A": "APFD = 1 - (1 + 3 + 4) / (4 × 3) + 1 / (2 × 4) = 1 - 8/12 + 1/8 = 1 - 0.667 + 0.125 = 0.458 (45.8%)",
+        "B": "0.750 (75.0%)",
+        "C": "0.850 (85.0%)",
+        "D": "0.500 (50.0%)"
+      },
+      "correctAnswer": "A",
+      "explanation": "APFD = 1 - (TF1 + TF2 + TF3) / (n × m) + 1 / (2n) = 1 - (1 + 3 + 4) / 12 + 1 / 8 = 1 - 2/3 + 1/8 = 1/3 + 1/8 = 11/24 ≈ 0.458 (45.83%).",
+      "difficulty": "hard",
+      "sourcePages": [
+        82
+      ]
+    },
+    {
+      "id": "exer-008",
+      "question": "In a bounded stack program with capacity 3, which sequence of operations exercises an Exceptional / Error State transition?",
+      "options": {
+        "A": "push(1); push(2); push(3); push(4); // attempting push when full",
+        "B": "push(1); pop();",
+        "C": "push(1); push(2); pop();",
+        "D": "push(1); top();"
+      },
+      "correctAnswer": "A",
+      "explanation": "The stack has capacity 3. Pushing a 4th item attempts to transition past full capacity, testing the StackOverflow exception boundary.",
+      "difficulty": "easy",
+      "sourcePages": [
+        90
+      ]
+    },
+    {
+      "id": "exer-009",
+      "question": "What is the du-path for variable 'sum' in: '1: sum = 0; 2: i = 1; 3: while (i <= N) { 4: sum = sum + a[i]; 5: i++; } 6: return sum;' from statement 1 to statement 6?",
+      "options": {
+        "A": "[1, 2, 3, 6] (taking loop zero times, when N = 0)",
+        "B": "[1, 2, 3, 4, 5, 3, 6]",
+        "C": "[1, 4, 6]",
+        "D": "There is no def-clear path."
+      },
+      "correctAnswer": "A",
+      "explanation": "If the loop executes 1 or more times, statement 4 redefines sum, killing def 1. The only def-clear path from def at 1 to use at 6 is when the loop condition at 3 is false immediately (N=0): [1, 2, 3, 6].",
+      "difficulty": "hard",
+      "sourcePages": [
+        38,
+        39
+      ]
+    },
+    {
+      "id": "exer-010",
+      "question": "For a binary search method, which input represents an essential boundary test case for Input Space Partitioning?",
+      "options": {
+        "A": "Empty array (size 0), single-element array with target present, single-element array with target absent, target at first index, target at last index.",
+        "B": "An array of 1,000,000 random strings.",
+        "C": "Running binary search on a linked list.",
+        "D": "Passing null function pointers."
+      },
+      "correctAnswer": "A",
+      "explanation": "Standard boundary test cases for search probe: empty collection, singleton matching, singleton non-matching, extreme ends of range (first and last elements), and target not present.",
+      "difficulty": "easy",
+      "sourcePages": [
+        22,
+        23
+      ]
+    },
+    {
+      "id": "exer-011",
+      "question": "Consider graph with edges (1, 2), (2, 3), (3, 2), (2, 4). Does test path [1, 2, 3, 2, 4] tour prime path [2, 3, 2] directly?",
+      "options": {
+        "A": "Yes, [2, 3, 2] is a contiguous subpath of [1, 2, 3, 2, 4].",
+        "B": "No, it tours it with sidetrips.",
+        "C": "No, because node 1 is at the beginning.",
+        "D": "Only if node 4 is omitted."
+      },
+      "correctAnswer": "A",
+      "explanation": "[2, 3, 2] appears directly as contiguous subpath in [1, 2, 3, 2, 4]. Therefore, the test path tours [2, 3, 2] directly without sidetrips.",
+      "difficulty": "medium",
+      "sourcePages": [
+        34
+      ]
+    },
+    {
+      "id": "exer-012",
+      "question": "In logic coverage, if predicate p = (A ∨ B) ∧ (C ∨ D), how many clauses are in predicate p?",
+      "options": {
+        "A": "4 clauses: A, B, C, D",
+        "B": "2 clauses",
+        "C": "1 clause",
+        "D": "8 clauses"
+      },
+      "correctAnswer": "A",
+      "explanation": "There are 4 distinct atomic clauses: A, B, C, and D, connected by OR and AND operators.",
+      "difficulty": "easy",
+      "sourcePages": [
+        50
+      ]
+    },
+    {
+      "id": "exer-013",
+      "question": "For the same predicate p = (A ∨ B) ∧ (C ∨ D), how many test cases are required for Combinatorial Coverage (CoC)?",
+      "options": {
+        "A": "2^4 = 16 tests",
+        "B": "8 tests",
+        "C": "4 tests",
+        "D": "5 tests"
+      },
+      "correctAnswer": "A",
+      "explanation": "Combinatorial Coverage tests all 2^N combinations of clause truth values. For 4 clauses: 2^4 = 16 tests.",
+      "difficulty": "easy",
+      "sourcePages": [
+        50
+      ]
+    },
+    {
+      "id": "exer-014",
+      "question": "If original statement is 'if (count < MAX)' and a mutant replaces it with 'if (count <= MAX)', what input test value is uniquely required to strongly kill this mutant?",
+      "options": {
+        "A": "count = MAX",
+        "B": "count = 0",
+        "C": "count = MAX - 1",
+        "D": "count = MAX + 1"
+      },
+      "correctAnswer": "A",
+      "explanation": "When count < MAX, both evaluate to True. When count > MAX, both evaluate to False. Only at the exact boundary count == MAX does original evaluate to False while mutant evaluates to True.",
+      "difficulty": "medium",
+      "sourcePages": [
+        68
+      ]
+    },
+    {
+      "id": "exer-015",
+      "question": "What is the relationship between Edge Coverage (EC) and Branch Coverage in standard source code testing?",
+      "options": {
+        "A": "They are conceptually identical: executing every edge in a CFG guarantees executing every decision branch outcome.",
+        "B": "Branch coverage requires twice as many tests as edge coverage.",
+        "C": "Edge coverage applies only to hardware.",
+        "D": "Branch coverage does not cover if statements."
+      },
+      "correctAnswer": "A",
+      "explanation": "In CFG representation of source code, edges departing from decision nodes represent conditional branches. Hence, 100% Edge Coverage is isomorphic to 100% Branch Coverage.",
+      "difficulty": "easy",
+      "sourcePages": [
+        18
+      ]
+    },
+    {
+      "id": "exer-016",
+      "question": "In data flow testing, if variable 'total' has 2 definitions (node 1, node 4) and 3 reachable uses (node 3, node 5, node 6), what is the maximum number of du-pairs for 'total'?",
+      "options": {
+        "A": "2 × 3 = 6 du-pairs (assuming def-clear paths exist for each combination)",
+        "B": "5 du-pairs",
+        "C": "2 du-pairs",
+        "D": "3 du-pairs"
+      },
+      "correctAnswer": "A",
+      "explanation": "Each definition can potentially pair with each reachable use. With 2 defs and 3 uses, at most 2 × 3 = 6 du-pairs can be formed.",
+      "difficulty": "medium",
+      "sourcePages": [
+        41
+      ]
+    },
+    {
+      "id": "exer-017",
+      "question": "Suppose a test suite achieves 100% Node Coverage on a CFG with an 'if (flag) { x = 1; }' without an else-block. Does this test suite necessarily achieve 100% Edge Coverage?",
+      "options": {
+        "A": "No! A single test with flag=True visits all nodes (satisfying Node Coverage), but the False edge bypassing the if-block was never executed.",
+        "B": "Yes, Node Coverage always subsumes Edge Coverage.",
+        "C": "Yes, if the language is Java.",
+        "D": "Only when flag is boolean."
+      },
+      "correctAnswer": "A",
+      "explanation": "This classic example demonstrates why Edge Coverage is strictly stronger than Node Coverage: the empty false branch edge is missed if only the true branch is tested.",
+      "difficulty": "medium",
+      "sourcePages": [
+        19
+      ]
+    },
+    {
+      "id": "exer-018",
+      "question": "In a state machine for an online store order with states {Cart, Placed, Shipped, Delivered, Cancelled}, how many transitions are covered if a test path is [Cart, Placed, Shipped, Delivered]?",
+      "options": {
+        "A": "3 transitions: (Cart→Placed), (Placed→Shipped), (Shipped→Delivered)",
+        "B": "4 transitions",
+        "C": "5 transitions",
+        "D": "1 transition"
+      },
+      "correctAnswer": "A",
+      "explanation": "The path consists of 4 states and traverses 3 directed transitions between them.",
+      "difficulty": "easy",
+      "sourcePages": [
+        58
+      ]
+    },
+    {
+      "id": "exer-019",
+      "question": "What is the primary objective of case study exercises in the NPTEL software testing course?",
+      "options": {
+        "A": "To synthesize and apply multiple theoretical criteria (ISP, Graph Coverage, Logic Coverage, Mutation) to real-world software components and evaluate tradeoffs.",
+        "B": "To teach students how to write HTML.",
+        "C": "To replace software engineers with AI.",
+        "D": "To memorize compiler error codes."
+      },
+      "correctAnswer": "A",
+      "explanation": "Case study exercises bridge theory and practice, developing skills to construct graphs, evaluate logic formulas, partition input spaces, and optimize test suites on practical programs.",
+      "difficulty": "easy",
+      "sourcePages": [
+        2,
+        100
+      ]
+    },
+    {
+      "id": "exer-020",
+      "question": "Why is systematic coverage-based testing superior to purely ad-hoc / random testing?",
+      "options": {
+        "A": "It provides measurable, objective stopping criteria, exposes boundary corner cases methodically, and ensures all structural and logical pathways are verified.",
+        "B": "It produces zero test cases.",
+        "C": "It is faster than compiling code.",
+        "D": "It eliminates the need for test execution."
+      },
+      "correctAnswer": "A",
+      "explanation": "Coverage-driven engineering replaces guesswork with formal mathematical criteria (graphs, logic, partitions), ensuring systematic defect detection and quantifiable quality benchmarks.",
+      "difficulty": "easy",
+      "sourcePages": [
+        105,
+        110
+      ]
+    }
+  ]
+}

@@ -1,0 +1,333 @@
+{
+  "topicId": "mutation-operators-source-code",
+  "topicName": "Mutation Operators for Source Code",
+  "sourcePdf": "mutation-operators-source-code.pdf",
+  "questions": [
+    {
+      "id": "mop-001",
+      "question": "What does the Arithmetic Operator Replacement (AOR) mutation operator do?",
+      "options": {
+        "A": "Replaces each occurrence of an arithmetic operator (+, -, *, /, %) with each of the other arithmetic operators.",
+        "B": "Replaces integers with floating-point numbers.",
+        "C": "Deletes all mathematical equations.",
+        "D": "Replaces if statements with while loops."
+      },
+      "correctAnswer": "A",
+      "explanation": "AOR systematically substitutes basic arithmetic operators (e.g. replacing 'a + b' with 'a - b', 'a * b', 'a / b', 'a % b').",
+      "difficulty": "easy",
+      "sourcePages": [
+        5,
+        6
+      ]
+    },
+    {
+      "id": "mop-002",
+      "question": "What does the Relational Operator Replacement (ROR) mutation operator do?",
+      "options": {
+        "A": "Replaces relational operators (<, <=, >, >=, ==, !=) with each of the other relational operators and boolean constants (True, False).",
+        "B": "Replaces database foreign keys.",
+        "C": "Converts variables into relational tables.",
+        "D": "Replaces strings with integers."
+      },
+      "correctAnswer": "A",
+      "explanation": "ROR targets comparison predicates by replacing each relational operator with other comparison operators (e.g., swapping '<' for '<=', '==', '!=', etc.).",
+      "difficulty": "easy",
+      "sourcePages": [
+        6,
+        7
+      ]
+    },
+    {
+      "id": "mop-003",
+      "question": "What does the Conditional Operator Replacement (COR) operator do?",
+      "options": {
+        "A": "Replaces logical connectives (&&, ||) with each other, or with left/right operand projections.",
+        "B": "Replaces conditional branches with print statements.",
+        "C": "Replaces class constructors.",
+        "D": "Converts while loops into for loops."
+      },
+      "correctAnswer": "A",
+      "explanation": "COR mutates logical expressions by swapping '&&' with '||' (or vice versa) and testing boolean connective logic.",
+      "difficulty": "easy",
+      "sourcePages": [
+        7
+      ]
+    },
+    {
+      "id": "mop-004",
+      "question": "What does the Unary Operator Insertion (UOI) mutation operator do?",
+      "options": {
+        "A": "Inserts unary operators (e.g. -, ++, --, !) before or after variables and expressions.",
+        "B": "Deletes the main method.",
+        "C": "Replaces two variables with one.",
+        "D": "Inserts comments into source code."
+      },
+      "correctAnswer": "A",
+      "explanation": "UOI inserts unary negation, increment, decrement, or logical NOT (e.g., changing 'x' to '-x', '++x', or '!x').",
+      "difficulty": "easy",
+      "sourcePages": [
+        8
+      ]
+    },
+    {
+      "id": "mop-005",
+      "question": "What does the Scalar Variable Replacement (SVR) operator do?",
+      "options": {
+        "A": "Replaces each occurrence of a scalar variable with other scalar variables of compatible type in the same scope.",
+        "B": "Converts scalar variables into arrays.",
+        "C": "Deletes all scalar variables.",
+        "D": "Renames variables in the debugger."
+      },
+      "correctAnswer": "A",
+      "explanation": "SVR replaces variable references with other in-scope variables of the same type (e.g. replacing 'width' with 'height'), mimicking common typographical errors.",
+      "difficulty": "medium",
+      "sourcePages": [
+        9
+      ]
+    },
+    {
+      "id": "mop-006",
+      "question": "What is 'Selective Mutation'?",
+      "options": {
+        "A": "Selecting a small, carefully chosen subset of mutation operators that drastically reduces the total number of mutants while maintaining almost 100% test effectiveness.",
+        "B": "Mutating only test files rather than source code.",
+        "C": "Selecting mutants at random without criteria.",
+        "D": "Mutating code only on weekends."
+      },
+      "correctAnswer": "A",
+      "explanation": "Exhaustive mutation generates excessive mutants. Selective mutation identifies a core set of 5 key operators (e.g., AOR, ROR, COR, UOI, SVR) that retains ~99% fault detection efficacy with a fraction of mutants.",
+      "difficulty": "medium",
+      "sourcePages": [
+        4,
+        10
+      ]
+    },
+    {
+      "id": "mop-007",
+      "question": "What does the Assignment Operator Replacement (ASR) operator do?",
+      "options": {
+        "A": "Replaces assignment operators (e.g. '=', '+=', '-=', '*=', '/=') with each other.",
+        "B": "Deletes assignment statements.",
+        "C": "Swaps LHS and RHS.",
+        "D": "Replaces variables with null."
+      },
+      "correctAnswer": "A",
+      "explanation": "ASR targets assignment shorthand operators (e.g. replacing 'x += y' with 'x -= y' or 'x = y').",
+      "difficulty": "easy",
+      "sourcePages": [
+        8
+      ]
+    },
+    {
+      "id": "mop-008",
+      "question": "In the statement 'int z = x + y;', how many AOR mutants are generated by replacing '+' with the remaining 4 standard arithmetic operators (-, *, /, %)?",
+      "options": {
+        "A": "4 mutants",
+        "B": "1 mutant",
+        "C": "10 mutants",
+        "D": "0 mutants"
+      },
+      "correctAnswer": "A",
+      "explanation": "Replacing '+' with '-', '*', '/', and '%' produces exactly 4 first-order AOR mutants.",
+      "difficulty": "easy",
+      "sourcePages": [
+        5
+      ]
+    },
+    {
+      "id": "mop-009",
+      "question": "What does the Statement Deletion (SDL) mutation operator do?",
+      "options": {
+        "A": "Deletes a statement or replaces it with a no-op.",
+        "B": "Deletes the entire file.",
+        "C": "Deletes the git commit history.",
+        "D": "Deletes test assertions."
+      },
+      "correctAnswer": "A",
+      "explanation": "SDL tests whether each statement is truly necessary for correctness by removing it completely and checking if the test suite fails.",
+      "difficulty": "easy",
+      "sourcePages": [
+        11
+      ]
+    },
+    {
+      "id": "mop-010",
+      "question": "If original code is 'if (x > 0)' and ROR mutates it to 'if (true)', what does killing this mutant require?",
+      "options": {
+        "A": "A test case where x <= 0 that triggers an observable failure because the mutant incorrectly enters the true branch.",
+        "B": "A test where x = 100.",
+        "C": "A test that runs with x as null.",
+        "D": "No test can kill it."
+      },
+      "correctAnswer": "A",
+      "explanation": "When x > 0, original and mutant both take the true branch. To kill it, a test must supply x <= 0 (where original takes false branch but mutant takes true branch) and verify output difference.",
+      "difficulty": "medium",
+      "sourcePages": [
+        6,
+        7
+      ]
+    },
+    {
+      "id": "mop-011",
+      "question": "What is the primary rationale for designing mutation operators that mimic 'typical programmer mistakes'?",
+      "options": {
+        "A": "To ensure tests are targeted at realistic faults likely to be introduced during human development, adhering to the Competent Programmer Hypothesis.",
+        "B": "To make testing as easy as possible.",
+        "C": "Because computers do not make mistakes.",
+        "D": "To avoid writing test assertions."
+      },
+      "correctAnswer": "A",
+      "explanation": "Operators are designed based on empirical studies of common coding slips (e.g., using < instead of <=, off-by-one errors, wrong arithmetic operators, inverted logic).",
+      "difficulty": "easy",
+      "sourcePages": [
+        3
+      ]
+    },
+    {
+      "id": "mop-012",
+      "question": "What does Logical Operator Replacement (LOR) mutate?",
+      "options": {
+        "A": "Bitwise and logical operators (such as &, |, ^) by substituting them with alternative bitwise operators.",
+        "B": "Only boolean literals.",
+        "C": "Variable names.",
+        "D": "Class declarations."
+      },
+      "correctAnswer": "A",
+      "explanation": "LOR mutates bitwise and logical connective operators (&, |, ^, ~).",
+      "difficulty": "medium",
+      "sourcePages": [
+        7
+      ]
+    },
+    {
+      "id": "mop-013",
+      "question": "In the statement 'y = x * 2;', if an AOR operator changes '*' to '/', what input for x will FAIL to kill the mutant if output is integer-truncated?",
+      "options": {
+        "A": "x = 0 (because 0 * 2 = 0 and 0 / 2 = 0, both producing identical output!)",
+        "B": "x = 10",
+        "C": "x = -5",
+        "D": "x = 3"
+      },
+      "correctAnswer": "A",
+      "explanation": "For x = 0: original computes 0 * 2 = 0; mutant computes 0 / 2 = 0. The output is identical, so x = 0 fails to kill the mutant. A test like x = 4 (8 vs 2) is needed.",
+      "difficulty": "medium",
+      "sourcePages": [
+        5
+      ]
+    },
+    {
+      "id": "mop-014",
+      "question": "What is 'Constant Replacement' (CR) operator?",
+      "options": {
+        "A": "Replaces literal constants with boundary values (e.g. replacing constant C with C+1, C-1, 0, or -C).",
+        "B": "Replaces variable names with numbers.",
+        "C": "Deletes all constants.",
+        "D": "Declares all variables as static final."
+      },
+      "correctAnswer": "A",
+      "explanation": "Constant Replacement mutates hardcoded literals (e.g. changing 10 to 9, 11, 0, or -10) to probe boundary tolerances.",
+      "difficulty": "easy",
+      "sourcePages": [
+        8
+      ]
+    },
+    {
+      "id": "mop-015",
+      "question": "Why is mutant reduction (e.g. selective mutation or random sampling) essential in large software codebases?",
+      "options": {
+        "A": "A large codebase can easily yield 500,000+ mutants; running the entire test suite on each would take days without reduction.",
+        "B": "Compilers cannot compile more than 100 files.",
+        "C": "Git repositories have a 10 mutant limit.",
+        "D": "Mutants expire after 1 hour."
+      },
+      "correctAnswer": "A",
+      "explanation": "Exhaustive mutation on millions of lines of code produces millions of mutants. Reducing mutant count via selective operators makes mutation testing practical in CI/CD pipelines.",
+      "difficulty": "easy",
+      "sourcePages": [
+        4,
+        12
+      ]
+    },
+    {
+      "id": "mop-016",
+      "question": "What does the Absolute Value Insertion (ABS) operator do?",
+      "options": {
+        "A": "Replaces an expression 'e' with 'abs(e)' or '-abs(e)'.",
+        "B": "Deletes the variable.",
+        "C": "Converts integers to strings.",
+        "D": "Rounds numbers to nearest integer."
+      },
+      "correctAnswer": "A",
+      "explanation": "ABS mutates arithmetic expressions by forcing them to their absolute value or negative absolute value, testing sign-dependence.",
+      "difficulty": "easy",
+      "sourcePages": [
+        9
+      ]
+    },
+    {
+      "id": "mop-017",
+      "question": "What is an 'operator-based mutant generator'?",
+      "options": {
+        "A": "A static tool that parses the Abstract Syntax Tree (AST) of the program and applies transformation rules corresponding to defined mutation operators.",
+        "B": "A human software tester.",
+        "C": "A network router.",
+        "D": "A database indexer."
+      },
+      "correctAnswer": "A",
+      "explanation": "Modern mutation testing frameworks (like Pitest for Java or MutPy for Python) parse code into ASTs and rewrite nodes matching mutation operator patterns.",
+      "difficulty": "medium",
+      "sourcePages": [
+        13
+      ]
+    },
+    {
+      "id": "mop-018",
+      "question": "In Java bytecode mutation testing, why do modern tools mutate bytecode directly rather than source code?",
+      "options": {
+        "A": "Mutating bytecode in-memory is much faster because it avoids recompiling the Java source code from scratch for every mutant.",
+        "B": "Bytecode has no bugs.",
+        "C": "Java source code is read-only.",
+        "D": "Bytecode mutation cannot generate equivalent mutants."
+      },
+      "correctAnswer": "A",
+      "explanation": "Direct bytecode manipulation (using frameworks like ASM) mutates compiled class files in memory and loads them via custom ClassLoaders in milliseconds, bypassing javac overhead.",
+      "difficulty": "hard",
+      "sourcePages": [
+        14
+      ]
+    },
+    {
+      "id": "mop-019",
+      "question": "Which of the following mutation operators belongs to the classic '5 Selective Mutation Operators' identified by Offutt et al.?",
+      "options": {
+        "A": "AOR, ROR, COR, UOI, SVR",
+        "B": "SQL, HTML, CSS, XML, JSON",
+        "C": "ADD, SUB, MUL, DIV, MOD",
+        "D": "TRY, CATCH, FINALLY, THROW, THROWS"
+      },
+      "correctAnswer": "A",
+      "explanation": "Offutt's empirical research showed that the 5 selective operators (AOR, ROR, COR, UOI, SVR) achieve over 99% coverage effectiveness compared to applying all 22+ operators.",
+      "difficulty": "medium",
+      "sourcePages": [
+        10
+      ]
+    },
+    {
+      "id": "mop-020",
+      "question": "How does killing a mutant that was created by replacing 'a < b' with 'a <= b' validate the test suite?",
+      "options": {
+        "A": "It proves the test suite includes a precise boundary test case where a == b.",
+        "B": "It proves the test suite has 10,000 tests.",
+        "C": "It proves the code is written in C++.",
+        "D": "It proves the code runs in O(1) time."
+      },
+      "correctAnswer": "A",
+      "explanation": "The only input where 'a < b' evaluates differently from 'a <= b' is the exact boundary condition a == b. Killing this mutant confirms that boundary value testing was performed.",
+      "difficulty": "medium",
+      "sourcePages": [
+        6,
+        15
+      ]
+    }
+  ]
+}

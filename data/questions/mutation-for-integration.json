@@ -1,0 +1,338 @@
+{
+  "topicId": "mutation-for-integration",
+  "topicName": "Mutation Testing for Integration",
+  "sourcePdf": "mutation-for-integration.pdf",
+  "questions": [
+    {
+      "id": "mfi-001",
+      "question": "What is the primary target of Integration Mutation (Interface Mutation)?",
+      "options": {
+        "A": "Interactions, method invocations, parameter exchanges, and shared state at the boundaries between communicating modules or classes.",
+        "B": "Single arithmetic statements inside private helper methods.",
+        "C": "HTML styling.",
+        "D": "Operating system device drivers."
+      },
+      "correctAnswer": "A",
+      "explanation": "Integration mutation tests whether the connections and data exchanges between software units (caller and callee methods, parameters, return values) are verified thoroughly.",
+      "difficulty": "easy",
+      "sourcePages": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "mfi-002",
+      "question": "What does the Integration Parameter Variable Replacement (IPVR) operator do?",
+      "options": {
+        "A": "Replaces each parameter in a method call with each other variable of compatible type that is in scope at the call site.",
+        "B": "Deletes the method definition.",
+        "C": "Converts parameters into global variables.",
+        "D": "Renames the method."
+      },
+      "correctAnswer": "A",
+      "explanation": "IPVR substitutes an argument in a method call with another compatible variable in scope (e.g. calling f(y, y) instead of f(x, y)), testing if the wrong variable was passed.",
+      "difficulty": "medium",
+      "sourcePages": [
+        5,
+        6
+      ]
+    },
+    {
+      "id": "mfi-003",
+      "question": "What does the Integration Parameter Exchange (IPEX) operator do?",
+      "options": {
+        "A": "Exchanges the order of two parameters of the same type in a method call: e.g. f(a, b) mutated to f(b, a).",
+        "B": "Deletes both parameters.",
+        "C": "Exchanges parameters between two different methods.",
+        "D": "Replaces parameters with null."
+      },
+      "correctAnswer": "A",
+      "explanation": "IPEX swaps arguments of matching types in a call list (e.g. copying f(source, dest) to f(dest, source)), testing order-reversal mistakes.",
+      "difficulty": "easy",
+      "sourcePages": [
+        7,
+        8
+      ]
+    },
+    {
+      "id": "mfi-004",
+      "question": "What does the Integration Method Call Deletion (IMCD) operator do?",
+      "options": {
+        "A": "Deletes a method call statement from the caller, or replaces a call returning a value with a default value.",
+        "B": "Deletes the called class from the disk.",
+        "C": "Calls the method twice.",
+        "D": "Inline expands the method."
+      },
+      "correctAnswer": "A",
+      "explanation": "IMCD eliminates a method call (e.g. deleting 'logger.log()' or 'notifyObservers()') to verify whether the method call's side-effect is actually necessary and checked by tests.",
+      "difficulty": "medium",
+      "sourcePages": [
+        9,
+        10
+      ]
+    },
+    {
+      "id": "mfi-005",
+      "question": "What does the Integration Return Expression Modification (IRET) operator do?",
+      "options": {
+        "A": "Modifies the expression in a return statement of a called method, or replaces it with another compatible expression or default value.",
+        "B": "Prevents the method from ever returning.",
+        "C": "Returns multiple values simultaneously.",
+        "D": "Changes the return type in the bytecode."
+      },
+      "correctAnswer": "A",
+      "explanation": "IRET mutates the return value computed by a callee (e.g. changing 'return result;' to 'return result + 1;' or 'return null;'), checking if the caller properly validates the return value.",
+      "difficulty": "medium",
+      "sourcePages": [
+        11,
+        12
+      ]
+    },
+    {
+      "id": "mfi-006",
+      "question": "What does the Integration Variable Lifetime / Scope Modification (IVLF) operator test?",
+      "options": {
+        "A": "Alters the initialization, persistence, or lifetime of shared or static state across multiple method calls.",
+        "B": "Sets a timer to terminate the process.",
+        "C": "Deletes local variables on the stack.",
+        "D": "Measures garbage collection cycles."
+      },
+      "correctAnswer": "A",
+      "explanation": "IVLF mutates state persistence across calls, checking whether modules properly handle persistent vs re-initialized shared variables.",
+      "difficulty": "hard",
+      "sourcePages": [
+        13,
+        14
+      ]
+    },
+    {
+      "id": "mfi-007",
+      "question": "Why does integration mutation typically generate far fewer mutants than unit-level source code mutation?",
+      "options": {
+        "A": "Because it only mutates interface call boundaries and inter-method parameter exchanges, rather than every statement and operator in the entire method body.",
+        "B": "Because integration tests are shorter.",
+        "C": "Because integration testing is only done on small scripts.",
+        "D": "Because compilers forbid integration mutation."
+      },
+      "correctAnswer": "A",
+      "explanation": "Interface mutation focuses strictly on inter-unit call sites and parameter lists, producing significantly fewer mutants than mutating every arithmetic and relational operator inside all bodies.",
+      "difficulty": "medium",
+      "sourcePages": [
+        4,
+        15
+      ]
+    },
+    {
+      "id": "mfi-008",
+      "question": "Suppose method transfer(fromAccount, toAccount, amount) is called. What mutant does IPEX produce?",
+      "options": {
+        "A": "transfer(toAccount, fromAccount, amount)",
+        "B": "transfer(fromAccount, fromAccount, amount)",
+        "C": "transfer(null, null, 0)",
+        "D": "transfer(amount, toAccount, fromAccount)"
+      },
+      "correctAnswer": "A",
+      "explanation": "IPEX exchanges two arguments of the same type (Account), swapping fromAccount and toAccount. A valid test must ensure funds are withdrawn from the correct account.",
+      "difficulty": "easy",
+      "sourcePages": [
+        7
+      ]
+    },
+    {
+      "id": "mfi-009",
+      "question": "How is an IMCD mutant killed when a void method call like 'cache.clear()' is deleted?",
+      "options": {
+        "A": "By a test that performs an operation where stale cache data leads to an observable incorrect result.",
+        "B": "By checking the compilation log.",
+        "C": "By running the test in debug mode.",
+        "D": "It can never be killed."
+      },
+      "correctAnswer": "A",
+      "explanation": "To kill the deletion of 'cache.clear()', the test must verify that stale data does not persist and corrupt subsequent computations.",
+      "difficulty": "medium",
+      "sourcePages": [
+        9,
+        10
+      ]
+    },
+    {
+      "id": "mfi-010",
+      "question": "What is the difference between Unit Mutation and Integration Mutation regarding fault localization?",
+      "options": {
+        "A": "Unit mutation detects internal logic mistakes inside a function; integration mutation detects interaction, communication, and interface mismatches between units.",
+        "B": "Unit mutation tests hardware; integration mutation tests software.",
+        "C": "Integration mutation only works on databases.",
+        "D": "There is no difference."
+      },
+      "correctAnswer": "A",
+      "explanation": "Unit mutation isolates algorithms within single methods, while integration mutation targets defects that emerge when multiple units interact across interfaces.",
+      "difficulty": "easy",
+      "sourcePages": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "mfi-011",
+      "question": "If caller invokes 'printer.print(doc, copies)' where 'copies' is an integer, what mutant does IPVR produce if another integer 'priority' is in scope?",
+      "options": {
+        "A": "printer.print(doc, priority)",
+        "B": "printer.print(copies, doc)",
+        "C": "printer.print(null, copies)",
+        "D": "printer.print(doc, copies + 1)"
+      },
+      "correctAnswer": "A",
+      "explanation": "IPVR replaces the argument 'copies' with another compatible in-scope variable 'priority', creating printer.print(doc, priority).",
+      "difficulty": "medium",
+      "sourcePages": [
+        5
+      ]
+    },
+    {
+      "id": "mfi-012",
+      "question": "What is an 'over-loaded method call mutation' in object-oriented integration testing?",
+      "options": {
+        "A": "Mutating an invocation to bind to a different overloaded variant of the method with different parameter types.",
+        "B": "Calling a method 10,000 times in a tight loop.",
+        "C": "Overloading the CPU.",
+        "D": "Deleting the method signature."
+      },
+      "correctAnswer": "A",
+      "explanation": "Object-oriented languages allow method overloading. A call mutation can switch an invocation between overloaded versions (e.g. process(Object) vs process(String)).",
+      "difficulty": "medium",
+      "sourcePages": [
+        16
+      ]
+    },
+    {
+      "id": "mfi-013",
+      "question": "What is a 'polymorphic call mutation'?",
+      "options": {
+        "A": "Mutating the runtime receiver object or type binding to invoke an overriding method from a different subclass in the inheritance hierarchy.",
+        "B": "Calling two methods at once.",
+        "C": "Converting a method to static.",
+        "D": "Deleting the base class."
+      },
+      "correctAnswer": "A",
+      "explanation": "Polymorphic call mutation alters dynamic dispatch by substituting alternative subclass instances, verifying that the caller correctly interacts with polymorphic implementations.",
+      "difficulty": "hard",
+      "sourcePages": [
+        17,
+        18
+      ]
+    },
+    {
+      "id": "mfi-014",
+      "question": "In integration testing, what is the 'Contract' between caller and callee?",
+      "options": {
+        "A": "Preconditions, Postconditions, and Class Invariants (Design by Contract).",
+        "B": "A legal NDA signed by developers.",
+        "C": "A license agreement displayed to users.",
+        "D": "A database schema."
+      },
+      "correctAnswer": "A",
+      "explanation": "Design by Contract establishes preconditions (what the caller must satisfy), postconditions (what the callee guarantees on return), and invariants that must hold across interactions.",
+      "difficulty": "easy",
+      "sourcePages": [
+        19
+      ]
+    },
+    {
+      "id": "mfi-015",
+      "question": "If a callee returns null instead of an empty list, and the caller crashes with NullPointerException, what integration issue is exposed?",
+      "options": {
+        "A": "An interface contract violation and missing defensive null handling in the caller.",
+        "B": "A compiler defect.",
+        "C": "Hardware memory corruption.",
+        "D": "An infinite recursion."
+      },
+      "correctAnswer": "A",
+      "explanation": "This exposes an interface mismatch where the caller assumes a non-null collection, demonstrating why mutating return expressions (IRET) is critical in integration testing.",
+      "difficulty": "easy",
+      "sourcePages": [
+        11,
+        20
+      ]
+    },
+    {
+      "id": "mfi-016",
+      "question": "Why is mock/stub testing relevant to integration mutation?",
+      "options": {
+        "A": "Mutating mocks or mutating the interactions with mocks verifies whether the caller properly verifies and reacts to mock responses.",
+        "B": "Mocks eliminate the need for testing.",
+        "C": "Mocks can only be used in unit testing.",
+        "D": "Mocks cannot return values."
+      },
+      "correctAnswer": "A",
+      "explanation": "When testing integrated components with test doubles, mutating mock configurations verifies that callers properly handle variations, exceptions, and data returns from collaborators.",
+      "difficulty": "medium",
+      "sourcePages": [
+        21
+      ]
+    },
+    {
+      "id": "mfi-017",
+      "question": "What is 'coupling mutation score' in integration testing?",
+      "options": {
+        "A": "The percentage of integration/interface mutants killed by the integration test suite.",
+        "B": "The degree of coupling between two Git branches.",
+        "C": "The number of lines of glue code.",
+        "D": "The number of database connections."
+      },
+      "correctAnswer": "A",
+      "explanation": "Coupling mutation score assesses how effectively integration tests exercise and validate the connections between integrated subsystems.",
+      "difficulty": "medium",
+      "sourcePages": [
+        22
+      ]
+    },
+    {
+      "id": "mfi-018",
+      "question": "In message-passing architectures (e.g. microservices or actor models), how does integration mutation apply?",
+      "options": {
+        "A": "By mutating message payloads, headers, routing keys, and drop/delay behaviors between communicating services.",
+        "B": "By deleting the database.",
+        "C": "By turning off the network router.",
+        "D": "By rewriting microservices in assembly."
+      },
+      "correctAnswer": "A",
+      "explanation": "In distributed systems, integration mutation alters message structure, payload fields, and delivery semantics (chaos engineering / fault injection) across service boundaries.",
+      "difficulty": "medium",
+      "sourcePages": [
+        23
+      ]
+    },
+    {
+      "id": "mfi-019",
+      "question": "Suppose method calculateTotal(cart, discount) is called. If IPVR replaces 'discount' with 'taxRate' (both floats), what integration defect is simulated?",
+      "options": {
+        "A": "Passing the wrong numeric coefficient to the billing subsystem.",
+        "B": "Syntax error.",
+        "C": "Null pointer dereference.",
+        "D": "Heap overflow."
+      },
+      "correctAnswer": "A",
+      "explanation": "Passing the wrong argument of identical type is one of the most common human integration mistakes. IPVR tests whether tests detect this swap.",
+      "difficulty": "easy",
+      "sourcePages": [
+        5
+      ]
+    },
+    {
+      "id": "mfi-020",
+      "question": "What is the primary benefit of achieving a high integration mutation score before deploying software?",
+      "options": {
+        "A": "Confidence that individual units not only function in isolation, but communicate, pass parameters, and handle responses correctly when integrated.",
+        "B": "Guaranteed zero memory usage.",
+        "C": "Immediate release without code review.",
+        "D": "Faster compiler speed."
+      },
+      "correctAnswer": "A",
+      "explanation": "A high integration mutation score confirms that component interactions, edge-case responses, and parameter hand-offs have been robustly tested end-to-end.",
+      "difficulty": "medium",
+      "sourcePages": [
+        24
+      ]
+    }
+  ]
+}

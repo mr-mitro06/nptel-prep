@@ -1,0 +1,337 @@
+{
+  "topicId": "graphs-structural-coverage-algorithms",
+  "topicName": "Graph Structural Coverage Algorithms",
+  "sourcePdf": "graphs-structural-coverage-algorithms.pdf",
+  "questions": [
+    {
+      "id": "gsa-001",
+      "question": "In the standard algorithm to compute Prime Paths, what is the starting step?",
+      "options": {
+        "A": "Identify all cycles of length 3.",
+        "B": "List all simple paths of length 0 (which are the individual nodes of the graph).",
+        "C": "Find all du-paths.",
+        "D": "Compute the cyclomatic complexity."
+      },
+      "correctAnswer": "B",
+      "explanation": "The algorithm begins with candidate simple paths of length 0 (each node in the graph). At each subsequent step, paths of length k are extended by one edge to form paths of length k+1.",
+      "difficulty": "easy",
+      "sourcePages": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "gsa-002",
+      "question": "During prime path generation, when is a path of length k flagged with an exclamation mark (!) indicating it has terminated and cannot be extended?",
+      "options": {
+        "A": "When the path forms a cycle (the next node is already in the path, matching the first node) or has no outgoing edges.",
+        "B": "When the path contains an odd number of edges.",
+        "C": "When the path visits an initial node.",
+        "D": "When the path length exceeds 10."
+      },
+      "correctAnswer": "A",
+      "explanation": "A simple path cannot be extended if it forms a cycle (first node equals last node) or reaches a terminal node with no outgoing edges. Any further extension would violate the simple path definition.",
+      "difficulty": "medium",
+      "sourcePages": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": "gsa-003",
+      "question": "When does a path of length k get flagged with an asterisk (*) during prime path generation?",
+      "options": {
+        "A": "When extending it would visit an internal node already present in the path (forming a non-simple path).",
+        "B": "When it is a test path from N0 to Nf.",
+        "C": "When it has the highest priority.",
+        "D": "When it contains an infeasible edge."
+      },
+      "correctAnswer": "A",
+      "explanation": "A path is flagged with * when attempting to extend it reaches a node already in the path that is NOT the first node, meaning the extended path is not simple and must be pruned.",
+      "difficulty": "hard",
+      "sourcePages": [
+        5,
+        6
+      ]
+    },
+    {
+      "id": "gsa-004",
+      "question": "After all candidate simple paths have been generated, what final filtering step is performed to identify the prime paths?",
+      "options": {
+        "A": "Eliminate any simple path that is a proper subpath of another simple path in the candidate list.",
+        "B": "Sort the paths alphabetically.",
+        "C": "Remove all paths of length greater than 3.",
+        "D": "Keep only paths that start at node 1."
+      },
+      "correctAnswer": "A",
+      "explanation": "A prime path is a maximal simple path. Any simple path that is completely contained as a proper subpath of another simple path is redundant and removed.",
+      "difficulty": "medium",
+      "sourcePages": [
+        7,
+        8
+      ]
+    },
+    {
+      "id": "gsa-005",
+      "question": "Suppose we have a self-loop on node 2: edge (2, 2). Is [2, 2] a prime path?",
+      "options": {
+        "A": "No, paths of length 1 cannot be prime.",
+        "B": "Yes, [2, 2] is a simple cycle of length 1 and cannot be extended to any longer simple cycle starting and ending at 2.",
+        "C": "Only if node 2 is an initial node.",
+        "D": "Only if node 2 has no other edges."
+      },
+      "correctAnswer": "B",
+      "explanation": "[2, 2] is a simple cycle of length 1. It is simple because only the first and last nodes repeat. It cannot be extended without repeating node 2 internally, so it is a prime path.",
+      "difficulty": "medium",
+      "sourcePages": [
+        9,
+        10
+      ]
+    },
+    {
+      "id": "gsa-006",
+      "question": "What is the maximum possible length of a prime path in a graph with N nodes?",
+      "options": {
+        "A": "N - 1",
+        "B": "N",
+        "C": "N + 1",
+        "D": "2N"
+      },
+      "correctAnswer": "B",
+      "explanation": "A simple path with no cycle has at most N nodes, giving length N - 1. A simple cycle can have N nodes in the cycle plus the repeated start node (N + 1 nodes), giving length N edges.",
+      "difficulty": "hard",
+      "sourcePages": [
+        11
+      ]
+    },
+    {
+      "id": "gsa-007",
+      "question": "In a linear pipeline graph with 4 nodes: 1 → 2 → 3 → 4 and no other edges, how many prime paths exist?",
+      "options": {
+        "A": "1 prime path: [1, 2, 3, 4]",
+        "B": "4 prime paths",
+        "C": "6 prime paths",
+        "D": "0 prime paths"
+      },
+      "correctAnswer": "A",
+      "explanation": "All subpaths like [1, 2], [2, 3], [3, 4], [1, 2, 3], [2, 3, 4] are proper subpaths of [1, 2, 3, 4]. Since [1, 2, 3, 4] is maximal and simple, it is the sole prime path.",
+      "difficulty": "medium",
+      "sourcePages": [
+        12
+      ]
+    },
+    {
+      "id": "gsa-008",
+      "question": "Why can touring with sidetrips satisfy a prime path requirement that cannot be toured directly?",
+      "options": {
+        "A": "Because a sidetrip allows temporary diversion through a necessary loop or state update before returning to resume the required sequence.",
+        "B": "Because sidetrips remove nodes from the graph.",
+        "C": "Because sidetrips convert prime paths into node coverage.",
+        "D": "Because sidetrips bypass compiler optimization."
+      },
+      "correctAnswer": "A",
+      "explanation": "Sometimes semantic constraints require loop execution (e.g. initializing an iterator or reading data) before proceeding. Sidetrips allow taking that loop at node ni and returning to ni to complete the path.",
+      "difficulty": "medium",
+      "sourcePages": [
+        14
+      ]
+    },
+    {
+      "id": "gsa-009",
+      "question": "Consider graph with nodes {1, 2, 3, 4} and edges (1, 2), (1, 3), (2, 4), (3, 4). How many prime paths of length 2 exist?",
+      "options": {
+        "A": "2: [1, 2, 4] and [1, 3, 4]",
+        "B": "4",
+        "C": "1",
+        "D": "0"
+      },
+      "correctAnswer": "A",
+      "explanation": "The paths [1, 2, 4] and [1, 3, 4] are maximal simple paths because they start at 1 and terminate at 4. Neither is a subpath of any longer simple path. Hence there are 2 prime paths.",
+      "difficulty": "easy",
+      "sourcePages": [
+        6,
+        7
+      ]
+    },
+    {
+      "id": "gsa-010",
+      "question": "What is the computational complexity of finding all prime paths in the worst case?",
+      "options": {
+        "A": "O(1)",
+        "B": "O(|V| + |E|)",
+        "C": "Exponential in the number of vertices",
+        "D": "Logarithmic"
+      },
+      "correctAnswer": "C",
+      "explanation": "In graphs with dense connectivity or multiple interleaved cycles, the number of simple paths can grow exponentially with the number of vertices.",
+      "difficulty": "medium",
+      "sourcePages": [
+        15
+      ]
+    },
+    {
+      "id": "gsa-011",
+      "question": "If path [1, 2, 1] is a prime path, what kind of structural construct does it represent?",
+      "options": {
+        "A": "A simple cycle of length 2 between nodes 1 and 2.",
+        "B": "An isolated vertex.",
+        "C": "A linear branch.",
+        "D": "An infeasible exception handler."
+      },
+      "correctAnswer": "A",
+      "explanation": "[1, 2, 1] starts and ends at node 1, passing through node 2 without repeating internal nodes. This is a simple cycle of length 2.",
+      "difficulty": "easy",
+      "sourcePages": [
+        8
+      ]
+    },
+    {
+      "id": "gsa-012",
+      "question": "When constructing test paths to cover prime paths, what is prefix and suffix path stitching?",
+      "options": {
+        "A": "Appending a path from N0 to the start of the prime path, and from the end of the prime path to Nf, to create a valid test path.",
+        "B": "Editing the binary executable file directly.",
+        "C": "Removing unreached nodes from the source code.",
+        "D": "Reversing the graph edges."
+      },
+      "correctAnswer": "A",
+      "explanation": "A prime path may not start at N0 or end at Nf. To execute it in a test case, it must be stitched: preceded by a path from an initial node and succeeded by a path to a final node.",
+      "difficulty": "medium",
+      "sourcePages": [
+        16,
+        17
+      ]
+    },
+    {
+      "id": "gsa-013",
+      "question": "Can two different prime paths share common nodes and edges?",
+      "options": {
+        "A": "No, prime paths must be completely node-disjoint.",
+        "B": "Yes, prime paths frequently overlap on shared subpaths as long as neither path is completely contained within the other.",
+        "C": "Only if the graph is bipartite.",
+        "D": "Only when edge coverage is 0%."
+      },
+      "correctAnswer": "B",
+      "explanation": "Prime paths can overlap significantly. They are only required not to be proper subpaths of each other.",
+      "difficulty": "easy",
+      "sourcePages": [
+        13
+      ]
+    },
+    {
+      "id": "gsa-014",
+      "question": "What is the length of the simple path [1, 2, 3]?",
+      "options": {
+        "A": "3",
+        "B": "2",
+        "C": "1",
+        "D": "0"
+      },
+      "correctAnswer": "B",
+      "explanation": "The length of a path in graph theory is the number of edges it contains. The path [1, 2, 3] has 2 edges: (1, 2) and (2, 3).",
+      "difficulty": "easy",
+      "sourcePages": [
+        3
+      ]
+    },
+    {
+      "id": "gsa-015",
+      "question": "In prime path generation, if path [1, 2, 3, 2] is formed, is it a simple path?",
+      "options": {
+        "A": "Yes, because node 2 repeats.",
+        "B": "No, because the repeated node (2) is not both the first and last node.",
+        "C": "Yes, any path of length 3 is simple.",
+        "D": "It depends on whether node 1 is an initial node."
+      },
+      "correctAnswer": "B",
+      "explanation": "In a simple path, only the first and last nodes may be identical. In [1, 2, 3, 2], node 2 is repeated internally, violating simplicity.",
+      "difficulty": "medium",
+      "sourcePages": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": "gsa-016",
+      "question": "Which criterion guarantees that every loop in the graph is bypassed, executed once, and executed more than once (under typical loop topologies)?",
+      "options": {
+        "A": "Node Coverage",
+        "B": "Edge Coverage",
+        "C": "Prime Path Coverage",
+        "D": "Each Choice Coverage"
+      },
+      "correctAnswer": "C",
+      "explanation": "Prime Path Coverage naturally generates paths that bypass the loop (if possible), paths that enter and exit the loop once, and simple cycles that represent looping.",
+      "difficulty": "medium",
+      "sourcePages": [
+        14,
+        18
+      ]
+    },
+    {
+      "id": "gsa-017",
+      "question": "Why is Edge-Pair Coverage (EPC) algorithmically simpler to compute than Prime Path Coverage?",
+      "options": {
+        "A": "EPC only requires enumerating paths of fixed length 2, which requires checking pairs of adjacent edges without recursive expansion.",
+        "B": "EPC does not require graph analysis.",
+        "C": "EPC only applies to linear graphs.",
+        "D": "EPC has no test requirements."
+      },
+      "correctAnswer": "A",
+      "explanation": "EPC only considers adjacent edge pairs (length 2), which is bounded by O(|E|^2) or out-degree products, whereas prime paths require finding maximal paths of variable lengths up to |V|.",
+      "difficulty": "medium",
+      "sourcePages": [
+        2
+      ]
+    },
+    {
+      "id": "gsa-018",
+      "question": "If graph G has 3 nodes {1, 2, 3} arranged in a directed triangle: (1, 2), (2, 3), (3, 1). What are the prime paths?",
+      "options": {
+        "A": "[1, 2, 3, 1], [2, 3, 1, 2], and [3, 1, 2, 3]",
+        "B": "Only [1, 2, 3]",
+        "C": "Only [1, 2]",
+        "D": "[1, 1], [2, 2], [3, 3]"
+      },
+      "correctAnswer": "A",
+      "explanation": "The three maximal simple cycles are [1, 2, 3, 1], [2, 3, 1, 2], and [3, 1, 2, 3]. None is a subpath of another because they start at different nodes.",
+      "difficulty": "hard",
+      "sourcePages": [
+        10,
+        11
+      ]
+    },
+    {
+      "id": "gsa-019",
+      "question": "What is the primary role of graph reduction or basic block aggregation before running prime path algorithms?",
+      "options": {
+        "A": "To compress straight-line sequences of nodes into single nodes, drastically reducing graph size without altering branch topology.",
+        "B": "To convert the graph to an undirected graph.",
+        "C": "To eliminate all conditional statements.",
+        "D": "To force all paths to have length 1."
+      },
+      "correctAnswer": "A",
+      "explanation": "Collapsing basic blocks (linear sequences of statements with single entry/exit) reduces graph node and edge counts, accelerating prime path computation without losing coverage precision.",
+      "difficulty": "medium",
+      "sourcePages": [
+        19
+      ]
+    },
+    {
+      "id": "gsa-020",
+      "question": "What tool or technique can assist when prime paths cannot be statically verified as feasible?",
+      "options": {
+        "A": "SMT / SAT solvers (symbolic execution) to solve path constraints.",
+        "B": "Ignoring all branch statements.",
+        "C": "Deleting test cases.",
+        "D": "Increasing hardware clock speed."
+      },
+      "correctAnswer": "A",
+      "explanation": "Symbolic execution tools and constraint solvers (SMT solvers like Z3) determine whether the path predicate along a candidate prime path is satisfiable.",
+      "difficulty": "easy",
+      "sourcePages": [
+        20
+      ]
+    }
+  ]
+}

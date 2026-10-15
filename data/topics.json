@@ -1,0 +1,222 @@
+[
+  {
+    "topicId": "isp-full-slides",
+    "topicName": "Input Space Partitioning (ISP)",
+    "sourcePdf": "ISP-full-slides.pdf",
+    "questionCount": 20,
+    "difficultyCounts": {
+      "easy": 8,
+      "medium": 11,
+      "hard": 1
+    }
+  },
+  {
+    "topicId": "graphs-structural-coverage",
+    "topicName": "Graph Structural Coverage Criteria",
+    "sourcePdf": "graphs-structural-coverage.pdf",
+    "questionCount": 20,
+    "difficultyCounts": {
+      "easy": 7,
+      "medium": 8,
+      "hard": 5
+    }
+  },
+  {
+    "topicId": "graphs-structural-coverage-algorithms",
+    "topicName": "Graph Structural Coverage Algorithms",
+    "sourcePdf": "graphs-structural-coverage-algorithms.pdf",
+    "questionCount": 20,
+    "difficultyCounts": {
+      "easy": 6,
+      "medium": 11,
+      "hard": 3
+    }
+  },
+  {
+    "topicId": "graphs-data-flow",
+    "topicName": "Graph Coverage - Data Flow",
+    "sourcePdf": "graphs-data-flow.pdf",
+    "questionCount": 20,
+    "difficultyCounts": {
+      "easy": 8,
+      "medium": 10,
+      "hard": 2
+    }
+  },
+  {
+    "topicId": "graphs-source-code",
+    "topicName": "Graph Coverage from Source Code",
+    "sourcePdf": "graphs-source-code.pdf",
+    "questionCount": 20,
+    "difficultyCounts": {
+      "easy": 14,
+      "medium": 6,
+      "hard": 0
+    }
+  },
+  {
+    "topicId": "graphs-source-code-data-flow",
+    "topicName": "Graph Coverage - Source Code Data Flow",
+    "sourcePdf": "graphs-source-code-data-flow.pdf",
+    "questionCount": 20,
+    "difficultyCounts": {
+      "easy": 8,
+      "medium": 10,
+      "hard": 2
+    }
+  },
+  {
+    "topicId": "graphs-specification",
+    "topicName": "Graph Coverage from Specifications",
+    "sourcePdf": "graphs-specification.pdf",
+    "questionCount": 20,
+    "difficultyCounts": {
+      "easy": 11,
+      "medium": 7,
+      "hard": 2
+    }
+  },
+  {
+    "topicId": "logic-coverage-criteria",
+    "topicName": "Logic Coverage Criteria (ACC, GACC, CACC, RACC)",
+    "sourcePdf": "logic-coverage-criteria.pdf",
+    "questionCount": 20,
+    "difficultyCounts": {
+      "easy": 9,
+      "medium": 7,
+      "hard": 4
+    }
+  },
+  {
+    "topicId": "logic-coverage-algorithms",
+    "topicName": "Logic Coverage Algorithms",
+    "sourcePdf": "logic-coverage-algorithms.pdf",
+    "questionCount": 20,
+    "difficultyCounts": {
+      "easy": 8,
+      "medium": 8,
+      "hard": 4
+    }
+  },
+  {
+    "topicId": "logic-source-code1",
+    "topicName": "Logic Coverage from Source Code (Part 1)",
+    "sourcePdf": "logic-source-code1.pdf",
+    "questionCount": 20,
+    "difficultyCounts": {
+      "easy": 8,
+      "medium": 11,
+      "hard": 1
+    }
+  },
+  {
+    "topicId": "logic-source-code2",
+    "topicName": "Logic Coverage from Source Code (Part 2)",
+    "sourcePdf": "logic-source-code2.pdf",
+    "questionCount": 20,
+    "difficultyCounts": {
+      "easy": 11,
+      "medium": 7,
+      "hard": 2
+    }
+  },
+  {
+    "topicId": "mutation-testing-source-code",
+    "topicName": "Mutation Testing Principles & Practice",
+    "sourcePdf": "mutation-testing-source-code.pdf",
+    "questionCount": 20,
+    "difficultyCounts": {
+      "easy": 6,
+      "medium": 11,
+      "hard": 3
+    }
+  },
+  {
+    "topicId": "mutation-operators-source-code",
+    "topicName": "Mutation Operators for Source Code",
+    "sourcePdf": "mutation-operators-source-code.pdf",
+    "questionCount": 20,
+    "difficultyCounts": {
+      "easy": 11,
+      "medium": 8,
+      "hard": 1
+    }
+  },
+  {
+    "topicId": "mutation-for-integration",
+    "topicName": "Mutation Testing for Integration",
+    "sourcePdf": "mutation-for-integration.pdf",
+    "questionCount": 20,
+    "difficultyCounts": {
+      "easy": 7,
+      "medium": 11,
+      "hard": 2
+    }
+  },
+  {
+    "topicId": "regression-testing",
+    "topicName": "Regression Testing (Selection & Prioritization)",
+    "sourcePdf": "regression-testing.pdf",
+    "questionCount": 20,
+    "difficultyCounts": {
+      "easy": 10,
+      "medium": 7,
+      "hard": 3
+    }
+  },
+  {
+    "topicId": "oo-testing",
+    "topicName": "Object-Oriented Testing",
+    "sourcePdf": "OO-testing.pdf",
+    "questionCount": 20,
+    "difficultyCounts": {
+      "easy": 6,
+      "medium": 11,
+      "hard": 3
+    }
+  },
+  {
+    "topicId": "web-apps-testing",
+    "topicName": "Web Applications Testing",
+    "sourcePdf": "web-apps-testing.pdf",
+    "questionCount": 20,
+    "difficultyCounts": {
+      "easy": 11,
+      "medium": 8,
+      "hard": 1
+    }
+  },
+  {
+    "topicId": "mobile-apps-testing",
+    "topicName": "Mobile Applications Testing",
+    "sourcePdf": "mobile-apps-testing.pdf",
+    "questionCount": 20,
+    "difficultyCounts": {
+      "easy": 11,
+      "medium": 9,
+      "hard": 0
+    }
+  },
+  {
+    "topicId": "non-functional-testing",
+    "topicName": "Non-Functional Testing (Performance & Security)",
+    "sourcePdf": "non-functional-testing.pdf",
+    "questionCount": 20,
+    "difficultyCounts": {
+      "easy": 13,
+      "medium": 7,
+      "hard": 0
+    }
+  },
+  {
+    "topicId": "exer-student",
+    "topicName": "Comprehensive Testing Exercises & Case Studies",
+    "sourcePdf": "exer-student.pdf",
+    "questionCount": 20,
+    "difficultyCounts": {
+      "easy": 11,
+      "medium": 6,
+      "hard": 3
+    }
+  }
+]
