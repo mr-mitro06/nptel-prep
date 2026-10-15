@@ -9,6 +9,7 @@ const RevisionController = {
   init() {
     this.elements = {
       nav: document.getElementById("revision-topics-nav"),
+      mobileChips: document.getElementById("revision-mobile-chips"),
       content: document.getElementById("revision-content-area"),
       searchInput: document.getElementById("revision-search-input")
     };
@@ -26,8 +27,9 @@ const RevisionController = {
   },
 
   renderNav() {
-    if (!this.elements.nav) return;
-    this.elements.nav.innerHTML = "";
+    if (!this.elements.nav && !this.elements.mobileChips) return;
+    if (this.elements.nav) this.elements.nav.innerHTML = "";
+    if (this.elements.mobileChips) this.elements.mobileChips.innerHTML = "";
 
     const topics = QuestionsRepo.getTopics();
     if (topics.length === 0) return;
@@ -37,22 +39,58 @@ const RevisionController = {
     }
 
     topics.forEach((t) => {
-      const btn = document.createElement("button");
-      btn.className = `rev-nav-item ${t.topicId === this.activeTopicId ? 'active' : ''}`;
-      btn.textContent = t.topicName;
-      btn.dataset.topicId = t.topicId;
+      const isActive = t.topicId === this.activeTopicId;
 
-      btn.addEventListener("click", () => {
-        this.activeTopicId = t.topicId;
-        const items = this.elements.nav.querySelectorAll(".rev-nav-item");
-        items.forEach(i => i.classList.toggle("active", i.dataset.topicId === t.topicId));
-        this.renderTopicContent(t.topicId);
-      });
+      // 1. Desktop Nav Button
+      if (this.elements.nav) {
+        const btn = document.createElement("button");
+        btn.className = `rev-nav-item ${isActive ? 'active' : ''}`;
+        btn.textContent = t.topicName;
+        btn.dataset.topicId = t.topicId;
 
-      this.elements.nav.appendChild(btn);
+        btn.addEventListener("click", () => {
+          this.selectTopic(t.topicId);
+        });
+
+        this.elements.nav.appendChild(btn);
+      }
+
+      // 2. Mobile Chip Button
+      if (this.elements.mobileChips) {
+        const chip = document.createElement("button");
+        chip.className = `rev-chip ${isActive ? 'active' : ''}`;
+        chip.textContent = t.topicName;
+        chip.dataset.topicId = t.topicId;
+
+        chip.addEventListener("click", () => {
+          this.selectTopic(t.topicId);
+          chip.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+        });
+
+        this.elements.mobileChips.appendChild(chip);
+      }
     });
 
     this.renderTopicContent(this.activeTopicId);
+  },
+
+  selectTopic(topicId) {
+    this.activeTopicId = topicId;
+    if (this.elements.nav) {
+      const items = this.elements.nav.querySelectorAll(".rev-nav-item");
+      items.forEach(i => i.classList.toggle("active", i.dataset.topicId === topicId));
+    }
+    if (this.elements.mobileChips) {
+      const chips = this.elements.mobileChips.querySelectorAll(".rev-chip");
+      chips.forEach(c => {
+        const active = c.dataset.topicId === topicId;
+        c.classList.toggle("active", active);
+        if (active) {
+          c.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+        }
+      });
+    }
+    this.renderTopicContent(topicId);
   },
 
   renderTopicContent(topicId) {

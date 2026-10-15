@@ -15,6 +15,7 @@ const PracticeController = {
   init() {
     this.elements = {
       container: document.getElementById("practice-view"),
+      touchCard: document.getElementById("touch-question-card"),
       topicBadge: document.getElementById("q-topic-badge"),
       diffBadge: document.getElementById("q-diff-badge"),
       counter: document.getElementById("q-counter"),
@@ -28,7 +29,12 @@ const PracticeController = {
       prevBtn: document.getElementById("q-prev-btn"),
       nextBtn: document.getElementById("q-next-btn"),
       paletteGrid: document.getElementById("palette-grid"),
-      filterSelect: document.getElementById("practice-filter-select")
+      filterSelect: document.getElementById("practice-filter-select"),
+      mobilePaletteBtn: document.getElementById("mobile-open-palette-btn"),
+      mobilePaletteModal: document.getElementById("mobile-palette-modal"),
+      closeMobilePaletteBtn: document.getElementById("close-mobile-palette-btn"),
+      mobilePaletteGrid: document.getElementById("mobile-palette-grid"),
+      mobilePaletteBtnText: document.getElementById("mobile-palette-btn-text")
     };
 
     this.bindEvents();
@@ -52,6 +58,46 @@ const PracticeController = {
         this.filter = e.target.value;
         this.applyFilter();
       });
+    }
+
+    // Mobile Palette Modal Open/Close
+    if (this.elements.mobilePaletteBtn && this.elements.mobilePaletteModal) {
+      this.elements.mobilePaletteBtn.addEventListener("click", () => {
+        this.elements.mobilePaletteModal.classList.add("open");
+      });
+      if (this.elements.closeMobilePaletteBtn) {
+        this.elements.closeMobilePaletteBtn.addEventListener("click", () => {
+          this.elements.mobilePaletteModal.classList.remove("open");
+        });
+      }
+      this.elements.mobilePaletteModal.addEventListener("click", (e) => {
+        if (e.target === this.elements.mobilePaletteModal) {
+          this.elements.mobilePaletteModal.classList.remove("open");
+        }
+      });
+    }
+
+    // Touch Swipe Gestures for Mobile (Left swipe = Next, Right swipe = Prev)
+    if (this.elements.touchCard) {
+      let touchStartX = 0;
+      let touchStartY = 0;
+      this.elements.touchCard.addEventListener("touchstart", (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+      }, { passive: true });
+
+      this.elements.touchCard.addEventListener("touchend", (e) => {
+        const diffX = e.changedTouches[0].screenX - touchStartX;
+        const diffY = e.changedTouches[0].screenY - touchStartY;
+        // Require dominant horizontal swipe >= 50px
+        if (Math.abs(diffX) > 50 && Math.abs(diffX) > Math.abs(diffY) * 1.5) {
+          if (diffX < 0) {
+            this.nextQuestion();
+          } else {
+            this.prevQuestion();
+          }
+        }
+      }, { passive: true });
     }
 
     // Keyboard navigation
@@ -194,12 +240,23 @@ const PracticeController = {
     this.elements.prevBtn.disabled = this.currentIndex === 0;
     this.elements.nextBtn.disabled = this.currentIndex === this.questions.length - 1;
 
+    if (this.elements.mobilePaletteBtnText) {
+      this.elements.mobilePaletteBtnText.textContent = `${this.currentIndex + 1}/${this.questions.length}`;
+    }
+
     if (hasAnswered) {
-      this.elements.checkBtn.textContent = "Answer Checked";
-      this.elements.checkBtn.disabled = true;
+      if (this.currentIndex < this.questions.length - 1) {
+        this.elements.checkBtn.textContent = "Next Question →";
+        this.elements.checkBtn.disabled = false;
+        this.elements.checkBtn.onclick = () => this.nextQuestion();
+      } else {
+        this.elements.checkBtn.textContent = "Answer Checked ✓";
+        this.elements.checkBtn.disabled = true;
+      }
     } else {
       this.elements.checkBtn.textContent = "Check Answer";
       this.elements.checkBtn.disabled = !this.getSelectedOption();
+      this.elements.checkBtn.onclick = () => this.handleCheckAnswer();
     }
 
     this.updatePaletteActiveState();
@@ -329,45 +386,64 @@ const PracticeController = {
   },
 
   renderPalette() {
-    if (!this.elements.paletteGrid) return;
-    this.elements.paletteGrid.innerHTML = "";
+    if (!this.elements.paletteGrid && !this.elements.mobilePaletteGrid) return;
+    if (this.elements.paletteGrid) this.elements.paletteGrid.innerHTML = "";
+    if (this.elements.mobilePaletteGrid) this.elements.mobilePaletteGrid.innerHTML = "";
 
     const progress = ProgressManager.getProgress();
     const bookmarks = ProgressManager.getBookmarks();
 
     this.questions.forEach((q, idx) => {
-      const btn = document.createElement("button");
-      btn.className = "palette-btn";
-      btn.textContent = idx + 1;
-      btn.title = `Question ${idx + 1}: ${q.question.slice(0, 40)}...`;
-
-      if (idx === this.currentIndex) {
-        btn.classList.add("active");
-      }
-
       const qProg = progress[q.id];
-      if (qProg) {
-        if (qProg.isCorrect) {
-          btn.classList.add("answered-correct");
-        } else {
-          btn.classList.add("answered-incorrect");
+      const isBookmarked = bookmarks.includes(q.id);
+
+      const createBtn = (isMobile = false) => {
+        const btn = document.createElement("button");
+        btn.className = "palette-btn";
+        btn.textContent = idx + 1;
+        btn.title = `Question ${idx + 1}: ${q.question.slice(0, 40)}...`;
+
+        if (idx === this.currentIndex) {
+          btn.classList.add("active");
         }
-      }
 
-      if (bookmarks.includes(q.id)) {
-        btn.classList.add("marked");
-      }
+        if (qProg) {
+          if (qProg.isCorrect) {
+            btn.classList.add("answered-correct");
+          } else {
+            btn.classList.add("answered-incorrect");
+          }
+        }
 
-      btn.addEventListener("click", () => this.jumpToQuestion(idx));
-      this.elements.paletteGrid.appendChild(btn);
+        if (isBookmarked) {
+          btn.classList.add("marked");
+        }
+
+        btn.addEventListener("click", () => {
+          this.jumpToQuestion(idx);
+          if (isMobile && this.elements.mobilePaletteModal) {
+            this.elements.mobilePaletteModal.classList.remove("open");
+          }
+        });
+        return btn;
+      };
+
+      if (this.elements.paletteGrid) {
+        this.elements.paletteGrid.appendChild(createBtn(false));
+      }
+      if (this.elements.mobilePaletteGrid) {
+        this.elements.mobilePaletteGrid.appendChild(createBtn(true));
+      }
     });
   },
 
   updatePaletteActiveState() {
-    if (!this.elements.paletteGrid) return;
-    const btns = this.elements.paletteGrid.querySelectorAll(".palette-btn");
-    btns.forEach((btn, idx) => {
-      btn.classList.toggle("active", idx === this.currentIndex);
+    [this.elements.paletteGrid, this.elements.mobilePaletteGrid].forEach(grid => {
+      if (!grid) return;
+      const btns = grid.querySelectorAll(".palette-btn");
+      btns.forEach((btn, idx) => {
+        btn.classList.toggle("active", idx === this.currentIndex);
+      });
     });
   },
 

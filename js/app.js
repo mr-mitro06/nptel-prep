@@ -58,8 +58,8 @@ function initTheme() {
 
 // Navigation & View Routing
 function initNavigation() {
-  const navBtns = document.querySelectorAll(".nav-btn");
-  navBtns.forEach(btn => {
+  const allNavBtns = document.querySelectorAll(".nav-btn, .mobile-nav-btn");
+  allNavBtns.forEach(btn => {
     btn.addEventListener("click", () => {
       const targetView = btn.dataset.view;
       switchView(targetView);
@@ -102,8 +102,9 @@ function switchView(viewId) {
     target.classList.add("active");
   }
 
-  const navBtns = document.querySelectorAll(".nav-btn");
-  navBtns.forEach(btn => {
+  // Synchronize both desktop and mobile bottom navigation bars
+  const allNavBtns = document.querySelectorAll(".nav-btn, .mobile-nav-btn");
+  allNavBtns.forEach(btn => {
     btn.classList.toggle("active", btn.dataset.view === viewId);
   });
 
@@ -124,6 +125,18 @@ function updateHeaderStats() {
   if (statAccuracy) statAccuracy.textContent = `${stats.accuracy}%`;
   if (statWeak) statWeak.textContent = `${stats.incorrect}`;
   if (statFill) statFill.style.width = `${stats.completion}%`;
+
+  // Mobile Header Stats Pill
+  const mobPillAttempted = document.getElementById("mobile-pill-attempted");
+  const mobPillAcc = document.getElementById("mobile-pill-acc");
+  const mobWeakBadge = document.getElementById("mobile-weak-badge");
+
+  if (mobPillAttempted) mobPillAttempted.textContent = `${stats.attempted}/${stats.total}`;
+  if (mobPillAcc) mobPillAcc.textContent = `${stats.accuracy}%`;
+  if (mobWeakBadge) {
+    mobWeakBadge.textContent = stats.incorrect;
+    mobWeakBadge.style.display = stats.incorrect > 0 ? "inline-block" : "none";
+  }
 }
 
 // Dashboard View

@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <title>NPTEL Prep - Interactive Software Testing MCQ Study Platform</title>
   <meta name="description" content="Fast, distraction-free NPTEL examination revision and MCQ preparation platform based on lecture materials.">
+  <meta name="theme-color" content="#4f46e5">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   
   <!-- Modern Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,11 +26,12 @@
         <span class="brand-badge">NPTEL</span>
         <div>
           <span class="brand-title">NPTEL Prep</span>
-          <span class="brand-subtitle">Software Testing Examination Revision</span>
+          <span class="brand-subtitle">Software Testing Exam Prep</span>
         </div>
       </div>
 
-      <nav class="nav-links">
+      <!-- Desktop Navigation Links (hidden on mobile, replaced by bottom bar) -->
+      <nav class="nav-links desktop-nav">
         <button class="nav-btn active" data-view="dashboard-view" id="nav-dash-btn">🏠 Dashboard</button>
         <button class="nav-btn" data-view="library-view" id="nav-lib-btn">📚 Topic Library</button>
         <button class="nav-btn" data-view="practice-view" id="nav-practice-btn">🎯 Practice</button>
@@ -37,13 +41,17 @@
       </nav>
 
       <div class="header-actions">
+        <!-- Quick stats pill for mobile -->
+        <div class="mobile-stats-pill" id="mobile-stats-pill" title="Attempted / Accuracy">
+          <span id="mobile-pill-attempted">0/400</span> • <span id="mobile-pill-acc">0%</span>
+        </div>
         <button class="icon-btn" id="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">🌙</button>
         <button class="icon-btn" id="reset-progress-btn" title="Reset Progress" aria-label="Reset Progress">🔄</button>
       </div>
     </div>
 
-    <!-- Quick Progress Banner -->
-    <div class="stats-banner">
+    <!-- Quick Progress Banner (Desktop) -->
+    <div class="stats-banner desktop-banner">
       <div class="stats-banner-inner">
         <div class="stat-item">
           <span>Attempted:</span>
@@ -141,10 +149,16 @@
 
     <!-- 3. PRACTICE & STUDY MODE VIEW -->
     <section id="practice-view" class="view-section">
+      <!-- Mobile Helper Bar -->
+      <div class="mobile-practice-top-bar">
+        <button class="btn btn-secondary btn-sm" id="mobile-open-palette-btn">📋 Palette (<span id="mobile-palette-btn-text">1/20</span>)</button>
+        <span class="mobile-swipe-hint">👈 Swipe card to navigate 👉</span>
+      </div>
+
       <div class="practice-container">
         
         <!-- Left: Question & Options Area -->
-        <div class="question-card">
+        <div class="question-card" id="touch-question-card">
           <div class="question-top-bar">
             <div class="q-badge-group">
               <span class="q-topic-badge" id="q-topic-badge">Topic Name</span>
@@ -171,8 +185,8 @@
 
           <!-- Bottom Control Bar -->
           <div class="practice-controls">
-            <div style="display:flex; gap:0.5rem;">
-              <button class="btn btn-secondary btn-sm" id="q-prev-btn">← Previous</button>
+            <div class="controls-left">
+              <button class="btn btn-secondary btn-sm" id="q-prev-btn">← Prev</button>
               <button class="btn btn-secondary btn-sm" id="q-next-btn">Next →</button>
             </div>
             
@@ -180,8 +194,8 @@
           </div>
         </div>
 
-        <!-- Right: Question Palette Sidebar -->
-        <aside class="palette-card">
+        <!-- Right: Question Palette Sidebar (Desktop) -->
+        <aside class="palette-card desktop-palette">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
             <div class="palette-title">Question Palette</div>
           </div>
@@ -273,7 +287,7 @@
           </div>
 
           <div class="practice-controls">
-            <div style="display:flex; gap:0.5rem;">
+            <div class="controls-left" style="display:flex; gap:0.5rem;">
               <button class="btn btn-secondary btn-sm" id="mock-prev-btn">← Previous</button>
               <button class="btn btn-secondary btn-sm" id="mock-next-btn">Next →</button>
               <button class="btn btn-secondary btn-sm" id="mock-clear-btn">Clear Choice</button>
@@ -361,9 +375,14 @@
         </div>
       </div>
 
+      <!-- Mobile Scrolling Topic Chips -->
+      <div class="revision-mobile-chips" id="revision-mobile-chips">
+        <!-- Rendered dynamically -->
+      </div>
+
       <div class="revision-grid">
-        <!-- Left: Topics Sidebar -->
-        <nav class="revision-nav" id="revision-topics-nav">
+        <!-- Left: Topics Sidebar (Desktop) -->
+        <nav class="revision-nav desktop-rev-nav" id="revision-topics-nav">
           <!-- Rendered dynamically -->
         </nav>
 
@@ -375,6 +394,25 @@
     </section>
 
   </main>
+
+  <!-- Mobile Question Palette Bottom Sheet Modal -->
+  <div class="modal-overlay" id="mobile-palette-modal">
+    <div class="modal-box mobile-bottom-sheet">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+        <h3 class="modal-title" style="margin-bottom:0;">Question Palette</h3>
+        <button class="icon-btn" id="close-mobile-palette-btn" style="border:none; font-size:1.2rem;">✕</button>
+      </div>
+      <div class="palette-grid" id="mobile-palette-grid">
+        <!-- Rendered dynamically -->
+      </div>
+      <div class="palette-legend" style="margin-top:1rem;">
+        <div class="legend-item"><div class="legend-color" style="background:var(--success);"></div> Correct</div>
+        <div class="legend-item"><div class="legend-color" style="background:var(--error);"></div> Incorrect</div>
+        <div class="legend-item"><div class="legend-color" style="background:var(--warning);"></div> Review</div>
+        <div class="legend-item"><div class="legend-color" style="background:var(--bg-subtle); border:1px solid var(--border-medium);"></div> Unanswered</div>
+      </div>
+    </div>
+  </div>
 
   <!-- Reset Progress Confirmation Modal -->
   <div class="modal-overlay" id="reset-modal">
@@ -392,6 +430,35 @@
   <footer class="app-footer">
     NPTEL Prep — Interactive Topic-Wise MCQ Study Platform • Grounded in Course Lecture Materials • Distraction-Free & Offline Ready
   </footer>
+
+  <!-- Native Mobile Bottom Navigation Bar -->
+  <nav class="mobile-bottom-nav" id="mobile-bottom-nav">
+    <button class="mobile-nav-btn active" data-view="dashboard-view">
+      <span class="mobile-nav-icon">🏠</span>
+      <span class="mobile-nav-label">Home</span>
+    </button>
+    <button class="mobile-nav-btn" data-view="library-view">
+      <span class="mobile-nav-icon">📚</span>
+      <span class="mobile-nav-label">Topics</span>
+    </button>
+    <button class="mobile-nav-btn" data-view="practice-view">
+      <span class="mobile-nav-icon">🎯</span>
+      <span class="mobile-nav-label">Practice</span>
+    </button>
+    <button class="mobile-nav-btn" data-view="mock-view">
+      <span class="mobile-nav-icon">⏱️</span>
+      <span class="mobile-nav-label">Mock</span>
+    </button>
+    <button class="mobile-nav-btn" data-view="weak-view">
+      <span class="mobile-nav-icon">⚠️</span>
+      <span class="mobile-nav-label">Weak</span>
+      <span class="mobile-badge" id="mobile-weak-badge" style="display:none;">0</span>
+    </button>
+    <button class="mobile-nav-btn" data-view="revision-view">
+      <span class="mobile-nav-icon">⚡</span>
+      <span class="mobile-nav-label">Revision</span>
+    </button>
+  </nav>
 
   <!-- Scripts -->
   <script src="js/data.js"></script>
